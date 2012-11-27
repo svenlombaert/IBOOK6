@@ -15,16 +15,14 @@ import starling.display.DisplayObject;
 
 public class Main extends MovieClip {
 
-    private var app:starling.display.DisplayObject;
     private var starling:Starling;
 
     public function Main() {
         stage.align = StageAlign.TOP_LEFT;
         stage.scaleMode = StageScaleMode.NO_SCALE;
 
-
-
         if(loaderInfo.bytesLoaded >= loaderInfo.bytesTotal){
+            trace("NIETS IN TE LADEN");
             startApplication();
         }else{
             loaderInfo.addEventListener(ProgressEvent.PROGRESS, progressHandler);
@@ -44,6 +42,7 @@ public class Main extends MovieClip {
     }
 
     private function completeHandler(event:Event):void {
+        trace('LOADING COMPLETE');
         startApplication();
     }
 

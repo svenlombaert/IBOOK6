@@ -1,0 +1,31 @@
+<magazine title="Harry Potter">
+    <page>
+        <title>Titel 1</title>
+        <photo>pathnaarfoto.png</photo>
+
+        <textfields>
+            <textfield type="intro">Lorem ipsum</textfield>
+            <textfield type="body">Lorem bacon</textfield>
+        </textfields>
+
+        <links>
+            <link position="1">Link1</link>
+            <link position="1">Link 2</link>
+            <link position="1">Link 3</link>
+        </links>
+    </page>
+
+    <page>
+        <title>Titel 2</title>
+        <photo>pathnaarfoto.png</photo>
+
+        <textfields>
+            <textfield type="intro"></textfield>
+            <textfield type="body"></textfield>
+        </textfields>
+
+        <links>
+            <link position="1">Link 1</link>
+        </links>
+    </page>
+</magazine>

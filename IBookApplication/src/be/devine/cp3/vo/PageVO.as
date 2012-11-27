@@ -8,11 +8,11 @@
 package be.devine.cp3.vo {
 public class PageVO {
 
-    public var title:String;
-    public var textfields:Vector.<String>;
-    public var textfieldpositions:Vector.<int>;
-    public var links:Vector.<String>;
-    public var photo:String;
+    public var title:String = "";
+    public var textfields:Vector.<String> = Vector.<String>([]);
+    public var textfieldpositions:Vector.<int> = Vector.<int>([]);
+    public var links:Vector.<String> = Vector.<String>([]);
+    public var photo:String = "";
 
     public function PageVO() {
     }

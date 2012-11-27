@@ -8,6 +8,8 @@
 package be.devine.cp3 {
 
 
+import be.devine.cp3.model.AppModel;
+
 import flash.events.Event;
 
 import starling.display.Quad;
@@ -17,9 +19,12 @@ import starling.display.Sprite;
 
 public class Application extends Sprite {
 
+    private var appModel:AppModel;
+
     public function Application() {
         trace('MAIN GEADD');
 
+        appModel = AppModel.getInstance();
 
     }
 }

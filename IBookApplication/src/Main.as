@@ -10,6 +10,7 @@ import flash.events.Event;
 import flash.geom.Rectangle;
 
 import starling.core.Starling;
+
 public class Main extends Sprite {
 
     private var starling:Starling;

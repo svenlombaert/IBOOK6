@@ -12,8 +12,6 @@ import flash.display.Loader;
 
 import starling.display.Button;
 import starling.display.DisplayObject;
-import starling.events.Event;
-import starling.events.Touch;
 import starling.events.TouchEvent;
 import starling.events.TouchPhase;
 import starling.textures.Texture;

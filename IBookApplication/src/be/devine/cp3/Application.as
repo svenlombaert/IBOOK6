@@ -14,14 +14,10 @@ import be.devine.cp3.queue.ImageLoaderTask;
 import be.devine.cp3.queue.Queue;
 
 import flash.display.BitmapData;
-import flash.display.Loader;
 import flash.events.Event;
-
 import flash.geom.Point;
-import flash.net.URLRequest;
 
 import starling.display.Image;
-
 import starling.display.Sprite;
 import starling.events.Event;
 import starling.events.KeyboardEvent;

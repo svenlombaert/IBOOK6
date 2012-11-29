@@ -6,6 +6,8 @@
  * To change this template use File | Settings | File Templates.
  */
 package be.devine.cp3.model {
+import be.devine.cp3.queue.Queue;
+import be.devine.cp3.queue.URLLoaderTask;
 import be.devine.cp3.vo.PageVO;
 
 import flash.events.Event;
@@ -17,10 +19,12 @@ public class AppModel extends EventDispatcher {
     public static const PAGES_CHANGED:String = "pagesChanged";
     public static const SELECTEDPAGEINDEX_CHANGED:String = "selectedPageIndexChanged";
     public static const SELECTEDCOLORINDEX_CHANGED:String = "selectedColorIndexChanged";
+    public static const IMAGES_DESIGN_PATH:String = "assets/images_design/";
 
     private var _selectedPageIndex:int;
     private var _selectedColorIndex:uint;
     private var _pages:Vector.<PageVO>;
+    private var _queue:Queue;
 
     //-----SINGLETON INITIALIZING
     public static function getInstance():AppModel
@@ -41,15 +45,50 @@ public class AppModel extends EventDispatcher {
            throw new Error("AppModel is a Singleton");
         }
 
+        _queue = new Queue();
+        _queue.add(new URLLoaderTask("assets/xml/books.xml"));
+        _queue.addEventListener(Event.COMPLETE, queueCompleteHandler);
+        _queue.start();
     }
 
     //----METHODS
     public function gotoNextPage():void{
+        trace('[APPMODEL] gotonextpage');
         selectedPageIndex++;
     }
 
     public function gotoPreviousPage():void{
+        trace('[APPMODEL] gotopreviouspage');
         selectedPageIndex--;
+    }
+
+    public function openViewModes():void{
+        trace('[APPMODEL] openviewmodes');
+    }
+
+    private function queueCompleteHandler(event:Event):void {
+        var completedTask:URLLoaderTask = _queue.completedTasks[0] as URLLoaderTask;
+        var xml:XML = new XML(completedTask.data);
+        var pages:Vector.<PageVO> = Vector.<PageVO>([]);
+        var pagenumber:uint = 0;
+
+        for each(var node:XML in xml.page){
+            pagenumber ++;
+            trace('[APPMODEL] PAGINA INGELADEN: ', pagenumber);
+            var pageVO:PageVO = new PageVO();
+            pageVO.pagenumber = pagenumber;
+            pageVO.title = node.title;
+            pageVO.photo = node.photo;
+            for each(var textfield:XML in node.textfields.textfield){
+                pageVO.textfields.push(textfield);
+            }
+            for each(var link:XML in node.links.link){
+                pageVO.links.push(link);
+            }
+            pages.push(pageVO);
+        }
+
+        this.pages = pages;
     }
 
 
@@ -91,6 +130,8 @@ public class AppModel extends EventDispatcher {
             dispatchEvent(new Event(SELECTEDCOLORINDEX_CHANGED));
         }
     }
+
+
 }
 }
 internal class Enforcer{};

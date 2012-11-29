@@ -2,49 +2,44 @@ package {
 
 import be.devine.cp3.Application;
 
-import flash.display.DisplayObject;
-import flash.display.MovieClip;
+import flash.display.Screen;
+import flash.display.Sprite;
 import flash.display.StageAlign;
 import flash.display.StageScaleMode;
 import flash.events.Event;
-import flash.events.ProgressEvent;
-import flash.utils.getDefinitionByName;
+import flash.geom.Rectangle;
 
 import starling.core.Starling;
-import starling.display.DisplayObject;
-
-public class Main extends MovieClip {
+public class Main extends Sprite {
 
     private var starling:Starling;
 
     public function Main() {
         stage.align = StageAlign.TOP_LEFT;
         stage.scaleMode = StageScaleMode.NO_SCALE;
-
-        if(loaderInfo.bytesLoaded >= loaderInfo.bytesTotal){
-            trace("NIETS IN TE LADEN");
-            startApplication();
-        }else{
-            loaderInfo.addEventListener(ProgressEvent.PROGRESS, progressHandler);
-            loaderInfo.addEventListener(Event.COMPLETE, completeHandler);
-        }
-    }
-
-    private function startApplication():void {
-        gotoAndStop('start');
-        starling = new Starling(Application, stage);
-        starling.start();
-    }
-
-    private function progressHandler(event:ProgressEvent):void {
-        trace('LOADING')
-        trace(event.bytesLoaded, event.bytesTotal);
-    }
-
-    private function completeHandler(event:Event):void {
-        trace('LOADING COMPLETE');
+        stage.nativeWindow.width = 1440;
+        stage.nativeWindow.height = 800;
+        stage.nativeWindow.x = (Screen.mainScreen.bounds.width - 1440) >> 1;
+        stage.nativeWindow.y = (Screen.mainScreen.bounds.height - 800) >> 1;
+        stage.addEventListener(Event.RESIZE, resizeHandler);
         startApplication();
     }
 
+    private function startApplication():void {
+        starling = new Starling(Application, stage);
+        starling.start();
+        display();
+    }
+
+    private function resizeHandler(event:Event):void {
+        display();
+    }
+
+    private function display():void{
+        var rect:Rectangle = new Rectangle(0, 0, stage.stageWidth, stage.stageHeight);
+        starling.viewPort = rect;
+        starling.stage.stageWidth = stage.stageWidth;
+        starling.stage.stageHeight = stage.stageHeight;
+    }
 }
 }

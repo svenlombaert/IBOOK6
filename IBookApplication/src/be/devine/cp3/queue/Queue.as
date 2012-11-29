@@ -6,12 +6,9 @@
  * To change this template use File | Settings | File Templates.
  */
 package be.devine.cp3.queue {
-import flash.display.Loader;
-import flash.display.Sprite;
 import flash.events.Event;
 import flash.events.EventDispatcher;
 import flash.events.ProgressEvent;
-import flash.net.URLRequest;
 
 public class Queue extends EventDispatcher{
 

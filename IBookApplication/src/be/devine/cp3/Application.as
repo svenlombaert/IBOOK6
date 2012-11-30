@@ -8,7 +8,8 @@
 package be.devine.cp3 {
 
 
-import be.devine.cp3.controls.ControlButton;
+import be.devine.cp3.controls.PrevNextControlButton;
+import be.devine.cp3.controls.ViewModeControlButton;
 import be.devine.cp3.model.AppModel;
 import be.devine.cp3.queue.ImageLoaderTask;
 import be.devine.cp3.queue.Queue;
@@ -46,6 +47,7 @@ public class Application extends Sprite {
 
         this.addEventListener(KeyboardEvent.KEY_DOWN, keyBoardEventHandler);
         this.addEventListener("BACKGROUNDINITIALIZING_COMPLETE", backgroundInitializingComplete);
+        appModel.addEventListener(AppModel.VIEWMODES_OPENED, viewModesOpened);
     }
 
     //----METHODS
@@ -83,9 +85,9 @@ public class Application extends Sprite {
         var textureLeft:Texture = textureAtlas.getTexture("left");
 
         trace(textureAtlas.getTexture("left"));
-        var previousControl:ControlButton = new ControlButton(textureAtlas.getTexture("left"), "previous");
-        var nextControl:ControlButton = new ControlButton(textureAtlas.getTexture("right"), "next");
-        var upControl:ControlButton = new ControlButton(textureAtlas.getTexture("up"), "viewmode");
+        var previousControl:PrevNextControlButton = new PrevNextControlButton(textureAtlas.getTexture("left"), "previous");
+        var nextControl:PrevNextControlButton = new PrevNextControlButton(textureAtlas.getTexture("right"), "next");
+        var upControl:ViewModeControlButton = new ViewModeControlButton(textureAtlas.getTexture("up"), textureAtlas.getTexture("upopen"));
         previousControl.y = (stage.stageHeight - previousControl.height) >> 1;
         nextControl.x = stage.stageWidth - nextControl.width;
         nextControl.y = (stage.stageHeight - nextControl.height) >> 1;
@@ -95,6 +97,10 @@ public class Application extends Sprite {
         addChild(nextControl);
         addChild(upControl);
 
+    }
+
+    private function viewModesOpened(event:flash.events.Event):void {
+        trace("lalala", appModel.viewModesOpened);
     }
 }
 }

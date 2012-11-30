@@ -20,11 +20,14 @@ public class AppModel extends EventDispatcher {
     public static const SELECTEDPAGEINDEX_CHANGED:String = "selectedPageIndexChanged";
     public static const SELECTEDCOLORINDEX_CHANGED:String = "selectedColorIndexChanged";
     public static const IMAGES_DESIGN_PATH:String = "assets/images_design/";
+    public static const VIEWMODES_OPENED:String = "viewmodesOpened";
 
     private var _selectedPageIndex:int;
     private var _selectedColorIndex:uint;
     private var _pages:Vector.<PageVO>;
     private var _queue:Queue;
+    private var _timelineView:Boolean = true;
+    private var _viewModesOpened:Boolean = false;
 
     //-----SINGLETON INITIALIZING
     public static function getInstance():AppModel
@@ -64,6 +67,12 @@ public class AppModel extends EventDispatcher {
 
     public function openViewModes():void{
         trace('[APPMODEL] openviewmodes');
+        if(_viewModesOpened){
+            _viewModesOpened = false;
+        }else{
+            _viewModesOpened = true;
+        }
+        dispatchEvent(new Event(VIEWMODES_OPENED));
     }
 
     private function queueCompleteHandler(event:Event):void {
@@ -132,6 +141,21 @@ public class AppModel extends EventDispatcher {
     }
 
 
+    public function get timelineView():Boolean {
+        return _timelineView;
+    }
+
+    public function set timelineView(value:Boolean):void {
+        _timelineView = value;
+    }
+
+    public function get viewModesOpened():* {
+        return _viewModesOpened;
+    }
+
+    public function set viewModesOpened(value):void {
+        _viewModesOpened = value;
+    }
 }
 }
 internal class Enforcer{};

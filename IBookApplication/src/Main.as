@@ -18,10 +18,10 @@ public class Main extends Sprite {
     public function Main() {
         stage.align = StageAlign.TOP_LEFT;
         stage.scaleMode = StageScaleMode.NO_SCALE;
-        stage.nativeWindow.width = 1440;
-        stage.nativeWindow.height = 800;
-        stage.nativeWindow.x = (Screen.mainScreen.bounds.width - 1440) >> 1;
-        stage.nativeWindow.y = (Screen.mainScreen.bounds.height - 800) >> 1;
+        stage.nativeWindow.width = 1024;
+        stage.nativeWindow.height = 768;
+        stage.nativeWindow.x = (Screen.mainScreen.bounds.width - 1024) >> 1;
+        stage.nativeWindow.y = (Screen.mainScreen.bounds.height - 768) >> 1;
         stage.addEventListener(Event.RESIZE, resizeHandler);
         startApplication();
     }

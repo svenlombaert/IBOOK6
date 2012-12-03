@@ -1,6 +1,7 @@
 package {
 
 import be.devine.cp3.Application;
+import be.devine.cp3.model.AppModel;
 
 import flash.display.Screen;
 import flash.display.Sprite;
@@ -28,6 +29,9 @@ public class Main extends Sprite {
 
     private function startApplication():void {
         starling = new Starling(Application, stage);
+        AppModel.getInstance();
+        AppModel.instance.appwidth = stage.stageWidth;
+        AppModel.instance.appheight = stage.stageHeight;
         starling.start();
         display();
     }

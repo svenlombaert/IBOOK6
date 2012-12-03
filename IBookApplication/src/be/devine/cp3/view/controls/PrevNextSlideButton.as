@@ -5,7 +5,7 @@
  * Time: 15:48
  * To change this template use File | Settings | File Templates.
  */
-package be.devine.cp3.controls {
+package be.devine.cp3.view.controls {
 import be.devine.cp3.model.AppModel;
 
 import flash.display.Loader;
@@ -26,7 +26,7 @@ import starling.events.TouchEvent;
 import starling.events.TouchPhase;
 import starling.textures.Texture;
 
-public class PrevNextControlButton extends Button{
+public class PrevNextSlideButton extends Button{
 
     private var appModel:AppModel;
     private var image:Loader;
@@ -36,7 +36,7 @@ public class PrevNextControlButton extends Button{
     private var tween:Tween;
 
     //----CONSTRUCTOR
-    public function PrevNextControlButton(upState:Texture, type:String) {
+    public function PrevNextSlideButton(upState:Texture, type:String) {
         super(upState);
         this.type = type;
         appModel = AppModel.getInstance();

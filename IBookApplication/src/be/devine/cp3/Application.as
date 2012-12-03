@@ -8,8 +8,8 @@
 package be.devine.cp3 {
 
 
-import be.devine.cp3.controls.PrevNextControlButton;
-import be.devine.cp3.controls.ViewModeControlButton;
+import be.devine.cp3.view.ViewModeContainer;
+import be.devine.cp3.view.controls.PrevNextSlideButton;
 import be.devine.cp3.model.AppModel;
 import be.devine.cp3.queue.ImageLoaderTask;
 import be.devine.cp3.queue.Queue;
@@ -30,6 +30,7 @@ public class Application extends Sprite {
     private var appModel:AppModel;
     private var queue:Queue;
     private var bgContainer:Sprite;
+    private var textureAtlas:TextureAtlas;
 
     [Embed(source="/assets/images_design/spritesheet.xml", mimeType="application/octet-stream")]
     public static const ButtonXML:Class;
@@ -40,6 +41,9 @@ public class Application extends Sprite {
     public function Application() {
         trace('[APP] CONSTRUCT');
         appModel = AppModel.getInstance();
+        appModel.load();
+        appModel.timelineView = true;
+
         queue = new Queue();
         queue.add(new ImageLoaderTask(AppModel.IMAGES_DESIGN_PATH + "bg_pattern.png"));
         queue.addEventListener(flash.events.Event.COMPLETE, queueCompleteHandler);
@@ -47,11 +51,11 @@ public class Application extends Sprite {
 
         this.addEventListener(KeyboardEvent.KEY_DOWN, keyBoardEventHandler);
         this.addEventListener("BACKGROUNDINITIALIZING_COMPLETE", backgroundInitializingComplete);
-        appModel.addEventListener(AppModel.VIEWMODES_OPENED, viewModesOpened);
     }
 
     //----METHODS
     private function queueCompleteHandler(event:flash.events.Event):void {
+        //TODO: background toevoegen aan spritesheet;
         var completedTask:ImageLoaderTask = queue.completedTasks[0] as ImageLoaderTask;
         var bgBitmapData:BitmapData = new BitmapData(completedTask.width, completedTask.height);
         bgBitmapData.draw(completedTask.content);
@@ -81,26 +85,24 @@ public class Application extends Sprite {
         trace('[APP] AANMAKEN BUTTONS');
         var texture:Texture = Texture.fromBitmap(new ButtonTexture());
         var xml:XML = XML(new ButtonXML());
-        var textureAtlas:TextureAtlas = new TextureAtlas(texture, xml);
-        var textureLeft:Texture = textureAtlas.getTexture("left");
+        textureAtlas = new TextureAtlas(texture, xml);
 
-        trace(textureAtlas.getTexture("left"));
-        var previousControl:PrevNextControlButton = new PrevNextControlButton(textureAtlas.getTexture("left"), "previous");
-        var nextControl:PrevNextControlButton = new PrevNextControlButton(textureAtlas.getTexture("right"), "next");
-        var upControl:ViewModeControlButton = new ViewModeControlButton(textureAtlas.getTexture("up"), textureAtlas.getTexture("upopen"));
+        var previousControl:PrevNextSlideButton = new PrevNextSlideButton(textureAtlas.getTexture("left"), "previous");
+        var nextControl:PrevNextSlideButton = new PrevNextSlideButton(textureAtlas.getTexture("right"), "next");
+        var viewModeContainer:ViewModeContainer = new ViewModeContainer(textureAtlas);
+
         previousControl.y = (stage.stageHeight - previousControl.height) >> 1;
         nextControl.x = stage.stageWidth - nextControl.width;
         nextControl.y = (stage.stageHeight - nextControl.height) >> 1;
-        upControl.x = (stage.stageWidth-upControl.width) >>1;
-        upControl.y = stage.stageHeight - upControl.height;
+
+//        viewModeContainer.x = (stage.stageWidth-viewModeContainer.width) >>1;
+//        viewModeContainer.y = stage.stageHeight - viewModeContainer.height;
+        trace(stage.stageHeight);
+
         addChild(previousControl);
         addChild(nextControl);
-        addChild(upControl);
+        addChild(viewModeContainer);
 
-    }
-
-    private function viewModesOpened(event:flash.events.Event):void {
-        trace("lalala", appModel.viewModesOpened);
     }
 }
 }

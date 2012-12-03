@@ -6,12 +6,17 @@
  * To change this template use File | Settings | File Templates.
  */
 package be.devine.cp3.model {
+import be.devine.cp3.factory.vo.PageVOFactory;
 import be.devine.cp3.queue.Queue;
 import be.devine.cp3.queue.URLLoaderTask;
 import be.devine.cp3.vo.PageVO;
 
+import flash.display.Loader;
+
 import flash.events.Event;
 import flash.events.EventDispatcher;
+import flash.net.URLLoader;
+import flash.net.URLRequest;
 
 public class AppModel extends EventDispatcher {
     public static var instance:AppModel;
@@ -21,40 +26,41 @@ public class AppModel extends EventDispatcher {
     public static const SELECTEDCOLORINDEX_CHANGED:String = "selectedColorIndexChanged";
     public static const IMAGES_DESIGN_PATH:String = "assets/images_design/";
     public static const VIEWMODES_OPENED:String = "viewmodesOpened";
+    public static const VIEWMODES_CHANGED:String = "viewmodesChanged";
 
     private var _selectedPageIndex:int;
     private var _selectedColorIndex:uint;
     private var _pages:Vector.<PageVO>;
-    private var _queue:Queue;
-    private var _timelineView:Boolean = true;
+    private var _timelineView:Boolean;
     private var _viewModesOpened:Boolean = false;
+    private var _urlLoader:URLLoader;
+
+    public var appwidth:int;
+    public var appheight:int;
 
     //-----SINGLETON INITIALIZING
-    public static function getInstance():AppModel
-    {
+    public static function getInstance():AppModel{
        if(instance == null)
        {
             instance = new AppModel(new Enforcer());
        }
-
        return instance;
     }
 
     //-----CONSTRUCTOR
     public function AppModel(e:Enforcer) {
-
         if(e == null)
         {
            throw new Error("AppModel is a Singleton");
         }
-
-        _queue = new Queue();
-        _queue.add(new URLLoaderTask("assets/xml/books.xml"));
-        _queue.addEventListener(Event.COMPLETE, queueCompleteHandler);
-        _queue.start();
     }
 
     //----METHODS
+    public function load():void{
+        _urlLoader = new URLLoader();
+        _urlLoader.addEventListener(Event.COMPLETE, xmlLoadedHandler);
+       _urlLoader.load(new URLRequest("assets/xml/books.xml"));
+    }
     public function gotoNextPage():void{
         trace('[APPMODEL] gotonextpage');
         selectedPageIndex++;
@@ -67,39 +73,23 @@ public class AppModel extends EventDispatcher {
 
     public function openViewModes():void{
         trace('[APPMODEL] openviewmodes');
-        if(_viewModesOpened){
-            _viewModesOpened = false;
-        }else{
-            _viewModesOpened = true;
-        }
+        _viewModesOpened ? _viewModesOpened =  false : _viewModesOpened =  true;
         dispatchEvent(new Event(VIEWMODES_OPENED));
     }
 
-    private function queueCompleteHandler(event:Event):void {
-        var completedTask:URLLoaderTask = _queue.completedTasks[0] as URLLoaderTask;
-        var xml:XML = new XML(completedTask.data);
-        var pages:Vector.<PageVO> = Vector.<PageVO>([]);
-        var pagenumber:uint = 0;
-
-        for each(var node:XML in xml.page){
-            pagenumber ++;
-            trace('[APPMODEL] PAGINA INGELADEN: ', pagenumber);
-            var pageVO:PageVO = new PageVO();
-            pageVO.pagenumber = pagenumber;
-            pageVO.title = node.title;
-            pageVO.photo = node.photo;
-            for each(var textfield:XML in node.textfields.textfield){
-                pageVO.textfields.push(textfield);
-            }
-            for each(var link:XML in node.links.link){
-                pageVO.links.push(link);
-            }
-            pages.push(pageVO);
-        }
-
-        this.pages = pages;
+    public function changeViewModes():void{
+        timelineView ? timelineView = false : timelineView = true;
     }
 
+    private function xmlLoadedHandler(event:Event):void {
+        trace("LOADED XML");
+        var content:XML = new XML(event.target.data);
+        var pages:Vector.<PageVO> = new Vector.<PageVO>();
+        for each (var page:XML in content.page){
+            pages.push(PageVOFactory.createFromXML(page));
+        }
+        this.pages = pages;
+    }
 
     //----GETTERS EN SETTERS
     public function get pages():Vector.<PageVO> {
@@ -146,7 +136,10 @@ public class AppModel extends EventDispatcher {
     }
 
     public function set timelineView(value:Boolean):void {
-        _timelineView = value;
+        if(value != _timelineView){
+            _timelineView = value;
+            dispatchEvent(new Event(VIEWMODES_CHANGED));
+        }
     }
 
     public function get viewModesOpened():* {
@@ -156,6 +149,7 @@ public class AppModel extends EventDispatcher {
     public function set viewModesOpened(value):void {
         _viewModesOpened = value;
     }
+
 }
 }
-internal class Enforcer{};
+internal class Enforcer{}

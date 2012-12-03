@@ -11,7 +11,6 @@ import be.devine.cp3.model.AppModel;
 import flash.events.Event;
 
 import starling.animation.Tween;
-
 import starling.display.Button;
 import starling.display.DisplayObject;
 import starling.events.TouchEvent;

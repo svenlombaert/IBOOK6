@@ -14,13 +14,9 @@ import be.devine.cp3.view.controls.ViewModeOpenButton;
 import flash.events.Event;
 
 import starling.animation.Transitions;
-
 import starling.animation.Tween;
-
 import starling.core.Starling;
-
 import starling.display.Sprite;
-
 import starling.textures.TextureAtlas;
 
 public class ViewModeContainer extends Sprite {
@@ -48,7 +44,8 @@ public class ViewModeContainer extends Sprite {
         this.appModel.addEventListener(AppModel.VIEWMODES_OPENED, viewModesOpenedHandler);
         this.appModel.addEventListener(AppModel.VIEWMODES_CHANGED, viewModesChangedHandler);
     }
-
+    //TODO: openControl en changeviewmodecontrol in 1 container steken
+    //TODO: pijltjes toevoegen
     private function viewModesOpenedHandler(event:Event):void {
         Starling.juggler.removeTweens(this);
         Starling.juggler.removeTweens(openControl);

@@ -10,17 +10,12 @@ import be.devine.cp3.model.AppModel;
 
 import flash.display.Loader;
 import flash.geom.Point;
-import flash.trace.Trace;
-import flash.ui.Mouse;
 
 import starling.animation.Transitions;
-
 import starling.animation.Tween;
 import starling.core.Starling;
-
 import starling.display.Button;
 import starling.display.DisplayObject;
-import starling.events.Event;
 import starling.events.Touch;
 import starling.events.TouchEvent;
 import starling.events.TouchPhase;

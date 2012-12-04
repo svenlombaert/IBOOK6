@@ -17,6 +17,7 @@ public class PageVOFactory {
         for each(var elementXML:XML in pageXML.page){
             trace("ELEMENT ", elementXML);
         }
+
     }
 }
 }

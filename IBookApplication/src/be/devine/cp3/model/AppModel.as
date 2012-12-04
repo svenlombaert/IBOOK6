@@ -145,6 +145,7 @@ public class AppModel extends EventDispatcher {
     public function set timelineView(value:Boolean):void {
         if(value != _timelineView){
             _timelineView = value;
+            trace('DISPATCH viewmodes changed');
             dispatchEvent(new Event(VIEWMODES_CHANGED));
         }
     }
@@ -154,7 +155,6 @@ public class AppModel extends EventDispatcher {
     }
 
     public function set viewModesOpened(value):void {
-        _viewModesOpened = value;
         if(_viewModesOpened != value){
             _viewModesOpened = value;
             dispatchEvent(new Event(VIEWMODES_OPENED));

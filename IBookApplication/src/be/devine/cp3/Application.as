@@ -80,7 +80,7 @@ public class Application extends Sprite {
         bgContainer = new Sprite();
         bgContainer.addChild(img);
         addChild(bgContainer);
-//        dispatchEvent(new starling.events.Event("BACKGROUNDINITIALIZING_COMPLETE"));
+        dispatchEvent(new starling.events.Event("BACKGROUNDINITIALIZING_COMPLETE"));
     }
 
     private function keyBoardEventHandler(event:flash.events.Event):void {
@@ -90,17 +90,18 @@ public class Application extends Sprite {
     private function backgroundInitializingComplete(event:starling.events.Event):void {
         //initialize all buttons via button spritesheet
         trace('[APP] AANMAKEN BUTTONS');
-        previousControl= new PrevNextSlideButton(textureAtlas.getTexture("left"), "previous");
-        nextControl= new PrevNextSlideButton(textureAtlas.getTexture("right"), "next");
-        viewModeController = new ViewModeController(textureAtlas);
+        previousControl= new PrevNextSlideButton(textureAtlas, "previous");
+        //nextControl= new PrevNextSlideButton(textureAtlas.getTexture("right"), "next");
+        //viewModeController = new ViewModeController(textureAtlas);
 
         previousControl.y = (stage.stageHeight - previousControl.height) >> 1;
-        nextControl.x = stage.stageWidth - nextControl.width;
-        nextControl.y = (stage.stageHeight - nextControl.height) >> 1;
+        previousControl.x = -previousControl.width/2;
+        //nextControl.x = stage.stageWidth - nextControl.width;
+        //nextControl.y = (stage.stageHeight - nextControl.height) >> 1;
 
         addChild(previousControl);
-        addChild(nextControl);
-        addChild(viewModeController);
+        //addChild(nextControl);
+        //addChild(viewModeController);
 
         maakPaginas();
 

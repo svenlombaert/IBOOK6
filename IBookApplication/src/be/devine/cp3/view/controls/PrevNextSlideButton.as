@@ -8,7 +8,11 @@
 package be.devine.cp3.view.controls {
 import be.devine.cp3.model.AppModel;
 
+import flash.display.BitmapData;
+
 import flash.display.Loader;
+import flash.display.Shape;
+import flash.display.Sprite;
 import flash.geom.Point;
 
 import starling.animation.Transitions;
@@ -16,10 +20,14 @@ import starling.animation.Tween;
 import starling.core.Starling;
 import starling.display.Button;
 import starling.display.DisplayObject;
+import starling.display.Image;
 import starling.events.Touch;
 import starling.events.TouchEvent;
 import starling.events.TouchPhase;
+import starling.textures.RenderTexture;
 import starling.textures.Texture;
+import starling.textures.TextureAtlas;
+import starling.utils.deg2rad;
 
 public class PrevNextSlideButton extends Button{
 
@@ -29,8 +37,34 @@ public class PrevNextSlideButton extends Button{
     private var tween:Tween;
 
     //----CONSTRUCTOR
-    public function PrevNextSlideButton(upState:Texture, type:String) {
-        super(upState);
+    public function PrevNextSlideButton(textureAtlas:TextureAtlas, type:String) {
+        //TODO opschonen, maar dat is voor morgen, we zijn te moe!
+        var circleShape:Shape = new Shape();
+        circleShape.graphics.beginFill(0xff0000, 0.8);
+        circleShape.graphics.drawCircle(50,50, 50);
+        circleShape.graphics.endFill();
+
+        var arrow:Texture = textureAtlas.getTexture("arrow");
+        var imgArrow:Image = new Image(arrow);
+        imgArrow.pivotX = imgArrow.width/2;
+        imgArrow.pivotY = imgArrow.height/2;
+        imgArrow.rotation = deg2rad(90);
+        imgArrow.x = circleShape.width/2 + 20;
+        imgArrow.y = circleShape.width/2;
+
+
+        var bmpData:BitmapData = new BitmapData(circleShape.width, circleShape.height, true, 0x000000);
+        bmpData.draw(circleShape);
+
+        var img:Image = new Image(Texture.fromBitmapData(bmpData));
+
+        var renderTexture:RenderTexture = new RenderTexture(circleShape.width, circleShape.height);
+        renderTexture.draw(img);
+        renderTexture.draw(imgArrow, 16);
+
+        var texture:Texture = renderTexture;
+        super(texture);
+
         this.type = type;
         appModel = AppModel.getInstance();
         this.alphaWhenDisabled = 1;

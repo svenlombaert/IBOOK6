@@ -8,11 +8,13 @@
 package be.devine.cp3 {
 
 
+import be.devine.cp3.view.Page;
 import be.devine.cp3.view.ViewModeController;
 import be.devine.cp3.view.controls.PrevNextSlideButton;
 import be.devine.cp3.model.AppModel;
 import be.devine.cp3.queue.ImageLoaderTask;
 import be.devine.cp3.queue.Queue;
+import be.devine.cp3.vo.PageVO;
 
 import flash.display.BitmapData;
 import flash.events.Event;
@@ -102,6 +104,20 @@ public class Application extends Sprite {
         addChild(nextControl);
         addChild(viewModeController);
 
+        maakPaginas();
+
     }
-}
+
+    private function maakPaginas(){
+        var pages:Vector.<PageVO> = appModel.pages;
+
+            trace('MAAK PAGINA AAN');
+            var pageView = new Page(pages[0]);
+            addChildAt(pageView, this.numChildren -1);
+        pageView.x = 100;
+        pageView.y = 100;
+        trace("pageview height: ", pageView.height);
+        }
+    }
+
 }

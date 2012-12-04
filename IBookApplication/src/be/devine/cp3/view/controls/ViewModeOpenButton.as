@@ -35,7 +35,7 @@ public class ViewModeOpenButton extends Button{
         this.appModel.addEventListener(AppModel.VIEWMODES_OPENED, viewmodesOpenedHandler);
     }
 
-    //TODO: Bug oplossen bij snel klikken
+    //TODO: Sven: Bug oplossen bij snel klikken
     private function touchHandler(event:TouchEvent):void {
         var touchObject:DisplayObject = event.currentTarget as DisplayObject;
         if(event.getTouch(touchObject, TouchPhase.BEGAN)){

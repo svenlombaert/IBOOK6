@@ -14,12 +14,14 @@ import be.devine.cp3.vo.TitleElementVO;
 
 public class ElementVOFactory {
     public static function CreateFromXML(elementXML:XML) {
+        //TODO alle cases toevoegen, juiste properties meegeven aan elementVO
         switch("" + elementXML.@type){
-            case "title": createTitleElementVO(elementXML); break;
-            case "backgroundPhoto": createBackgroundPhotoElementVO(elementXML); break;
-            case "intro": createIntroTextElementVO(elementXML); break;
-            case "body": createBodyElementVO(elementXML); break;
+            //case "title": createTitleElementVO(elementXML); break;
+            //case "backgroundPhoto": createBackgroundPhotoElementVO(elementXML); break;
+            //case "intro": createIntroTextElementVO(elementXML); break;
+            case "body": return createBodyElementVO(elementXML); break;
         }
+        return null;
     }
 
     public static function createTitleElementVO(elementXML:XML):TitleElementVO {
@@ -41,6 +43,7 @@ public class ElementVOFactory {
 
     public static function createBodyElementVO(elementXML:XML):BodyTextElementVO {
         var elementVO:BodyTextElementVO = new BodyTextElementVO();
+        elementVO.text = elementXML;
         return elementVO;
     }
 }

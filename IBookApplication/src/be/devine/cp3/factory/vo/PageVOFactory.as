@@ -14,9 +14,11 @@ public class PageVOFactory {
         //TODO: kijken hoe xml zo makkelijk mogelijk te parsen
 
         var pageVO:PageVO = new PageVO();
-        for each(var elementXML:XML in pageXML.page){
-            trace("ELEMENT ", elementXML);
+
+        for each(var elementXML:XML in pageXML.element){
+            pageVO.elements.push(ElementVOFactory.CreateFromXML(elementXML));
         }
+        return pageVO;
 
     }
 }

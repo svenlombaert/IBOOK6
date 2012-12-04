@@ -16,7 +16,7 @@ public class ThumbnailContainer extends Sprite {
     private var background:Quad;
     public function ThumbnailContainer() {
         background = new Quad(AppModel.instance.appwidth, AppModel.instance.appheight, Style.TIMELINECOLOR);
-        background.alpha = 0.82;
+        background.alpha = 0.90;
         addChild(background);
     }
 }

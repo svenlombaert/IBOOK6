@@ -7,6 +7,7 @@
  */
 package be.devine.cp3.vo {
 public class IntroTextElementVO extends ElementVO{
+    public var text:String;
     public function IntroTextElementVO() {
     }
 }

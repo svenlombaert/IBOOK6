@@ -73,12 +73,19 @@ public class AppModel extends EventDispatcher {
 
     public function openViewModes():void{
         trace('[APPMODEL] openviewmodes');
-        _viewModesOpened ? _viewModesOpened =  false : _viewModesOpened =  true;
-        dispatchEvent(new Event(VIEWMODES_OPENED));
+        if(viewModesOpened){
+            viewModesOpened = false
+        }else{
+            viewModesOpened = true;
+        }
     }
 
     public function changeViewModes():void{
-        timelineView ? timelineView = false : timelineView = true;
+        if(timelineView){
+            timelineView = false
+        }else{
+            timelineView = true;
+        }
     }
 
     private function xmlLoadedHandler(event:Event):void {
@@ -148,6 +155,10 @@ public class AppModel extends EventDispatcher {
 
     public function set viewModesOpened(value):void {
         _viewModesOpened = value;
+        if(_viewModesOpened != value){
+            _viewModesOpened = value;
+            dispatchEvent(new Event(VIEWMODES_OPENED));
+        }
     }
 
 }

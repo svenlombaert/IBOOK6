@@ -31,6 +31,7 @@ public class Application extends Sprite {
     private var queue:Queue;
     private var bgContainer:Sprite;
     private var textureAtlas:TextureAtlas;
+    private var previousControl:PrevNextSlideButton;
 
     [Embed(source="/assets/images_design/spritesheet.xml", mimeType="application/octet-stream")]
     public static const ButtonXML:Class;
@@ -87,7 +88,7 @@ public class Application extends Sprite {
         var xml:XML = XML(new ButtonXML());
         textureAtlas = new TextureAtlas(texture, xml);
 
-        var previousControl:PrevNextSlideButton = new PrevNextSlideButton(textureAtlas.getTexture("left"), "previous");
+        previousControl= new PrevNextSlideButton(textureAtlas.getTexture("left"), "previous");
         var nextControl:PrevNextSlideButton = new PrevNextSlideButton(textureAtlas.getTexture("right"), "next");
         var viewModeContainer:ViewModeContainer = new ViewModeContainer(textureAtlas);
 

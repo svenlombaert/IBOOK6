@@ -24,8 +24,6 @@ import starling.textures.Texture;
 public class PrevNextSlideButton extends Button{
 
     private var appModel:AppModel;
-    private var image:Loader;
-    private var leftRightButton:Button;
     private var type:String;
     private var hoverDisabled:Boolean = false;
     private var tween:Tween;

@@ -8,7 +8,7 @@
 package be.devine.cp3 {
 
 
-import be.devine.cp3.view.ViewModeContainer;
+import be.devine.cp3.view.ViewModeController;
 import be.devine.cp3.view.controls.PrevNextSlideButton;
 import be.devine.cp3.model.AppModel;
 import be.devine.cp3.queue.ImageLoaderTask;
@@ -32,6 +32,8 @@ public class Application extends Sprite {
     private var bgContainer:Sprite;
     private var textureAtlas:TextureAtlas;
     private var previousControl:PrevNextSlideButton;
+    private var nextControl:PrevNextSlideButton;
+    private var viewModeController:ViewModeController;
 
     [Embed(source="/assets/images_design/spritesheet.xml", mimeType="application/octet-stream")]
     public static const ButtonXML:Class;
@@ -89,20 +91,16 @@ public class Application extends Sprite {
         textureAtlas = new TextureAtlas(texture, xml);
 
         previousControl= new PrevNextSlideButton(textureAtlas.getTexture("left"), "previous");
-        var nextControl:PrevNextSlideButton = new PrevNextSlideButton(textureAtlas.getTexture("right"), "next");
-        var viewModeContainer:ViewModeContainer = new ViewModeContainer(textureAtlas);
+        nextControl= new PrevNextSlideButton(textureAtlas.getTexture("right"), "next");
+        viewModeController = new ViewModeController(textureAtlas);
 
         previousControl.y = (stage.stageHeight - previousControl.height) >> 1;
         nextControl.x = stage.stageWidth - nextControl.width;
         nextControl.y = (stage.stageHeight - nextControl.height) >> 1;
 
-//        viewModeContainer.x = (stage.stageWidth-viewModeContainer.width) >>1;
-//        viewModeContainer.y = stage.stageHeight - viewModeContainer.height;
-        trace(stage.stageHeight);
-
         addChild(previousControl);
         addChild(nextControl);
-        addChild(viewModeContainer);
+        addChild(viewModeController);
 
     }
 }

@@ -19,14 +19,14 @@ import starling.core.Starling;
 import starling.display.Sprite;
 import starling.textures.TextureAtlas;
 
-public class ViewModeContainer extends Sprite {
+public class ViewModeController extends Sprite {
     private var openControl:ViewModeOpenButton;
     private var changeViewModeControl:ViewModeChangerButton;
     private var thumbnailContainer:ThumbnailContainer;
     private var appModel:AppModel;
     private var tween:Tween;
 
-    public function ViewModeContainer(textureAtlas:TextureAtlas) {
+    public function ViewModeController(textureAtlas:TextureAtlas) {
         appModel = AppModel.getInstance();
         openControl = new ViewModeOpenButton(textureAtlas.getTexture("up"), textureAtlas.getTexture("upopen"));
         thumbnailContainer = new ThumbnailContainer();

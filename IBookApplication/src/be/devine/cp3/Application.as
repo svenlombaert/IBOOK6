@@ -16,9 +16,14 @@ import be.devine.cp3.queue.ImageLoaderTask;
 import be.devine.cp3.queue.Queue;
 import be.devine.cp3.vo.PageVO;
 
+import flash.display.Bitmap;
+
 import flash.display.BitmapData;
+import flash.display.DisplayObject;
+import flash.display.Loader;
 import flash.events.Event;
 import flash.geom.Point;
+import flash.net.URLRequest;
 
 import starling.display.Image;
 import starling.display.Sprite;
@@ -30,12 +35,12 @@ import starling.textures.TextureAtlas;
 public class Application extends Sprite {
 
     private var appModel:AppModel;
-    private var queue:Queue;
     private var bgContainer:Sprite;
     private var textureAtlas:TextureAtlas;
     private var previousControl:PrevNextSlideButton;
     private var nextControl:PrevNextSlideButton;
     private var viewModeController:ViewModeController;
+    private var bgLoader:Loader;
 
     [Embed(source="/assets/images_design/spritesheet.xml", mimeType="application/octet-stream")]
     public static const ButtonXML:Class;
@@ -49,27 +54,24 @@ public class Application extends Sprite {
         appModel.load();
         appModel.timelineView = true;
 
-        queue = new Queue();
-        queue.add(new ImageLoaderTask(AppModel.IMAGES_DESIGN_PATH + "bg_pattern.png"));
-        queue.addEventListener(flash.events.Event.COMPLETE, queueCompleteHandler);
-        queue.start();
+        var texture:Texture = Texture.fromBitmap(new ButtonTexture());
+        var xml:XML = XML(new ButtonXML());
+        textureAtlas = new TextureAtlas(texture, xml);
+        bgLoader = new Loader();
+        bgLoader.load(new URLRequest("assets/images_design/bg_pattern.png"));
+        bgLoader.contentLoaderInfo.addEventListener(flash.events.Event.COMPLETE, backgroundLoadedHandler);
 
         this.addEventListener(KeyboardEvent.KEY_DOWN, keyBoardEventHandler);
         this.addEventListener("BACKGROUNDINITIALIZING_COMPLETE", backgroundInitializingComplete);
     }
 
     //----METHODS
-    private function queueCompleteHandler(event:flash.events.Event):void {
-        //TODO: background toevoegen aan spritesheet;
-        var completedTask:ImageLoaderTask = queue.completedTasks[0] as ImageLoaderTask;
-        var bgBitmapData:BitmapData = new BitmapData(completedTask.width, completedTask.height);
-        bgBitmapData.draw(completedTask.content);
-        var texture:Texture = Texture.fromBitmapData(bgBitmapData);
+    private function backgroundLoadedHandler(event:flash.events.Event):void {
+        var texture:Texture = Texture.fromBitmap(bgLoader.content as Bitmap);
         texture.repeat = true;
         var img:Image = new Image(texture);
-        var horizontalReps:Number = stage.stageWidth/img.width;
-        var verticalReps:Number = stage.stageHeight/img.height;
-        //tiled background code
+        var horizontalReps:Number = appModel.appwidth/img.width;
+        var verticalReps:Number = appModel.appheight/img.height;
         img.setTexCoords(1, new Point(horizontalReps, 0));
         img.setTexCoords(2, new Point(0, verticalReps));
         img.setTexCoords(3, new Point(horizontalReps, verticalReps));
@@ -78,7 +80,7 @@ public class Application extends Sprite {
         bgContainer = new Sprite();
         bgContainer.addChild(img);
         addChild(bgContainer);
-        dispatchEvent(new starling.events.Event("BACKGROUNDINITIALIZING_COMPLETE"));
+//        dispatchEvent(new starling.events.Event("BACKGROUNDINITIALIZING_COMPLETE"));
     }
 
     private function keyBoardEventHandler(event:flash.events.Event):void {
@@ -88,10 +90,6 @@ public class Application extends Sprite {
     private function backgroundInitializingComplete(event:starling.events.Event):void {
         //initialize all buttons via button spritesheet
         trace('[APP] AANMAKEN BUTTONS');
-        var texture:Texture = Texture.fromBitmap(new ButtonTexture());
-        var xml:XML = XML(new ButtonXML());
-        textureAtlas = new TextureAtlas(texture, xml);
-
         previousControl= new PrevNextSlideButton(textureAtlas.getTexture("left"), "previous");
         nextControl= new PrevNextSlideButton(textureAtlas.getTexture("right"), "next");
         viewModeController = new ViewModeController(textureAtlas);

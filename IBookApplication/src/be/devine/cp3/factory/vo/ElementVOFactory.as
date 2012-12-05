@@ -14,7 +14,7 @@ import be.devine.cp3.vo.TitleElementVO;
 
 public class ElementVOFactory {
     public static function CreateFromXML(elementXML:XML) {
-        //TODO alle cases toevoegen, juiste properties meegeven aan elementVO
+        //TODO: alle cases toevoegen, juiste properties meegeven aan elementVO
         switch("" + elementXML.@type){
             case "title": return createTitleElementVO(elementXML); break;
             case "backgroundPhoto": return createBackgroundPhotoElementVO(elementXML); break;

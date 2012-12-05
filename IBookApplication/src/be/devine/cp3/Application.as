@@ -68,8 +68,9 @@ public class Application extends Sprite {
     //----METHODS
     private function backgroundLoadedHandler(event:flash.events.Event):void {
         var texture:Texture = Texture.fromBitmap(bgLoader.content as Bitmap);
-        texture.repeat = true;
         var img:Image = new Image(texture);
+        //tileable background
+        texture.repeat = true;
         var horizontalReps:Number = appModel.appwidth/img.width;
         var verticalReps:Number = appModel.appheight/img.height;
         img.setTexCoords(1, new Point(horizontalReps, 0));

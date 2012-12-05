@@ -11,7 +11,7 @@ import be.devine.cp3.vo.LinkElementVO;
 import starling.text.TextField;
 
 public class LinkElement extends Element {
-    //TODO:Thomas: linkelement opmaken
+    //TODO:Thomas: linkelement opmaken CHECK
     public function LinkElement(linkElementVO:LinkElementVO) {
         super (linkElementVO);
         var t:TextField = new TextField(350, 20, linkElementVO.text, "Arial" , 72, linkElementVO.color, true);

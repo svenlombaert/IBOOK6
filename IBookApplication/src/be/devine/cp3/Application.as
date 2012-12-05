@@ -113,8 +113,8 @@ public class Application extends Sprite {
             trace('MAAK PAGINA AAN');
             var pageView = new Page(pages[0]);
             addChildAt(pageView, this.numChildren -1);
-        pageView.x = 100;
-        pageView.y = 100;
+        pageView.x = 20;
+        pageView.y = 20;
         trace("pageview height: ", pageView.height);
         }
     }

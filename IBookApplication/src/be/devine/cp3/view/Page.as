@@ -8,6 +8,7 @@
 package be.devine.cp3.view {
 import be.devine.cp3.factory.view.ElementViewFactory;
 import be.devine.cp3.view.elements.Element;
+import be.devine.cp3.view.elements.IntroTextElement;
 import be.devine.cp3.vo.ElementVO;
 import be.devine.cp3.vo.PageVO;
 
@@ -23,6 +24,12 @@ public class Page extends Sprite{
         for each(var elementVO:ElementVO in pageVO.elements){
             var element:Element = ElementViewFactory.createFromVO(elementVO);
             if(element != null){
+                trace("zet elemet op pagina");
+                if(element is IntroTextElement){
+                    //plaats vanboven
+                    element.x = 20;
+                    element.y = 20;
+                }
                 addChild(element);
             }
             //addChild(element);

@@ -18,7 +18,7 @@ import starling.animation.Tween;
 import starling.core.Starling;
 import starling.display.Sprite;
 import starling.textures.TextureAtlas;
-
+//TODO bol volledig laten draaien (upcontrol, logo timelineview dus omdraaien)
 public class ViewModeController extends Sprite {
     private var openControl:ViewModeOpenButton;
     private var changeViewModeControl:ViewModeChangerButton;

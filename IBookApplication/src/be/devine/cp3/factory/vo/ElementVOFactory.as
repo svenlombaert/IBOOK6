@@ -16,9 +16,9 @@ public class ElementVOFactory {
     public static function CreateFromXML(elementXML:XML) {
         //TODO alle cases toevoegen, juiste properties meegeven aan elementVO
         switch("" + elementXML.@type){
-            //case "title": createTitleElementVO(elementXML); break;
-            //case "backgroundPhoto": createBackgroundPhotoElementVO(elementXML); break;
-            //case "intro": createIntroTextElementVO(elementXML); break;
+            case "title": return createTitleElementVO(elementXML); break;
+            case "backgroundPhoto": return createBackgroundPhotoElementVO(elementXML); break;
+            case "intro": return createIntroTextElementVO(elementXML); break;
             case "body": return createBodyElementVO(elementXML); break;
         }
         return null;
@@ -37,7 +37,9 @@ public class ElementVOFactory {
     }
 
     public static function createIntroTextElementVO(elementXML:XML):IntroTextElementVO {
+        trace('AANMAKEN INTRO TEXT VO');
         var elementVO:IntroTextElementVO = new IntroTextElementVO();
+        elementVO.text = elementXML;
         return elementVO;
     }
 

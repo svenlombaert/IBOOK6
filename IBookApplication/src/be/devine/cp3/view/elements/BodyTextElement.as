@@ -8,8 +8,6 @@
 package be.devine.cp3.view.elements {
 import be.devine.cp3.vo.BodyTextElementVO;
 
-import starling.display.Quad;
-
 import starling.text.TextField;
 
 public class BodyTextElement extends Element{

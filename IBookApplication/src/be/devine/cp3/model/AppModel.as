@@ -7,11 +7,7 @@
  */
 package be.devine.cp3.model {
 import be.devine.cp3.factory.vo.PageVOFactory;
-import be.devine.cp3.queue.Queue;
-import be.devine.cp3.queue.URLLoaderTask;
 import be.devine.cp3.vo.PageVO;
-
-import flash.display.Loader;
 
 import flash.events.Event;
 import flash.events.EventDispatcher;
@@ -24,7 +20,6 @@ public class AppModel extends EventDispatcher {
     public static const PAGES_CHANGED:String = "pagesChanged";
     public static const SELECTEDPAGEINDEX_CHANGED:String = "selectedPageIndexChanged";
     public static const SELECTEDCOLORINDEX_CHANGED:String = "selectedColorIndexChanged";
-    public static const IMAGES_DESIGN_PATH:String = "assets/images_design/";
     public static const VIEWMODES_OPENED:String = "viewmodesOpened";
     public static const VIEWMODES_CHANGED:String = "viewmodesChanged";
 
@@ -59,7 +54,7 @@ public class AppModel extends EventDispatcher {
     public function load():void{
         _urlLoader = new URLLoader();
         _urlLoader.addEventListener(Event.COMPLETE, xmlLoadedHandler);
-       _urlLoader.load(new URLRequest("assets/xml/books.xml"));
+        _urlLoader.load(new URLRequest("assets/xml/books.xml"));
     }
     public function gotoNextPage():void{
         trace('[APPMODEL] gotonextpage');
@@ -104,10 +99,9 @@ public class AppModel extends EventDispatcher {
     }
 
     public function set pages(value:Vector.<PageVO>):void {
-
         _pages = value;
         dispatchEvent(new Event(PAGES_CHANGED));
-
+        trace('[APPMODEL] PAGES CHANGED')
     }
 
     public function get selectedPageIndex():int {
@@ -115,14 +109,14 @@ public class AppModel extends EventDispatcher {
     }
 
     public function set selectedPageIndex(value:int):void {
-
         if(value == pages.length){
-            _selectedPageIndex = pages.length-1;
+                _selectedPageIndex = pages.length-1;
         }else if(value == -1){
-            _selectedPageIndex = 0;
+                _selectedPageIndex = 0;
         }else{
-            _selectedPageIndex = value;
+                _selectedPageIndex = value;
         }
+
         dispatchEvent(new Event(SELECTEDPAGEINDEX_CHANGED));
     }
 
@@ -154,7 +148,7 @@ public class AppModel extends EventDispatcher {
         return _viewModesOpened;
     }
 
-    public function set viewModesOpened(value):void {
+    public function set viewModesOpened(value:Boolean):void {
         if(_viewModesOpened != value){
             _viewModesOpened = value;
             dispatchEvent(new Event(VIEWMODES_OPENED));

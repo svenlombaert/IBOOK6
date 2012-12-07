@@ -8,31 +8,33 @@
 package be.devine.cp3.view.controls {
 import be.devine.cp3.model.AppModel;
 
-import flash.events.Event;
+import flash.display.BitmapData;
+import flash.display.Shape;
 
 import starling.animation.Tween;
 import starling.display.Button;
 import starling.display.DisplayObject;
+import starling.display.Image;
 import starling.events.TouchEvent;
 import starling.events.TouchPhase;
+import starling.textures.RenderTexture;
 import starling.textures.Texture;
+import starling.textures.TextureAtlas;
 
 public class ViewModeOpenButton extends Button{
 
     private var appModel:AppModel;
     private var tween:Tween;
-    private var openState:Texture;
-    private var closedState:Texture;
+    private var textureAtlas:TextureAtlas;
+
     private var _updateListeners:Boolean = false;
 
-    public function ViewModeOpenButton(upState:Texture, openState:Texture) {
-        super(upState);
-        this.openState = openState;
-        this.closedState = upState;
+    public function ViewModeOpenButton(textureAtlas:TextureAtlas) {
         appModel = AppModel.getInstance();
+        super(renderTexture(textureAtlas, appModel.selectedColorIndex));
+        this.textureAtlas = textureAtlas;
         this.scaleWhenDown = 1;
         this.addEventListener(TouchEvent.TOUCH, touchHandler);
-        this.appModel.addEventListener(AppModel.VIEWMODES_OPENED, viewmodesOpenedHandler);
     }
 
     //TODO: Sven: Bug oplossen bij snel klikken
@@ -43,19 +45,32 @@ public class ViewModeOpenButton extends Button{
         }
     }
 
-    private function viewmodesOpenedHandler(event:Event):void {
-        if(appModel.viewModesOpened){
-            this.upState = openState;
-        }else{
-            this.upState = closedState;
-        }
+    private function renderTexture(textureAtlas: TextureAtlas, color: uint):Texture {
+        var circleShape:Shape = new Shape();
+        circleShape.graphics.beginFill(color, 0.8);
+        circleShape.graphics.drawCircle(50,50,50);
+        circleShape.graphics.endFill();
+
+        var arrow:Texture = textureAtlas.getTexture("arrow");
+        var imgArrow:Image = new Image(arrow);
+        imgArrow.pivotX = imgArrow.width/2;
+        imgArrow.pivotY = imgArrow.height/2;
+        imgArrow.x = circleShape.width/2;
+        imgArrow.y = circleShape.width/2 - 30;
+
+        var bmpData:BitmapData = new BitmapData(circleShape.width, circleShape.height/2, true, 0x000000);
+        bmpData.draw(circleShape);
+
+        var imgCircle:Image = new Image(Texture.fromBitmapData(bmpData));
+
+        var renderTexture:RenderTexture = new RenderTexture(circleShape.width, circleShape.height/2);
+        renderTexture.draw(imgCircle);
+        renderTexture.draw(imgArrow);
+
+        return renderTexture;
     }
 
     //getters en setters
-    public function get updateListeners():Boolean {
-        return _updateListeners;
-    }
-
     public function set updateListeners(value:Boolean):void {
         _updateListeners = value;
 
@@ -65,5 +80,6 @@ public class ViewModeOpenButton extends Button{
             this.addEventListener(TouchEvent.TOUCH, touchHandler);
         }
     }
+
 }
 }

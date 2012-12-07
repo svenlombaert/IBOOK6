@@ -12,7 +12,6 @@ import be.devine.cp3.view.elements.IntroTextElement;
 import be.devine.cp3.vo.ElementVO;
 import be.devine.cp3.vo.PageVO;
 
-
 import starling.display.Sprite;
 
 public class Page extends Sprite{

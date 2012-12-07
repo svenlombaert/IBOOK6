@@ -18,6 +18,8 @@ import starling.animation.Tween;
 import starling.core.Starling;
 import starling.display.Sprite;
 import starling.textures.TextureAtlas;
+import starling.utils.deg2rad;
+
 //TODO bol volledig laten draaien (upcontrol, logo timelineview dus omdraaien)
 public class ViewModeController extends Sprite {
     private var openControl:ViewModeOpenButton;
@@ -25,22 +27,27 @@ public class ViewModeController extends Sprite {
     private var thumbnailContainer:ThumbnailContainer;
     private var appModel:AppModel;
     private var tween:Tween;
+    private var timeLineButtonsContainer:Sprite;
 
     public function ViewModeController(textureAtlas:TextureAtlas) {
         appModel = AppModel.getInstance();
-        openControl = new ViewModeOpenButton(textureAtlas.getTexture("up"), textureAtlas.getTexture("upopen"));
+        openControl = new ViewModeOpenButton(textureAtlas);
         thumbnailContainer = new ThumbnailContainer();
-        changeViewModeControl = new ViewModeChangerButton(textureAtlas.getTexture("timelinecontrol"), textureAtlas.getTexture("gridcontrol"));
+        changeViewModeControl = new ViewModeChangerButton(textureAtlas);
+        timeLineButtonsContainer = new Sprite();
 
-        openControl.x = (appModel.appwidth-openControl.width) >>1;
-        openControl.y = appModel.appheight - openControl.height;
         thumbnailContainer.y = appModel.appheight;
-        changeViewModeControl.x = (appModel.appwidth - openControl.width) >> 1;
-        changeViewModeControl.y = appModel.appheight;
+        changeViewModeControl.y = openControl.height;
+
+        timeLineButtonsContainer.addChild(openControl);
+        timeLineButtonsContainer.addChild(changeViewModeControl);
+        timeLineButtonsContainer.pivotX = timeLineButtonsContainer.width/2;
+        timeLineButtonsContainer.pivotY = timeLineButtonsContainer.height/2;
+        timeLineButtonsContainer.x = appModel.appwidth/2;
+        timeLineButtonsContainer.y = appModel.appheight;
 
         addChild(thumbnailContainer);
-        addChild(openControl);
-        addChild(changeViewModeControl);
+        addChild(timeLineButtonsContainer);
         this.appModel.addEventListener(AppModel.VIEWMODES_OPENED, viewModesOpenedHandler);
         this.appModel.addEventListener(AppModel.VIEWMODES_CHANGED, viewModesChangedHandler);
     }
@@ -58,11 +65,9 @@ public class ViewModeController extends Sprite {
                 tween = new Tween(thumbnailContainer, 0.5, Transitions.EASE_IN_OUT);
                 tween.animate("y", appModel.appheight - 258);
                 Starling.juggler.add(tween);
-                tween = new Tween(openControl, 0.5, Transitions.EASE_IN_OUT);
-                tween.animate("y", appModel.appheight - 258 - openControl.height);
-                Starling.juggler.add(tween);
-                tween = new Tween(changeViewModeControl, 0.5, Transitions.EASE_IN_OUT);
+                tween = new Tween(timeLineButtonsContainer, 0.5, Transitions.EASE_IN_OUT);
                 tween.animate("y", appModel.appheight - 258);
+                tween.animate("rotation", deg2rad(180));
                 Starling.juggler.add(tween);
                 tween.onComplete = checkListeners;
             }else{
@@ -71,11 +76,9 @@ public class ViewModeController extends Sprite {
                 tween = new Tween(thumbnailContainer, 0.5, Transitions.EASE_IN_OUT);
                 tween.animate("y", appModel.appheight);
                 Starling.juggler.add(tween);
-                tween = new Tween(openControl, 0.5, Transitions.EASE_IN_OUT);
-                tween.animate("y", appModel.appheight - openControl.height);
-                Starling.juggler.add(tween);
-                tween = new Tween(changeViewModeControl, 0.5, Transitions.EASE_IN_OUT);
+                tween = new Tween(timeLineButtonsContainer, 0.5, Transitions.EASE_IN_OUT);
                 tween.animate("y", appModel.appheight);
+                tween.animate("rotation", deg2rad(0));
                 Starling.juggler.add(tween);
                 tween.onComplete = checkListeners;
             }
@@ -84,28 +87,24 @@ public class ViewModeController extends Sprite {
             if(appModel.viewModesOpened){
                 //open het
                 trace('GRIDVIEW OPEN');
-                tween = new Tween(thumbnailContainer, 0.5, Transitions.EASE_IN_OUT);
+                tween = new Tween(thumbnailContainer, 0.7, Transitions.EASE_IN_OUT);
                 tween.animate("y", 0);
                 Starling.juggler.add(tween);
-                tween = new Tween(openControl, 0.5, Transitions.EASE_IN_OUT);
-                tween.animate("y", 10);
-                Starling.juggler.add(tween);
-                tween = new Tween(changeViewModeControl, 0.5, Transitions.EASE_IN_OUT);
-                tween.animate("y", 10 + openControl.height);
+                tween = new Tween(timeLineButtonsContainer, 0.7, Transitions.EASE_IN_OUT);
+                tween.animate("y", 10 + timeLineButtonsContainer.height/2);
+                tween.animate("rotation", deg2rad(180));
                 Starling.juggler.add(tween);
                 tween.onComplete = checkListeners;
 
             }else{
                 //sluit het
                 trace('GRIDVIEW CLOSE');
-                tween = new Tween(thumbnailContainer, 0.5, Transitions.EASE_IN_OUT);
+                tween = new Tween(thumbnailContainer, 0.7, Transitions.EASE_IN_OUT);
                 tween.animate("y", appModel.appheight);
                 Starling.juggler.add(tween);
-                tween = new Tween(openControl, 0.5, Transitions.EASE_IN_OUT);
-                tween.animate("y", appModel.appheight - openControl.height);
-                Starling.juggler.add(tween);
-                tween = new Tween(changeViewModeControl, 0.5, Transitions.EASE_IN_OUT);
+                tween = new Tween(timeLineButtonsContainer, 0.7, Transitions.EASE_IN_OUT);
                 tween.animate("y", appModel.appheight);
+                tween.animate("rotation", deg2rad(0));
                 Starling.juggler.add(tween);
                 tween.onComplete = checkListeners;
             }
@@ -126,10 +125,7 @@ public class ViewModeController extends Sprite {
             tween = new Tween(thumbnailContainer, 0.5, Transitions.EASE_IN_OUT);
             tween.animate("y", appModel.appheight - 258);
             Starling.juggler.add(tween);
-            tween = new Tween(openControl, 0.5, Transitions.EASE_IN_OUT);
-            tween.animate("y", appModel.appheight - 258 - openControl.height);
-            Starling.juggler.add(tween);
-            tween = new Tween(changeViewModeControl, 0.5, Transitions.EASE_IN_OUT);
+            tween = new Tween(timeLineButtonsContainer, 0.5, Transitions.EASE_IN_OUT);
             tween.animate("y", appModel.appheight - 258);
             Starling.juggler.add(tween);
         }else{
@@ -138,11 +134,8 @@ public class ViewModeController extends Sprite {
             tween = new Tween(thumbnailContainer, 0.5, Transitions.EASE_IN_OUT);
             tween.animate("y", 0);
             Starling.juggler.add(tween);
-            tween = new Tween(openControl, 0.5, Transitions.EASE_IN_OUT);
-            tween.animate("y", 10);
-            Starling.juggler.add(tween);
-            tween = new Tween(changeViewModeControl, 0.5, Transitions.EASE_IN_OUT);
-            tween.animate("y", 10 + openControl.height);
+            tween = new Tween(timeLineButtonsContainer, 0.5, Transitions.EASE_IN_OUT);
+            tween.animate("y", 10 + timeLineButtonsContainer.height/2);
             Starling.juggler.add(tween);
         }
     }

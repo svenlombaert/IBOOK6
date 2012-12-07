@@ -11,6 +11,9 @@ import be.devine.cp3.vo.PageVO;
 
 import flash.events.Event;
 
+import starling.animation.Tween;
+import starling.core.Starling;
+
 import starling.display.Sprite;
 
 public class PageContainer extends Sprite{
@@ -19,7 +22,8 @@ public class PageContainer extends Sprite{
     private var pages:Vector.<PageVO>;
     private var currPageview:Page;
     private var currentPageIndex:int;
-
+    private var tween:Tween;
+    //TODO: Veel mooiere tweens!
     public function PageContainer() {
         appModel = AppModel.getInstance();
         currentPageIndex = appModel.selectedPageIndex = 0;
@@ -41,8 +45,18 @@ public class PageContainer extends Sprite{
     }
 
     private function pageIndexChangedHandler(event:Event):void {
+        if(appModel.selectedPageIndex > currentPageIndex){
+            var tween = new Tween(currPageview, 0.5);
+            tween.animate("x", -appModel.appwidth);
+            tween.onComplete = initialisePagesToView;
+            Starling.juggler.add(tween);
+        }else{
+            var tween = new Tween(currPageview, 0.5);
+            tween.animate("x", appModel.appwidth);
+            tween.onComplete = initialisePagesToView;
+            Starling.juggler.add(tween);
+        }
         currentPageIndex = appModel.selectedPageIndex;
-        initialisePagesToView();
     }
 }
 }

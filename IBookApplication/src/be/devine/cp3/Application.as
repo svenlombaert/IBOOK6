@@ -85,8 +85,8 @@ public class Application extends Sprite {
     private function keyBoardEventHandler(event:KeyboardEvent):void {
         //keyboard event om door de pagina's te gaan.
         switch(event.keyCode){
-            case Keyboard.LEFT: appModel.gotoNextPage(); break;
-            case Keyboard.RIGHT: appModel.gotoPreviousPage(); break;
+            case Keyboard.LEFT: appModel.gotoPreviousPage(); break;
+            case Keyboard.RIGHT: appModel.gotoNextPage(); break;
         }
     }
 

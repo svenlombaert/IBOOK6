@@ -116,7 +116,7 @@ public class AppModel extends EventDispatcher {
         }else{
                 _selectedPageIndex = value;
         }
-
+        trace(_selectedPageIndex);
         dispatchEvent(new Event(SELECTEDPAGEINDEX_CHANGED));
     }
 
@@ -130,7 +130,6 @@ public class AppModel extends EventDispatcher {
             dispatchEvent(new Event(SELECTEDCOLORINDEX_CHANGED));
         }
     }
-
 
     public function get timelineView():Boolean {
         return _timelineView;

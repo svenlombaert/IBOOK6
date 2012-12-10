@@ -51,6 +51,7 @@ public class Application extends Sprite {
         appModel.load();
         appModel.timelineView = true;
         appModel.selectedColorIndex = 0xdd8716;
+        appModel.thumbScrollbarPosition = 0;
 
         var texture:Texture = Texture.fromBitmap(new ButtonTexture());
         var xml:XML = XML(new ButtonXML());

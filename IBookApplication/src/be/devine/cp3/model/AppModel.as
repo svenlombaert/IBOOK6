@@ -22,6 +22,7 @@ public class AppModel extends EventDispatcher {
     public static const SELECTEDCOLORINDEX_CHANGED:String = "selectedColorIndexChanged";
     public static const VIEWMODES_OPENED:String = "viewmodesOpened";
     public static const VIEWMODES_CHANGED:String = "viewmodesChanged";
+    public static const THUMBSCROLLBARPOSITION_CHANGED = "thumbScrollbarPositionChanged";
 
     private var _selectedPageIndex:int;
     private var _selectedColorIndex:uint;
@@ -29,6 +30,7 @@ public class AppModel extends EventDispatcher {
     private var _timelineView:Boolean;
     private var _viewModesOpened:Boolean = false;
     private var _urlLoader:URLLoader;
+    private var _thumbScrollbarPosition:Number;
 
     public var appwidth:int;
     public var appheight:int;
@@ -156,6 +158,16 @@ public class AppModel extends EventDispatcher {
         }
     }
 
+    public function get thumbScrollbarPosition():Number {
+        return _thumbScrollbarPosition;
+    }
+
+    public function set thumbScrollbarPosition(value:Number):void {
+        if(value != _thumbScrollbarPosition){
+            _thumbScrollbarPosition = value;
+            dispatchEvent(new Event(THUMBSCROLLBARPOSITION_CHANGED));
+        }
+    }
 }
 }
 internal class Enforcer{}

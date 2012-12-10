@@ -7,6 +7,7 @@
  */
 package be.devine.cp3.view {
 import be.devine.cp3.model.AppModel;
+import be.devine.cp3.view.controls.Scrollbar;
 import be.devine.cp3.view.controls.ThumbnailContainer;
 import be.devine.cp3.view.controls.ViewModeChangerButton;
 import be.devine.cp3.view.controls.ViewModeOpenButton;
@@ -28,6 +29,7 @@ public class ViewModeController extends Sprite {
     private var appModel:AppModel;
     private var tween:Tween;
     private var timeLineButtonsContainer:Sprite;
+    private var scrollbar:Scrollbar;
 
     public function ViewModeController(textureAtlas:TextureAtlas) {
         appModel = AppModel.getInstance();
@@ -35,9 +37,14 @@ public class ViewModeController extends Sprite {
         thumbnailContainer = new ThumbnailContainer();
         changeViewModeControl = new ViewModeChangerButton(textureAtlas);
         timeLineButtonsContainer = new Sprite();
+        scrollbar = new Scrollbar(appModel.appwidth - 60, 10, (appModel.appwidth-60)/appModel.pages.length);
+
 
         thumbnailContainer.y = appModel.appheight;
         changeViewModeControl.y = openControl.height;
+
+        scrollbar.x = appModel.appwidth/2 - scrollbar.width/2;
+        scrollbar.y = appModel.appheight;
 
         timeLineButtonsContainer.addChild(openControl);
         timeLineButtonsContainer.addChild(changeViewModeControl);
@@ -48,6 +55,7 @@ public class ViewModeController extends Sprite {
 
         addChild(thumbnailContainer);
         addChild(timeLineButtonsContainer);
+        addChild(scrollbar);
         this.appModel.addEventListener(AppModel.VIEWMODES_OPENED, viewModesOpenedHandler);
         this.appModel.addEventListener(AppModel.VIEWMODES_CHANGED, viewModesChangedHandler);
     }
@@ -69,6 +77,9 @@ public class ViewModeController extends Sprite {
                 tween.animate("y", appModel.appheight - 258);
                 tween.animate("rotation", deg2rad(180));
                 Starling.juggler.add(tween);
+                tween = new Tween(scrollbar, 0.5, Transitions.EASE_IN_BOUNCE);
+                tween.animate("y", appModel.appheight - scrollbar.height);
+                Starling.juggler.add(tween);
                 tween.onComplete = checkListeners;
             }else{
                 //sluit het
@@ -79,6 +90,9 @@ public class ViewModeController extends Sprite {
                 tween = new Tween(timeLineButtonsContainer, 0.5, Transitions.EASE_IN_OUT);
                 tween.animate("y", appModel.appheight);
                 tween.animate("rotation", deg2rad(0));
+                Starling.juggler.add(tween);
+                tween = new Tween(scrollbar, 0.1, Transitions.EASE_IN_BOUNCE);
+                tween.animate("y", appModel.appheight);
                 Starling.juggler.add(tween);
                 tween.onComplete = checkListeners;
             }
@@ -94,6 +108,9 @@ public class ViewModeController extends Sprite {
                 tween.animate("y", 10 + timeLineButtonsContainer.height/2);
                 tween.animate("rotation", deg2rad(180));
                 Starling.juggler.add(tween);
+                tween = new Tween(scrollbar, 0.5, Transitions.EASE_IN_BOUNCE);
+                tween.animate("y", appModel.appheight - scrollbar.height);
+                Starling.juggler.add(tween);
                 tween.onComplete = checkListeners;
 
             }else{
@@ -105,6 +122,9 @@ public class ViewModeController extends Sprite {
                 tween = new Tween(timeLineButtonsContainer, 0.7, Transitions.EASE_IN_OUT);
                 tween.animate("y", appModel.appheight);
                 tween.animate("rotation", deg2rad(0));
+                Starling.juggler.add(tween);
+                tween = new Tween(scrollbar, 0.1, Transitions.EASE_IN_BOUNCE);
+                tween.animate("y", appModel.appheight);
                 Starling.juggler.add(tween);
                 tween.onComplete = checkListeners;
             }

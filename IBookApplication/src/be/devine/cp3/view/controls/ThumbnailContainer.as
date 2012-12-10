@@ -23,6 +23,10 @@ public class ThumbnailContainer extends Sprite {
     private var appModel:AppModel;
     private var arrThumbnails:Vector.<Thumbnail> = new Vector.<Thumbnail>();
     private var thumbnailsHolder:Sprite;
+    private var maskedThumbnails:PixelMaskDisplayObject;
+    private var maskObject:Quad;
+
+    //TODO: gridview met scrollbars.
 
     public function ThumbnailContainer() {
         appModel = AppModel.getInstance();
@@ -30,6 +34,7 @@ public class ThumbnailContainer extends Sprite {
         background.alpha = 0.90;
         addChild(background);
         this.appModel.addEventListener(AppModel.PAGES_CHANGED, pagesChangedHandler);
+        this.appModel.addEventListener(AppModel.THUMBSCROLLBARPOSITION_CHANGED, scrollHandler);
         initalizeThumbnails();
     }
 
@@ -40,28 +45,35 @@ public class ThumbnailContainer extends Sprite {
             var thumbnail:Thumbnail = new Thumbnail(new Page(pageVO));
             arrThumbnails.push(thumbnail);
         }
-        var xPos = 20;
+        var xPos = 0;
         for each(var thumbnail:Thumbnail in arrThumbnails){
             trace("XPOS: ", xPos);
             thumbnail.x = xPos;
-            thumbnail.y = 258/2 - thumbnail.height/2;
             thumbnailsHolder.addChild(thumbnail);
-            xPos += thumbnail.width + 20;
+            xPos += thumbnail.width + 25;
         }
         //addChild(thumbnailsHolder);
 
-        var myCustomMaskDisplayObject:Quad = new Quad(960, 960, 0x000000);
+        maskObject = new Quad(appModel.appwidth-60, 258, 0x000000);
 
-        var maskedDisplayObject:PixelMaskDisplayObject = new PixelMaskDisplayObject();
-        maskedDisplayObject.addChild(thumbnailsHolder);
+        maskedThumbnails= new PixelMaskDisplayObject();
+        maskedThumbnails.addChild(thumbnailsHolder);
 
-        maskedDisplayObject.mask = myCustomMaskDisplayObject;
-        addChild(maskedDisplayObject);
-        maskedDisplayObject.x = appModel.appwidth/2 - myCustomMaskDisplayObject.width/2;
+        maskedThumbnails.mask = maskObject;
+        addChild(maskedThumbnails);
+        maskedThumbnails.x = appModel.appwidth/2 - maskObject.width/2;
+        maskedThumbnails.y = 258/2 - maskedThumbnails.height/2;
     }
 
     private function pagesChangedHandler(event:Event):void {
         initalizeThumbnails();
+    }
+
+    private function scrollHandler(event:Event):void {
+        if(thumbnailsHolder != null){
+            thumbnailsHolder.x = -(appModel.thumbScrollbarPosition * (thumbnailsHolder.width - maskObject.width));
+
+        }
     }
 }
 }

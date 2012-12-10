@@ -9,9 +9,17 @@ package be.devine.cp3.view {
 
 import be.devine.cp3.style.Style;
 
+import flash.events.Event;
+import flash.filters.DisplacementMapFilter;
+
+import starling.display.DisplayObject;
+
 import starling.display.Image;
 import starling.display.Quad;
 import starling.display.Sprite;
+import starling.events.Touch;
+import starling.events.TouchEvent;
+import starling.events.TouchPhase;
 import starling.textures.RenderTexture;
 
 public class Thumbnail extends Sprite{
@@ -26,13 +34,15 @@ public class Thumbnail extends Sprite{
            page.height = maxHeight;
            page.scaleX = page.scaleY;
         }
-        var q:Quad = new Quad(220, 140, Style.PAGEBACKGROUNDCOLOR);
+        var q:Quad = new Quad(220, 140, Style.THUMBNAILBACKGROUNDCOLOR);
         var texture = new RenderTexture(q.width, q.height);
         texture.draw(q);
         texture.draw(page);
         var img:Image = new Image(texture);
+        img.alpha = 0.7;
         addChild(img);
         flatten();
     }
+
 }
 }

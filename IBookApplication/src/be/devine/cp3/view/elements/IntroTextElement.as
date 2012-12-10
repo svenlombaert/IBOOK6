@@ -16,7 +16,6 @@ public class IntroTextElement extends Element{
         super(introTextElementVO);
         var t:TextField = new TextField(350, 700, introTextElementVO.text, "Arial" , 12, 0x353535, true);
         t.vAlign = "top";
-        trace(t.textBounds);
         t.border = true;
         addChild(t);
     }

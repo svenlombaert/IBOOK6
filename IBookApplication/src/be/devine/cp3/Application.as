@@ -59,7 +59,7 @@ public class Application extends Sprite {
         bgLoader.load(new URLRequest("assets/images_design/bg_pattern.png"));
         bgLoader.contentLoaderInfo.addEventListener(flash.events.Event.COMPLETE, backgroundTextureLoadedHandler);
 
-        Starling.current.stage.addEventListener(KeyboardEvent.KEY_DOWN, keyBoardEventHandler);
+        Starling.current.stage.addEventListener(KeyboardEvent.KEY_DOWN, keyboardDownEventHandler);
         this.addEventListener("BACKGROUNDINITIALIZING_COMPLETE", backgroundInitializingComplete);
     }
 
@@ -82,12 +82,21 @@ public class Application extends Sprite {
         dispatchEvent(new starling.events.Event("BACKGROUNDINITIALIZING_COMPLETE"));
     }
 
-    private function keyBoardEventHandler(event:KeyboardEvent):void {
+    private function keyboardDownEventHandler(event:KeyboardEvent):void {
         //keyboard event om door de pagina's te gaan.
+        Starling.current.stage.removeEventListener(KeyboardEvent.KEY_DOWN, keyboardDownEventHandler);
+        Starling.current.stage.addEventListener(KeyboardEvent.KEY_UP, keyboardUpEventHandler);
         switch(event.keyCode){
-            case Keyboard.LEFT: appModel.gotoPreviousPage(); break;
+            case Keyboard.LEFT:
+                    appModel.gotoPreviousPage();
+                break;
             case Keyboard.RIGHT: appModel.gotoNextPage(); break;
         }
+    }
+
+    private function keyboardUpEventHandler(event:KeyboardEvent):void {
+        Starling.current.stage.removeEventListener(KeyboardEvent.KEY_UP, keyboardUpEventHandler);
+        Starling.current.stage.addEventListener(KeyboardEvent.KEY_DOWN, keyboardDownEventHandler);
     }
 
     private function backgroundInitializingComplete(event:starling.events.Event):void {

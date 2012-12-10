@@ -87,8 +87,10 @@ public class AppModel extends EventDispatcher {
         trace("LOADED XML");
         var content:XML = new XML(event.target.data);
         var pages:Vector.<PageVO> = new Vector.<PageVO>();
+        var i:uint = 1;
         for each (var page:XML in content.page){
-            pages.push(PageVOFactory.createFromXML(page));
+            pages.push(PageVOFactory.createFromXML(page, i));
+            i++;
         }
         this.pages = pages;
     }
@@ -101,7 +103,7 @@ public class AppModel extends EventDispatcher {
     public function set pages(value:Vector.<PageVO>):void {
         _pages = value;
         dispatchEvent(new Event(PAGES_CHANGED));
-        trace('[APPMODEL] PAGES CHANGED')
+        trace('[APPMODEL] PAGES CHANGED');
     }
 
     public function get selectedPageIndex():int {
@@ -115,9 +117,9 @@ public class AppModel extends EventDispatcher {
                 _selectedPageIndex = 0;
         }else{
                 _selectedPageIndex = value;
+                dispatchEvent(new Event(SELECTEDPAGEINDEX_CHANGED));
         }
         trace(_selectedPageIndex);
-        dispatchEvent(new Event(SELECTEDPAGEINDEX_CHANGED));
     }
 
     public function get selectedColorIndex():uint {

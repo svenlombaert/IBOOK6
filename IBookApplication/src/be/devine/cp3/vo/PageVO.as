@@ -8,6 +8,7 @@
 package be.devine.cp3.vo {
 public class PageVO {
     public var elements:Vector.<ElementVO>;
+    public var pageNumber:uint = 0;
 
     public function PageVO() {
         elements  = new Vector.<ElementVO>();

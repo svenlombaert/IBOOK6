@@ -15,7 +15,6 @@ public class BodyTextElement extends Element{
         super(bodyTextElementVO);
         var t:TextField = new TextField(350, 700, bodyTextElementVO.text, "Arial" , 12, 0x353535);
         t.vAlign = "top";
-        trace(t.textBounds);
         t.border = true;
         addChild(t);
     }

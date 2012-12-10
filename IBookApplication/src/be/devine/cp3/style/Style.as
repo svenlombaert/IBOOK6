@@ -8,5 +8,6 @@
 package be.devine.cp3.style {
 public class Style {
     public static const TIMELINECOLOR:uint = 0x353535;
+    public static const PAGEBACKGROUNDCOLOR:uint = 0xffffff;
 }
 }

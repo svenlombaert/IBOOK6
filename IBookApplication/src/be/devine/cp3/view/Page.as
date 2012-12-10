@@ -17,9 +17,11 @@ import starling.display.Sprite;
 public class Page extends Sprite{
 
     private var pageVO:PageVO;
-
+    private var _pageNumber:uint;
+    //TODO: Thomas, alles mooi positioneren
     public function Page(pageVO:PageVO) {
         this.pageVO = pageVO;
+        this._pageNumber = pageVO.pageNumber;
         for each(var elementVO:ElementVO in pageVO.elements){
             var element:Element = ElementViewFactory.createFromVO(elementVO);
             if(element != null){
@@ -33,6 +35,11 @@ public class Page extends Sprite{
             }
             //addChild(element);
         }
+    }
+
+    //GETTERS EN SETTERS
+    public function get pageNumber():uint {
+        return _pageNumber;
     }
 }
 }

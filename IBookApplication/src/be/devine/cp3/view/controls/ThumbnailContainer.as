@@ -15,6 +15,11 @@ import be.devine.cp3.vo.PageVO;
 
 import flash.events.Event;
 
+import starling.animation.Transitions;
+
+import starling.animation.Tween;
+import starling.core.Starling;
+
 import starling.display.Quad;
 import starling.display.Sprite;
 
@@ -71,8 +76,9 @@ public class ThumbnailContainer extends Sprite {
 
     private function scrollHandler(event:Event):void {
         if(thumbnailsHolder != null){
-            thumbnailsHolder.x = -(appModel.thumbScrollbarPosition * (thumbnailsHolder.width - maskObject.width));
-
+            var tween:Tween = new Tween(thumbnailsHolder, 0.3, Transitions.EASE_OUT);
+            tween.animate("x",  -(appModel.thumbScrollbarPosition * (thumbnailsHolder.width - maskObject.width)));
+            Starling.juggler.add(tween);
         }
     }
 }

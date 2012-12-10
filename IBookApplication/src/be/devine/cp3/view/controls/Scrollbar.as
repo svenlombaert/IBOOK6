@@ -26,6 +26,7 @@ public class Scrollbar extends Sprite{
     private var trackHeight:int;
     private var thumbWidth:int;
     private var appModel:AppModel;
+    private var startDragLocation:Point;
 
 
     public function Scrollbar(w:int,  h:int, tw:int) {
@@ -33,6 +34,7 @@ public class Scrollbar extends Sprite{
         trackHeight = h;
         trackWidth = w;
         thumbWidth = tw;
+        startDragLocation = new Point();
         track = new Quad(trackWidth, trackHeight,Style.TRACKCOLOR);
         thumb = new Quad(thumbWidth, trackHeight,Style.THUMBCOLOR);
         appModel.addEventListener(AppModel.THUMBSCROLLBARPOSITION_CHANGED, thumbPostionChanged);
@@ -53,12 +55,13 @@ public class Scrollbar extends Sprite{
                 case TouchPhase.BEGAN:
                         trace('began');
                         _draggedObject = event.currentTarget as DisplayObject;
+                        touch.getLocation(touchObject, startDragLocation);
                     break;
                 case TouchPhase.MOVED:
                         trace('moved');
                         if(_draggedObject != null){
                             var localPos:Point = globalToLocal(new Point(touch.globalX, touch.globalY), resultPoint);
-                            _draggedObject.x = localPos.x;
+                            _draggedObject.x = localPos.x - startDragLocation.x;
                             if(_draggedObject.x >= track.width - thumb.width){
                                 _draggedObject.x = track.width - thumb.width;
                             }else if(_draggedObject.x <= 0){

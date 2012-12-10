@@ -9,8 +9,8 @@ package be.devine.cp3.style {
 public class Style {
     public static const TIMELINECOLOR:uint = 0x353535;
     public static const THUMBNAILBACKGROUNDCOLOR:uint = 0xffffff;
-    public static const THUMBCOLOR:uint = 0xff0000;
-    public static const TRACKCOLOR:uint = 0x00ff00;
+    public static const THUMBCOLOR:uint = 0xbfbcbc;
+    public static const TRACKCOLOR:uint = 0x5d5c5c;
     public static const SELECTEDTHUMBNAILCOLOR:uint = 0xff0000;
 }
 }

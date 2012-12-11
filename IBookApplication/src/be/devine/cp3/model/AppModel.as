@@ -31,6 +31,7 @@ public class AppModel extends EventDispatcher {
     private var _viewModesOpened:Boolean = false;
     private var _urlLoader:URLLoader;
     private var _thumbScrollbarPosition:Number;
+    private var _maxItemsToView:int;
 
     public var appwidth:int;
     public var appheight:int;
@@ -167,6 +168,14 @@ public class AppModel extends EventDispatcher {
             _thumbScrollbarPosition = value;
             dispatchEvent(new Event(THUMBSCROLLBARPOSITION_CHANGED));
         }
+    }
+
+    public function get maxItemsToView():int {
+        return _maxItemsToView;
+    }
+
+    public function set maxItemsToView(value:int):void {
+        _maxItemsToView = value;
     }
 }
 }

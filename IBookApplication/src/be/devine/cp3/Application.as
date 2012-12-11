@@ -45,6 +45,9 @@ public class Application extends Sprite {
     [Embed(source="/assets/images_design/spritesheet.png")]
     public static const ButtonTexture:Class;
 
+    [Embed(source="/assets/font/HelveticaNeueLTStd-Roman.otf", embedAsCFF="false", fontFamily="HelveticaNeue")]
+    private static const HeleveticaNeue:Class;
+
     public function Application() {
         trace('[APP] CONSTRUCT');
         appModel = AppModel.getInstance();
@@ -87,11 +90,11 @@ public class Application extends Sprite {
         //keyboard event om door de pagina's te gaan.
         Starling.current.stage.removeEventListener(KeyboardEvent.KEY_DOWN, keyboardDownEventHandler);
         Starling.current.stage.addEventListener(KeyboardEvent.KEY_UP, keyboardUpEventHandler);
+
         switch(event.keyCode){
-            case Keyboard.LEFT:
-                    appModel.gotoPreviousPage();
-                break;
+            case Keyboard.LEFT: appModel.gotoPreviousPage();break;
             case Keyboard.RIGHT: appModel.gotoNextPage(); break;
+            case 32: if(viewModeController) appModel.openViewModes(); break;
         }
     }
 

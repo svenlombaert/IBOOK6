@@ -8,78 +8,72 @@
 package be.devine.cp3.view.controls {
 import be.devine.cp3.model.AppModel;
 import be.devine.cp3.style.Style;
-import be.devine.cp3.utils.mask.PixelMaskDisplayObject;
 import be.devine.cp3.view.Page;
-import be.devine.cp3.view.Thumbnail;
+import be.devine.cp3.view.parts.Thumbnail;
+import be.devine.cp3.view.parts.TimelineThumbnails;
 import be.devine.cp3.vo.PageVO;
 
-import flash.events.Event;
-
-import starling.animation.Transitions;
-
-import starling.animation.Tween;
-import starling.core.Starling;
+import starling.display.Image;
 
 import starling.display.Quad;
 import starling.display.Sprite;
+import starling.text.TextField;
+import starling.textures.Texture;
+import starling.textures.TextureAtlas;
+import starling.utils.HAlign;
 
 public class ThumbnailContainer extends Sprite {
     private var background:Quad;
     private var appModel:AppModel;
-    private var arrThumbnails:Vector.<Thumbnail> = new Vector.<Thumbnail>();
-    private var thumbnailsHolder:Sprite;
-    private var maskedThumbnails:PixelMaskDisplayObject;
-    private var maskObject:Quad;
+    private var arrThumbnails:Vector.<Thumbnail>;
+    private var toolTip:Image;
+    private var prevNextText:TextField;
+    private var openText:TextField;
 
-    //TODO: gridview met scrollbars.
-
-    public function ThumbnailContainer() {
+    public function ThumbnailContainer(textureAtlas:TextureAtlas) {
         appModel = AppModel.getInstance();
         background = new Quad(AppModel.instance.appwidth, AppModel.instance.appheight, Style.TIMELINECOLOR);
         background.alpha = 0.90;
         addChild(background);
-        this.appModel.addEventListener(AppModel.PAGES_CHANGED, pagesChangedHandler);
-        this.appModel.addEventListener(AppModel.THUMBSCROLLBARPOSITION_CHANGED, scrollHandler);
-        initalizeThumbnails();
+
+        toolTip = new Image(textureAtlas.getTexture("keyLegend"));
+        addChild(toolTip);
+        toolTip.y = 10;
+        toolTip.x = 100;
+
+        prevNextText = new TextField(100, 20, "prev/next page", "HelveticaNeue", 12, 0xffffff);
+        prevNextText.hAlign = HAlign.LEFT;
+        openText = new TextField(100, 20, "open viewmodes", "HelveticaNeue", 12, 0xffffff);
+        openText.hAlign = HAlign.LEFT;
+
+        prevNextText.x = 100 + prevNextText.width + 20;
+        prevNextText.y = 20;
+        openText.x = 100 + openText.width + 20;
+        openText.y =  prevNextText.height + 25;
+        addChild(prevNextText);
+        addChild(openText);
+
+        initializeThumbnails();
     }
 
-    private function initalizeThumbnails():void {
-        //thumbnails aanmaken adhv pagina's.
-        thumbnailsHolder = new Sprite();
+    private function initializeThumbnails():void{
+        arrThumbnails = new Vector.<Thumbnail>();
         for each(var pageVO:PageVO in appModel.pages){
             var thumbnail:Thumbnail = new Thumbnail(new Page(pageVO));
             arrThumbnails.push(thumbnail);
         }
-        var xPos = 0;
-        for each(var thumbnail:Thumbnail in arrThumbnails){
-            trace("XPOS: ", xPos);
-            thumbnail.x = xPos;
-            thumbnailsHolder.addChild(thumbnail);
-            xPos += thumbnail.width + 25;
-        }
-        //addChild(thumbnailsHolder);
-
-        maskObject = new Quad(appModel.appwidth-60, 258, 0x000000);
-
-        maskedThumbnails= new PixelMaskDisplayObject();
-        maskedThumbnails.addChild(thumbnailsHolder);
-
-        maskedThumbnails.mask = maskObject;
-        addChild(maskedThumbnails);
-        maskedThumbnails.x = appModel.appwidth/2 - maskObject.width/2;
-        maskedThumbnails.y = 258/2 - maskedThumbnails.height/2;
+        showThumbnails();
     }
 
-    private function pagesChangedHandler(event:Event):void {
-        initalizeThumbnails();
-    }
-
-    private function scrollHandler(event:Event):void {
-        if(thumbnailsHolder != null){
-            var tween:Tween = new Tween(thumbnailsHolder, 0.3, Transitions.EASE_OUT);
-            tween.animate("x",  -(appModel.thumbScrollbarPosition * (thumbnailsHolder.width - maskObject.width)));
-            Starling.juggler.add(tween);
+    private function showThumbnails():void{
+        if(appModel.timelineView){
+            var timelineThumbnails = new TimelineThumbnails(arrThumbnails);
+            timelineThumbnails.x = 30;
+            timelineThumbnails.y = 258/2 - timelineThumbnails.height/2 + 20;
+            addChild(timelineThumbnails);
         }
     }
+
+
 }
 }

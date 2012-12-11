@@ -30,15 +30,26 @@ public class ViewModeController extends Sprite {
     private var tween:Tween;
     private var timeLineButtonsContainer:Sprite;
     private var scrollbar:Scrollbar;
+    private var _maxItemsToView:int;
 
     public function ViewModeController(textureAtlas:TextureAtlas) {
         appModel = AppModel.getInstance();
         openControl = new ViewModeOpenButton(textureAtlas);
-        thumbnailContainer = new ThumbnailContainer();
+        thumbnailContainer = new ThumbnailContainer(textureAtlas);
         changeViewModeControl = new ViewModeChangerButton(textureAtlas);
         timeLineButtonsContainer = new Sprite();
-        scrollbar = new Scrollbar(appModel.appwidth - 60, 10, (appModel.appwidth-60)/appModel.pages.length);
 
+        if(appModel.timelineView){
+            _maxItemsToView = appModel.maxItemsToView = 4;
+            if(_maxItemsToView < appModel.pages.length){
+                scrollbar = new Scrollbar(appModel.appwidth - 60, 10, ((appModel.appwidth-60)/appModel.pages.length) * _maxItemsToView);
+            }
+        }else{
+            _maxItemsToView = appModel.maxItemsToView = 16;
+            if(_maxItemsToView < appModel.pages.length){
+                //Scrollbar aanmaken
+            }
+        }
 
         thumbnailContainer.y = appModel.appheight;
         changeViewModeControl.y = openControl.height;
@@ -68,64 +79,79 @@ public class ViewModeController extends Sprite {
         openControl.updateListeners = true;
         if(appModel.timelineView){
             if(appModel.viewModesOpened){
-                //open het
-                trace('TIMELINE OPEN');
+                //TIMELINEVIEW OPENEN
                 tween = new Tween(thumbnailContainer, 0.5, Transitions.EASE_IN_OUT);
                 tween.animate("y", appModel.appheight - 258);
                 Starling.juggler.add(tween);
+
                 tween = new Tween(timeLineButtonsContainer, 0.5, Transitions.EASE_IN_OUT);
                 tween.animate("y", appModel.appheight - 258);
                 tween.animate("rotation", deg2rad(180));
                 Starling.juggler.add(tween);
-                tween = new Tween(scrollbar, 0.5, Transitions.EASE_IN_BOUNCE);
-                tween.animate("y", appModel.appheight - scrollbar.height);
-                Starling.juggler.add(tween);
+
+                if(scrollbar != null){
+                    tween = new Tween(scrollbar, 0.5, Transitions.EASE_IN_BOUNCE);
+                    tween.animate("y", appModel.appheight - scrollbar.height);
+                    Starling.juggler.add(tween);
+                }
                 tween.onComplete = checkListeners;
             }else{
-                //sluit het
-                trace('TIMELINE CLOSE');
+                //TIMELINEVIEW SLUITEN
                 tween = new Tween(thumbnailContainer, 0.5, Transitions.EASE_IN_OUT);
                 tween.animate("y", appModel.appheight);
                 Starling.juggler.add(tween);
+
                 tween = new Tween(timeLineButtonsContainer, 0.5, Transitions.EASE_IN_OUT);
                 tween.animate("y", appModel.appheight);
                 tween.animate("rotation", deg2rad(0));
                 Starling.juggler.add(tween);
-                tween = new Tween(scrollbar, 0.1, Transitions.EASE_IN_BOUNCE);
-                tween.animate("y", appModel.appheight);
-                Starling.juggler.add(tween);
+
+                if(scrollbar != null){
+                    tween = new Tween(scrollbar, 0.1, Transitions.EASE_IN_BOUNCE);
+                    tween.animate("y", appModel.appheight);
+                    Starling.juggler.add(tween);
+                }
+
                 tween.onComplete = checkListeners;
             }
         }else{
             //if gridview, tween helemaal naar boven
             if(appModel.viewModesOpened){
-                //open het
-                trace('GRIDVIEW OPEN');
+                //GRIDVIEW OPENEN
                 tween = new Tween(thumbnailContainer, 0.7, Transitions.EASE_IN_OUT);
                 tween.animate("y", 0);
                 Starling.juggler.add(tween);
+
                 tween = new Tween(timeLineButtonsContainer, 0.7, Transitions.EASE_IN_OUT);
                 tween.animate("y", 10 + timeLineButtonsContainer.height/2);
                 tween.animate("rotation", deg2rad(180));
                 Starling.juggler.add(tween);
-                tween = new Tween(scrollbar, 0.5, Transitions.EASE_IN_BOUNCE);
-                tween.animate("y", appModel.appheight - scrollbar.height);
-                Starling.juggler.add(tween);
+
+                if(scrollbar !=null){
+                    tween = new Tween(scrollbar, 0.5, Transitions.EASE_IN_BOUNCE);
+                    tween.animate("y", appModel.appheight - scrollbar.height);
+                    Starling.juggler.add(tween);
+                }
+
                 tween.onComplete = checkListeners;
 
             }else{
-                //sluit het
-                trace('GRIDVIEW CLOSE');
+                //GRIDVIEW SLUITEN
                 tween = new Tween(thumbnailContainer, 0.7, Transitions.EASE_IN_OUT);
                 tween.animate("y", appModel.appheight);
                 Starling.juggler.add(tween);
+
                 tween = new Tween(timeLineButtonsContainer, 0.7, Transitions.EASE_IN_OUT);
                 tween.animate("y", appModel.appheight);
                 tween.animate("rotation", deg2rad(0));
                 Starling.juggler.add(tween);
-                tween = new Tween(scrollbar, 0.1, Transitions.EASE_IN_BOUNCE);
-                tween.animate("y", appModel.appheight);
-                Starling.juggler.add(tween);
+
+                if(scrollbar !=null){
+                    tween = new Tween(scrollbar, 0.1, Transitions.EASE_IN_BOUNCE);
+                    tween.animate("y", appModel.appheight);
+                    Starling.juggler.add(tween);
+                }
+
                 tween.onComplete = checkListeners;
             }
         }
@@ -159,6 +185,5 @@ public class ViewModeController extends Sprite {
             Starling.juggler.add(tween);
         }
     }
-
 }
 }

@@ -9,10 +9,7 @@ package be.devine.cp3.view.controls {
 import be.devine.cp3.model.AppModel;
 
 import flash.display.BitmapData;
-
-import flash.display.Loader;
 import flash.display.Shape;
-import flash.display.Sprite;
 import flash.geom.Point;
 
 import starling.animation.Transitions;
@@ -35,38 +32,14 @@ public class PrevNextSlideButton extends Button{
     private var type:String;
     private var hoverDisabled:Boolean = false;
     private var tween:Tween;
+    private var textureAtlas:TextureAtlas;
 
     //----CONSTRUCTOR
     public function PrevNextSlideButton(textureAtlas:TextureAtlas, type:String) {
-        //TODO opschonen, maar dat is voor morgen, we zijn te moe!
-        var circleShape:Shape = new Shape();
-        circleShape.graphics.beginFill(0xff0000, 0.8);
-        circleShape.graphics.drawCircle(50,50, 50);
-        circleShape.graphics.endFill();
-
-        var arrow:Texture = textureAtlas.getTexture("arrow");
-        var imgArrow:Image = new Image(arrow);
-        imgArrow.pivotX = imgArrow.width/2;
-        imgArrow.pivotY = imgArrow.height/2;
-        imgArrow.rotation = deg2rad(90);
-        imgArrow.x = circleShape.width/2 + 20;
-        imgArrow.y = circleShape.width/2;
-
-
-        var bmpData:BitmapData = new BitmapData(circleShape.width, circleShape.height, true, 0x000000);
-        bmpData.draw(circleShape);
-
-        var img:Image = new Image(Texture.fromBitmapData(bmpData));
-
-        var renderTexture:RenderTexture = new RenderTexture(circleShape.width, circleShape.height);
-        renderTexture.draw(img);
-        renderTexture.draw(imgArrow, 16);
-
-        var texture:Texture = renderTexture;
-        super(texture);
-
-        this.type = type;
         appModel = AppModel.getInstance();
+        super(renderTexture(textureAtlas, type, appModel.selectedColorIndex));
+        this.textureAtlas = textureAtlas;
+        this.type = type;
         this.alphaWhenDisabled = 1;
         this.scaleWhenDown = 1;
         this.addEventListener(TouchEvent.TOUCH, clickHandler);
@@ -77,7 +50,7 @@ public class PrevNextSlideButton extends Button{
     private function clickHandler(event:TouchEvent):void {
         //vuur juiste events af via het appModel
         var touchObject:DisplayObject = event.currentTarget as DisplayObject;
-        if(event.getTouch(touchObject, TouchPhase.BEGAN)){
+        if(event.getTouch(touchObject, TouchPhase.BEGAN)) {
             this.enabled = true;
             switch(type){
                 case "previous":
@@ -89,7 +62,7 @@ public class PrevNextSlideButton extends Button{
             }
         }
         //alpha = 1 wanneer je de muisknop loslaat
-        if(event.getTouch(touchObject, TouchPhase.ENDED)){
+        if(event.getTouch(touchObject, TouchPhase.ENDED)) {
             this.enabled = true;
             this.alpha = 1;
         }
@@ -99,7 +72,7 @@ public class PrevNextSlideButton extends Button{
         var touchObject:DisplayObject = event.currentTarget as DisplayObject;
         //hover in en out voor prev en next
 
-        if(event.getTouch(touchObject, TouchPhase.HOVER)){
+        if(event.getTouch(touchObject, TouchPhase.HOVER)) {
             //hover in
             if(!hoverDisabled){
                 //tween naar zichtbaar
@@ -109,7 +82,7 @@ public class PrevNextSlideButton extends Button{
                 Starling.juggler.add(tween);
                 hoverDisabled = true;
             }
-        }else{
+        }else {
             //hover out
             var touch:Touch = event.getTouch(this);
             var location:Point = new Point();
@@ -120,7 +93,7 @@ public class PrevNextSlideButton extends Button{
                 globalToLocal(globalPoint, location);
             }
 
-            if(hoverDisabled && this.hitTest(location) == null){
+            if(hoverDisabled && this.hitTest(location) == null) {
                 tween = new Tween(this, 0.2, Transitions.EASE_IN);
                 tween.animate('alpha', 0.1);
                 tween.onComplete = setDisabled;
@@ -130,16 +103,47 @@ public class PrevNextSlideButton extends Button{
         }
     }
 
-    private function setEnabled():void{
+    private function setEnabled():void {
         Starling.juggler.remove(tween);
         this.enabled = true;
         this.useHandCursor = true;
     }
 
-    private function setDisabled():void{
+    private function setDisabled():void {
         Starling.juggler.remove(tween);
         this.enabled = false;
         this.useHandCursor = false;
+    }
+
+    private function renderTexture(textureAtlas: TextureAtlas, type: String, color:uint):Texture {
+        var circleShape:Shape = new Shape();
+        circleShape.graphics.beginFill(color, 0.8);
+        circleShape.graphics.drawCircle(50,50, 50);
+        circleShape.graphics.endFill();
+
+        var arrow:Texture = textureAtlas.getTexture("arrow");
+        var imgArrow:Image = new Image(arrow);
+        imgArrow.pivotX = imgArrow.width/2;
+        imgArrow.pivotY = imgArrow.height/2;
+        if(type == "next") {
+            imgArrow.rotation = deg2rad(90);
+            imgArrow.x = circleShape.width/2 - 20;
+        }else{
+            imgArrow.rotation = deg2rad(-90);
+            imgArrow.x = circleShape.width/2 + 20;
+        }
+        imgArrow.y = circleShape.width/2;
+
+        var bmpData:BitmapData = new BitmapData(circleShape.width, circleShape.height, true, 0x000000);
+        bmpData.draw(circleShape);
+
+        var imgCircle:Image = new Image(Texture.fromBitmapData(bmpData));
+
+        var renderTexture:RenderTexture = new RenderTexture(circleShape.width, circleShape.height);
+        renderTexture.draw(imgCircle);
+        renderTexture.draw(imgArrow);
+
+        return renderTexture;
     }
 
 

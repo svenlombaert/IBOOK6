@@ -12,7 +12,10 @@ import starling.display.Sprite;
 
 public class Element extends Sprite {
     protected var _elementVO:ElementVO;
+
+
     public function Element(elementVO:ElementVO) {
+
         _elementVO = elementVO;
     }
 }

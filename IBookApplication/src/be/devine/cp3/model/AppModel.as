@@ -7,11 +7,7 @@
  */
 package be.devine.cp3.model {
 import be.devine.cp3.factory.vo.PageVOFactory;
-import be.devine.cp3.queue.Queue;
-import be.devine.cp3.queue.URLLoaderTask;
 import be.devine.cp3.vo.PageVO;
-
-import flash.display.Loader;
 
 import flash.events.Event;
 import flash.events.EventDispatcher;
@@ -24,9 +20,10 @@ public class AppModel extends EventDispatcher {
     public static const PAGES_CHANGED:String = "pagesChanged";
     public static const SELECTEDPAGEINDEX_CHANGED:String = "selectedPageIndexChanged";
     public static const SELECTEDCOLORINDEX_CHANGED:String = "selectedColorIndexChanged";
-    public static const IMAGES_DESIGN_PATH:String = "assets/images_design/";
     public static const VIEWMODES_OPENED:String = "viewmodesOpened";
     public static const VIEWMODES_CHANGED:String = "viewmodesChanged";
+    public static const THUMBSCROLLBARPOSITION_CHANGED:String = "thumbScrollbarPositionChanged";
+    public static const APPSIZE_CHANGED:String = "appsizeChanged";
 
     private var _selectedPageIndex:int;
     private var _selectedColorIndex:uint;
@@ -34,9 +31,11 @@ public class AppModel extends EventDispatcher {
     private var _timelineView:Boolean;
     private var _viewModesOpened:Boolean = false;
     private var _urlLoader:URLLoader;
+    private var _thumbScrollbarPosition:Number;
+    private var _maxItemsToView:int;
 
-    public var appwidth:int;
-    public var appheight:int;
+    private var _appwidth:int;
+    private var _appheight:int;
 
     //-----SINGLETON INITIALIZING
     public static function getInstance():AppModel{
@@ -56,10 +55,11 @@ public class AppModel extends EventDispatcher {
     }
 
     //----METHODS
+    //TODO: xml laden in een service
     public function load():void{
         _urlLoader = new URLLoader();
         _urlLoader.addEventListener(Event.COMPLETE, xmlLoadedHandler);
-       _urlLoader.load(new URLRequest("assets/xml/books.xml"));
+        _urlLoader.load(new URLRequest("assets/xml/books.xml"));
     }
     public function gotoNextPage():void{
         trace('[APPMODEL] gotonextpage');
@@ -92,8 +92,10 @@ public class AppModel extends EventDispatcher {
         trace("LOADED XML");
         var content:XML = new XML(event.target.data);
         var pages:Vector.<PageVO> = new Vector.<PageVO>();
+        var i:uint = 1;
         for each (var page:XML in content.page){
-            pages.push(PageVOFactory.createFromXML(page));
+            pages.push(PageVOFactory.createFromXML(page, i));
+            i++;
         }
         this.pages = pages;
     }
@@ -104,10 +106,9 @@ public class AppModel extends EventDispatcher {
     }
 
     public function set pages(value:Vector.<PageVO>):void {
-
         _pages = value;
         dispatchEvent(new Event(PAGES_CHANGED));
-
+        trace('[APPMODEL] PAGES CHANGED');
     }
 
     public function get selectedPageIndex():int {
@@ -115,15 +116,15 @@ public class AppModel extends EventDispatcher {
     }
 
     public function set selectedPageIndex(value:int):void {
-
         if(value == pages.length){
-            _selectedPageIndex = pages.length-1;
+                _selectedPageIndex = pages.length-1;
         }else if(value == -1){
-            _selectedPageIndex = 0;
+                _selectedPageIndex = 0;
         }else{
-            _selectedPageIndex = value;
+                _selectedPageIndex = value;
+                dispatchEvent(new Event(SELECTEDPAGEINDEX_CHANGED));
         }
-        dispatchEvent(new Event(SELECTEDPAGEINDEX_CHANGED));
+        trace(_selectedPageIndex);
     }
 
     public function get selectedColorIndex():uint {
@@ -136,7 +137,6 @@ public class AppModel extends EventDispatcher {
             dispatchEvent(new Event(SELECTEDCOLORINDEX_CHANGED));
         }
     }
-
 
     public function get timelineView():Boolean {
         return _timelineView;
@@ -154,13 +154,53 @@ public class AppModel extends EventDispatcher {
         return _viewModesOpened;
     }
 
-    public function set viewModesOpened(value):void {
+    public function set viewModesOpened(value:Boolean):void {
         if(_viewModesOpened != value){
             _viewModesOpened = value;
             dispatchEvent(new Event(VIEWMODES_OPENED));
         }
     }
 
+    public function get thumbScrollbarPosition():Number {
+        return _thumbScrollbarPosition;
+    }
+
+    public function set thumbScrollbarPosition(value:Number):void {
+        if(value != _thumbScrollbarPosition){
+            _thumbScrollbarPosition = value;
+            dispatchEvent(new Event(THUMBSCROLLBARPOSITION_CHANGED));
+        }
+    }
+
+    public function get maxItemsToView():int {
+        return _maxItemsToView;
+    }
+
+    public function set maxItemsToView(value:int):void {
+        _maxItemsToView = value;
+    }
+
+    public function get appheight():int {
+        return _appheight;
+    }
+
+    public function set appheight(value:int):void {
+        if(_appheight != value){
+            _appheight = value;
+            dispatchEvent(new Event(APPSIZE_CHANGED));
+        }
+    }
+
+    public function get appwidth():int {
+        return _appwidth;
+    }
+
+    public function set appwidth(value:int):void {
+        if(value != _appwidth){
+            _appwidth = value;
+            dispatchEvent(new Event(APPSIZE_CHANGED));
+        }
+    }
 }
 }
 internal class Enforcer{}

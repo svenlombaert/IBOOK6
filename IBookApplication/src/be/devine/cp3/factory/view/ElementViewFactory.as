@@ -15,12 +15,10 @@ import be.devine.cp3.vo.IntroTextElementVO;
 public class ElementViewFactory {
     public static function createFromVO(elementVO:ElementVO) {
         //TODO: checken op verschillende VO en juiste view klasse returnen
-        trace('ELEMENT VIEW FACTORY');
         if(elementVO is BodyTextElementVO){
             return new BodyTextElement(elementVO as BodyTextElementVO);
         }
         if(elementVO is IntroTextElementVO){
-            trace('maak introtextelement view aan')
             return new IntroTextElement(elementVO as IntroTextElementVO);
         }
         return null;

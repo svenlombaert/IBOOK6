@@ -8,23 +8,20 @@
 package be.devine.cp3 {
 
 
-import be.devine.cp3.view.Page;
+import be.devine.cp3.model.AppModel;
+import be.devine.cp3.view.PageContainer;
 import be.devine.cp3.view.ViewModeController;
 import be.devine.cp3.view.controls.PrevNextSlideButton;
-import be.devine.cp3.model.AppModel;
-import be.devine.cp3.queue.ImageLoaderTask;
-import be.devine.cp3.queue.Queue;
-import be.devine.cp3.vo.PageVO;
 
 import flash.display.Bitmap;
-
-import flash.display.BitmapData;
-import flash.display.DisplayObject;
 import flash.display.Loader;
 import flash.events.Event;
 import flash.geom.Point;
 import flash.net.URLRequest;
+import flash.text.TextDisplayMode;
+import flash.ui.Keyboard;
 
+import starling.core.Starling;
 import starling.display.Image;
 import starling.display.Sprite;
 import starling.events.Event;
@@ -40,7 +37,11 @@ public class Application extends Sprite {
     private var previousControl:PrevNextSlideButton;
     private var nextControl:PrevNextSlideButton;
     private var viewModeController:ViewModeController;
+    private var pageContainer:PageContainer;
     private var bgLoader:Loader;
+    private var backgroundImg:Image;
+    private var originalBgWidth:int;
+    private var originalBgHeight:int;
 
     [Embed(source="/assets/images_design/spritesheet.xml", mimeType="application/octet-stream")]
     public static const ButtonXML:Class;
@@ -48,76 +49,92 @@ public class Application extends Sprite {
     [Embed(source="/assets/images_design/spritesheet.png")]
     public static const ButtonTexture:Class;
 
+    [Embed(source="/assets/font/HelveticaNeueLTStd-Roman.otf", embedAsCFF="false", fontFamily="HelveticaNeue")]
+    private static const HeleveticaNeue:Class;
+
     public function Application() {
         trace('[APP] CONSTRUCT');
         appModel = AppModel.getInstance();
         appModel.load();
         appModel.timelineView = true;
+        appModel.selectedColorIndex = 0xdd8716;
+        appModel.thumbScrollbarPosition = 0;
+        this.appModel.addEventListener(AppModel.APPSIZE_CHANGED, resizeHandler);
 
         var texture:Texture = Texture.fromBitmap(new ButtonTexture());
         var xml:XML = XML(new ButtonXML());
         textureAtlas = new TextureAtlas(texture, xml);
         bgLoader = new Loader();
         bgLoader.load(new URLRequest("assets/images_design/bg_pattern.png"));
-        bgLoader.contentLoaderInfo.addEventListener(flash.events.Event.COMPLETE, backgroundLoadedHandler);
+        bgLoader.contentLoaderInfo.addEventListener(flash.events.Event.COMPLETE, backgroundTextureLoadedHandler);
 
-        this.addEventListener(KeyboardEvent.KEY_DOWN, keyBoardEventHandler);
+        Starling.current.stage.addEventListener(KeyboardEvent.KEY_DOWN, keyboardDownEventHandler);
         this.addEventListener("BACKGROUNDINITIALIZING_COMPLETE", backgroundInitializingComplete);
     }
 
     //----METHODS
-    private function backgroundLoadedHandler(event:flash.events.Event):void {
+    private function backgroundTextureLoadedHandler(event:flash.events.Event):void {
         var texture:Texture = Texture.fromBitmap(bgLoader.content as Bitmap);
-        var img:Image = new Image(texture);
-        //tileable background
+        backgroundImg = new Image(texture);
         texture.repeat = true;
-        var horizontalReps:Number = appModel.appwidth/img.width;
-        var verticalReps:Number = appModel.appheight/img.height;
-        img.setTexCoords(1, new Point(horizontalReps, 0));
-        img.setTexCoords(2, new Point(0, verticalReps));
-        img.setTexCoords(3, new Point(horizontalReps, verticalReps));
-        img.width *= horizontalReps;
-        img.height *= verticalReps;
-        bgContainer = new Sprite();
-        bgContainer.addChild(img);
-        addChild(bgContainer);
+        originalBgHeight = backgroundImg.height;
+        originalBgWidth = backgroundImg.width;
+        addChild(backgroundImg);
         dispatchEvent(new starling.events.Event("BACKGROUNDINITIALIZING_COMPLETE"));
     }
 
-    private function keyBoardEventHandler(event:flash.events.Event):void {
+    private function keyboardDownEventHandler(event:KeyboardEvent):void {
         //keyboard event om door de pagina's te gaan.
-    }
+        Starling.current.stage.removeEventListener(KeyboardEvent.KEY_DOWN, keyboardDownEventHandler);
+        Starling.current.stage.addEventListener(KeyboardEvent.KEY_UP, keyboardUpEventHandler);
 
-    private function backgroundInitializingComplete(event:starling.events.Event):void {
-        //initialize all buttons via button spritesheet
-        trace('[APP] AANMAKEN BUTTONS');
-        previousControl= new PrevNextSlideButton(textureAtlas, "previous");
-        //nextControl= new PrevNextSlideButton(textureAtlas.getTexture("right"), "next");
-        //viewModeController = new ViewModeController(textureAtlas);
-
-        previousControl.y = (stage.stageHeight - previousControl.height) >> 1;
-        previousControl.x = -previousControl.width/2;
-        //nextControl.x = stage.stageWidth - nextControl.width;
-        //nextControl.y = (stage.stageHeight - nextControl.height) >> 1;
-
-        addChild(previousControl);
-        //addChild(nextControl);
-        //addChild(viewModeController);
-
-        maakPaginas();
-
-    }
-
-    private function maakPaginas(){
-        var pages:Vector.<PageVO> = appModel.pages;
-
-            trace('MAAK PAGINA AAN');
-            var pageView = new Page(pages[0]);
-            addChildAt(pageView, this.numChildren -1);
-        pageView.x = 20;
-        pageView.y = 20;
-        trace("pageview height: ", pageView.height);
+        switch(event.keyCode){
+            case Keyboard.LEFT: appModel.gotoPreviousPage();break;
+            case Keyboard.RIGHT: appModel.gotoNextPage(); break;
+            case 32: if(viewModeController) appModel.openViewModes(); break;
         }
     }
 
+    private function keyboardUpEventHandler(event:KeyboardEvent):void {
+        Starling.current.stage.removeEventListener(KeyboardEvent.KEY_UP, keyboardUpEventHandler);
+        Starling.current.stage.addEventListener(KeyboardEvent.KEY_DOWN, keyboardDownEventHandler);
+    }
+
+    private function backgroundInitializingComplete(event:starling.events.Event):void {
+        pageContainer = new PageContainer();
+        pageContainer.x = 30;
+        pageContainer.y = 30;
+        addChild(pageContainer);
+
+        trace('[APP] AANMAKEN BUTTONS EN PAGECONTAINER');
+        previousControl= new PrevNextSlideButton(textureAtlas, "previous");
+        nextControl= new PrevNextSlideButton(textureAtlas, "next");
+        viewModeController = new ViewModeController(textureAtlas);
+
+        addChild(previousControl);
+        addChild(nextControl);
+        addChild(viewModeController);
+        display();
+    }
+
+    private function resizeHandler(event:flash.events.Event):void {
+        trace('Resize handler');
+        display();
+    }
+
+    private function display():void{
+        var horizontalReps:Number = appModel.appwidth/originalBgWidth;
+        var verticalReps:Number = appModel.appheight/originalBgHeight;
+        backgroundImg.setTexCoords(1, new Point(horizontalReps, 0));
+        backgroundImg.setTexCoords(2, new Point(0, verticalReps));
+        backgroundImg.setTexCoords(3, new Point(horizontalReps, verticalReps));
+        backgroundImg.width *= horizontalReps;
+        backgroundImg.height *= verticalReps;
+
+        previousControl.y = (appModel.appheight - previousControl.height) >> 1;
+        previousControl.x = -previousControl.width/2;
+        nextControl.x = appModel.appwidth - nextControl.width/2;
+        nextControl.y = (appModel.appheight - nextControl.height) >> 1;
+    }
+}
 }

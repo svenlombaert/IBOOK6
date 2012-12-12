@@ -54,6 +54,7 @@ public class AppModel extends EventDispatcher {
     }
 
     //----METHODS
+    //TODO: xml laden in een service
     public function load():void{
         _urlLoader = new URLLoader();
         _urlLoader.addEventListener(Event.COMPLETE, xmlLoadedHandler);

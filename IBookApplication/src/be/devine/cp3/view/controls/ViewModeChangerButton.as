@@ -58,10 +58,12 @@ public class ViewModeChangerButton extends Button {
         circleShape.graphics.drawCircle(50,50,50);
         circleShape.graphics.endFill();
 
+        var icon:Texture;
+
         if(appModel.timelineView){
-            var icon:Texture = textureAtlas.getTexture("gridIcon");
+            icon = textureAtlas.getTexture("gridIcon");
         }else{
-            var icon:Texture = textureAtlas.getTexture("timelineIcon");
+            icon = textureAtlas.getTexture("timelineIcon");
         }
         var imgIcon:Image = new Image(icon);
 

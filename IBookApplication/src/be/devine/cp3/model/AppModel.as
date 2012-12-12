@@ -22,7 +22,8 @@ public class AppModel extends EventDispatcher {
     public static const SELECTEDCOLORINDEX_CHANGED:String = "selectedColorIndexChanged";
     public static const VIEWMODES_OPENED:String = "viewmodesOpened";
     public static const VIEWMODES_CHANGED:String = "viewmodesChanged";
-    public static const THUMBSCROLLBARPOSITION_CHANGED = "thumbScrollbarPositionChanged";
+    public static const THUMBSCROLLBARPOSITION_CHANGED:String = "thumbScrollbarPositionChanged";
+    public static const APPSIZE_CHANGED:String = "appsizeChanged";
 
     private var _selectedPageIndex:int;
     private var _selectedColorIndex:uint;
@@ -33,8 +34,8 @@ public class AppModel extends EventDispatcher {
     private var _thumbScrollbarPosition:Number;
     private var _maxItemsToView:int;
 
-    public var appwidth:int;
-    public var appheight:int;
+    private var _appwidth:int;
+    private var _appheight:int;
 
     //-----SINGLETON INITIALIZING
     public static function getInstance():AppModel{
@@ -177,6 +178,28 @@ public class AppModel extends EventDispatcher {
 
     public function set maxItemsToView(value:int):void {
         _maxItemsToView = value;
+    }
+
+    public function get appheight():int {
+        return _appheight;
+    }
+
+    public function set appheight(value:int):void {
+        if(_appheight != value){
+            _appheight = value;
+            dispatchEvent(new Event(APPSIZE_CHANGED));
+        }
+    }
+
+    public function get appwidth():int {
+        return _appwidth;
+    }
+
+    public function set appwidth(value:int):void {
+        if(value != _appwidth){
+            _appwidth = value;
+            dispatchEvent(new Event(APPSIZE_CHANGED));
+        }
     }
 }
 }

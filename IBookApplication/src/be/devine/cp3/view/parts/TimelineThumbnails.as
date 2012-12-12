@@ -46,7 +46,7 @@ public class TimelineThumbnails extends Sprite{
     private function initalizeThumbnails():void {
         //thumbnails aanmaken adhv pagina's.
         thumbnailsHolder = new Sprite();
-        var xPos = 0;
+        var xPos:uint = 0;
         for(var i:int = 0; i<arrThumbnails.length; i++){
             arrThumbnails[i].x = xPos;
             changeOpacity(arrThumbnails[i]);
@@ -78,7 +78,7 @@ public class TimelineThumbnails extends Sprite{
 
     private function thumbnailTouchHandler(event:TouchEvent):void {
         if(event.getTouch(event.currentTarget as DisplayObject, TouchPhase.BEGAN)){
-            var currPageIndex = arrThumbnails.indexOf(event.currentTarget);
+            var currPageIndex:uint = arrThumbnails.indexOf(event.currentTarget);
             trace(currPageIndex);
         }
     }
@@ -89,7 +89,7 @@ public class TimelineThumbnails extends Sprite{
             }
     }
 
-    private function changeOpacity(thumbnail:Thumbnail){
+    private function changeOpacity(thumbnail:Thumbnail):void{
         if(thumbnail == arrThumbnails[appModel.selectedPageIndex]){
             thumbnail.alpha = 1;
         }else{

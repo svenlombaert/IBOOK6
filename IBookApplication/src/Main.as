@@ -37,6 +37,8 @@ public class Main extends Sprite {
     }
 
     private function resizeHandler(event:Event):void {
+        AppModel.instance.appheight = stage.stageHeight;
+        AppModel.instance.appwidth = stage.stageWidth;
         display();
     }
 

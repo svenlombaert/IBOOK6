@@ -37,7 +37,7 @@ public class Thumbnail extends Sprite{
            page.scaleX = page.scaleY;
         }
         var q:Quad = new Quad(220, 140, Style.THUMBNAILBACKGROUNDCOLOR);
-        var texture = new RenderTexture(q.width, q.height);
+        var texture:RenderTexture = new RenderTexture(q.width, q.height);
         texture.draw(q);
         texture.draw(page);
         var img:Image = new Image(texture);

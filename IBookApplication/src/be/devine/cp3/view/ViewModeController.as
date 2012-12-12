@@ -38,6 +38,7 @@ public class ViewModeController extends Sprite {
         thumbnailContainer = new ThumbnailContainer(textureAtlas);
         changeViewModeControl = new ViewModeChangerButton(textureAtlas);
         timeLineButtonsContainer = new Sprite();
+        this.appModel.addEventListener(AppModel.APPSIZE_CHANGED, resizeHandler);
 
         if(appModel.timelineView){
             _maxItemsToView = appModel.maxItemsToView = 4;
@@ -50,19 +51,11 @@ public class ViewModeController extends Sprite {
                 //Scrollbar aanmaken
             }
         }
-
-        thumbnailContainer.y = appModel.appheight;
-        changeViewModeControl.y = openControl.height;
-
-        scrollbar.x = appModel.appwidth/2 - scrollbar.width/2;
-        scrollbar.y = appModel.appheight;
-
         timeLineButtonsContainer.addChild(openControl);
         timeLineButtonsContainer.addChild(changeViewModeControl);
-        timeLineButtonsContainer.pivotX = timeLineButtonsContainer.width/2;
-        timeLineButtonsContainer.pivotY = timeLineButtonsContainer.height/2;
-        timeLineButtonsContainer.x = appModel.appwidth/2;
-        timeLineButtonsContainer.y = appModel.appheight;
+
+
+        display();
 
         addChild(thumbnailContainer);
         addChild(timeLineButtonsContainer);
@@ -184,6 +177,24 @@ public class ViewModeController extends Sprite {
             tween.animate("y", 10 + timeLineButtonsContainer.height/2);
             Starling.juggler.add(tween);
         }
+    }
+
+    private function resizeHandler(event:Event):void {
+        display();
+    }
+
+    private function display():void{
+        trace("APPHEIGHT: ",appModel.appheight);
+        thumbnailContainer.y = appModel.appheight;
+        changeViewModeControl.y = openControl.height;
+
+        scrollbar.x = appModel.appwidth/2 - scrollbar.width/2;
+        scrollbar.y = appModel.appheight;
+
+        timeLineButtonsContainer.pivotX = timeLineButtonsContainer.width/2;
+        timeLineButtonsContainer.pivotY = timeLineButtonsContainer.height/2;
+        timeLineButtonsContainer.x = appModel.appwidth/2;
+        timeLineButtonsContainer.y = appModel.appheight;
     }
 }
 }

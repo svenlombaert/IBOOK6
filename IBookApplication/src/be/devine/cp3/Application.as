@@ -18,6 +18,7 @@ import flash.display.Loader;
 import flash.events.Event;
 import flash.geom.Point;
 import flash.net.URLRequest;
+import flash.text.TextDisplayMode;
 import flash.ui.Keyboard;
 
 import starling.core.Starling;
@@ -38,6 +39,9 @@ public class Application extends Sprite {
     private var viewModeController:ViewModeController;
     private var pageContainer:PageContainer;
     private var bgLoader:Loader;
+    private var backgroundImg:Image;
+    private var originalBgWidth:int;
+    private var originalBgHeight:int;
 
     [Embed(source="/assets/images_design/spritesheet.xml", mimeType="application/octet-stream")]
     public static const ButtonXML:Class;
@@ -55,6 +59,7 @@ public class Application extends Sprite {
         appModel.timelineView = true;
         appModel.selectedColorIndex = 0xdd8716;
         appModel.thumbScrollbarPosition = 0;
+        this.appModel.addEventListener(AppModel.APPSIZE_CHANGED, resizeHandler);
 
         var texture:Texture = Texture.fromBitmap(new ButtonTexture());
         var xml:XML = XML(new ButtonXML());
@@ -70,19 +75,11 @@ public class Application extends Sprite {
     //----METHODS
     private function backgroundTextureLoadedHandler(event:flash.events.Event):void {
         var texture:Texture = Texture.fromBitmap(bgLoader.content as Bitmap);
-        var img:Image = new Image(texture);
-        //tileable background
+        backgroundImg = new Image(texture);
         texture.repeat = true;
-        var horizontalReps:Number = appModel.appwidth/img.width;
-        var verticalReps:Number = appModel.appheight/img.height;
-        img.setTexCoords(1, new Point(horizontalReps, 0));
-        img.setTexCoords(2, new Point(0, verticalReps));
-        img.setTexCoords(3, new Point(horizontalReps, verticalReps));
-        img.width *= horizontalReps;
-        img.height *= verticalReps;
-        bgContainer = new Sprite();
-        bgContainer.addChild(img);
-        addChild(bgContainer);
+        originalBgHeight = backgroundImg.height;
+        originalBgWidth = backgroundImg.width;
+        addChild(backgroundImg);
         dispatchEvent(new starling.events.Event("BACKGROUNDINITIALIZING_COMPLETE"));
     }
 
@@ -114,16 +111,30 @@ public class Application extends Sprite {
         nextControl= new PrevNextSlideButton(textureAtlas, "next");
         viewModeController = new ViewModeController(textureAtlas);
 
-        previousControl.y = (stage.stageHeight - previousControl.height) >> 1;
-        previousControl.x = -previousControl.width/2;
-        nextControl.x = stage.stageWidth - nextControl.width/2;
-        nextControl.y = (stage.stageHeight - nextControl.height) >> 1;
-
         addChild(previousControl);
         addChild(nextControl);
         addChild(viewModeController);
-
+        display();
     }
 
+    private function resizeHandler(event:flash.events.Event):void {
+        trace('Resize handler');
+        display();
+    }
+
+    private function display():void{
+        var horizontalReps:Number = appModel.appwidth/originalBgWidth;
+        var verticalReps:Number = appModel.appheight/originalBgHeight;
+        backgroundImg.setTexCoords(1, new Point(horizontalReps, 0));
+        backgroundImg.setTexCoords(2, new Point(0, verticalReps));
+        backgroundImg.setTexCoords(3, new Point(horizontalReps, verticalReps));
+        backgroundImg.width *= horizontalReps;
+        backgroundImg.height *= verticalReps;
+
+        previousControl.y = (appModel.appheight - previousControl.height) >> 1;
+        previousControl.x = -previousControl.width/2;
+        nextControl.x = appModel.appwidth - nextControl.width/2;
+        nextControl.y = (appModel.appheight - nextControl.height) >> 1;
+    }
 }
 }

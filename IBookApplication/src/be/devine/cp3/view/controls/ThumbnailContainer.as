@@ -13,6 +13,8 @@ import be.devine.cp3.view.parts.Thumbnail;
 import be.devine.cp3.view.parts.TimelineThumbnails;
 import be.devine.cp3.vo.PageVO;
 
+import flash.events.Event;
+
 import starling.display.Image;
 
 import starling.display.Quad;
@@ -32,6 +34,8 @@ public class ThumbnailContainer extends Sprite {
 
     public function ThumbnailContainer(textureAtlas:TextureAtlas) {
         appModel = AppModel.getInstance();
+        this.appModel.addEventListener(AppModel.APPSIZE_CHANGED, resizeHandler);
+
         background = new Quad(AppModel.instance.appwidth, AppModel.instance.appheight, Style.TIMELINECOLOR);
         background.alpha = 0.90;
         addChild(background);
@@ -67,13 +71,21 @@ public class ThumbnailContainer extends Sprite {
 
     private function showThumbnails():void{
         if(appModel.timelineView){
-            var timelineThumbnails = new TimelineThumbnails(arrThumbnails);
+            var timelineThumbnails:TimelineThumbnails = new TimelineThumbnails(arrThumbnails);
             timelineThumbnails.x = 30;
             timelineThumbnails.y = 258/2 - timelineThumbnails.height/2 + 20;
             addChild(timelineThumbnails);
         }
     }
 
+    private function display():void{
+        background.width = appModel.appwidth;
+        background.height = appModel.appheight;
+    }
 
+
+    private function resizeHandler(event:Event):void {
+        display();
+    }
 }
 }

@@ -6,6 +6,7 @@
  * To change this template use File | Settings | File Templates.
  */
 package be.devine.cp3.view.elements {
+import be.devine.cp3.style.Style;
 import be.devine.cp3.vo.TitleElementVO;
 
 import starling.text.TextField;
@@ -14,9 +15,8 @@ import starling.text.TextField;
 public class TitleElement extends Element{
     public function TitleElement(titleElementVO:TitleElementVO) {
         super (titleElementVO);
-        var t:TextField = new TextField(900, 50, titleElementVO.title, "Arial" , 72, titleElementVO.color, true);
+        var t:TextField = new TextField(900, 50, titleElementVO.title, Style.FONTBOLD , 72, titleElementVO.color, true);
         t.vAlign = "top";
-        //trace(t.textBounds);
         t.border = true;
         addChild(t);
     }

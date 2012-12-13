@@ -51,9 +51,9 @@ public class ViewModeController extends Sprite {
                 //Scrollbar aanmaken
             }
         }
+        changeViewModeControl.y = openControl.height;
         timeLineButtonsContainer.addChild(openControl);
         timeLineButtonsContainer.addChild(changeViewModeControl);
-
 
         display();
 
@@ -185,16 +185,26 @@ public class ViewModeController extends Sprite {
 
     private function display():void{
         trace("APPHEIGHT: ",appModel.appheight);
-        thumbnailContainer.y = appModel.appheight;
-        changeViewModeControl.y = openControl.height;
+        if(appModel.viewModesOpened){
+            if(appModel.timelineView){
+                thumbnailContainer.y = appModel.appheight - 258;
+                timeLineButtonsContainer.y = appModel.appheight - 258;
+            }else{
+                timeLineButtonsContainer.y = 10 + timeLineButtonsContainer.height/2;
+                thumbnailContainer.y = 0;
+            }
+            scrollbar.y = appModel.appheight - scrollbar.height;
+        }else{
+            thumbnailContainer.y = appModel.appheight;
+            timeLineButtonsContainer.y = appModel.appheight;
+            scrollbar.y = appModel.appheight;
+        }
 
         scrollbar.x = appModel.appwidth/2 - scrollbar.width/2;
-        scrollbar.y = appModel.appheight;
 
         timeLineButtonsContainer.pivotX = timeLineButtonsContainer.width/2;
         timeLineButtonsContainer.pivotY = timeLineButtonsContainer.height/2;
         timeLineButtonsContainer.x = appModel.appwidth/2;
-        timeLineButtonsContainer.y = appModel.appheight;
     }
 }
 }

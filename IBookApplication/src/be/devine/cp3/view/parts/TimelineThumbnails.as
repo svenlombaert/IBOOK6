@@ -39,7 +39,7 @@ public class TimelineThumbnails extends Sprite{
         appModel = AppModel.getInstance();
         this.appModel.addEventListener(AppModel.PAGES_CHANGED, pagesChangedHandler);
         this.appModel.addEventListener(AppModel.THUMBSCROLLBARPOSITION_CHANGED, scrollHandler);
-        this.appModel.addEventListener(AppModel.SELECTEDPAGEINDEX_CHANGED, selectedPageIndexChanged);
+        this.appModel.addEventListener(AppModel.APPSIZE_CHANGED, resizeHandler);
         initalizeThumbnails();
     }
 
@@ -49,8 +49,6 @@ public class TimelineThumbnails extends Sprite{
         var xPos:uint = 0;
         for(var i:int = 0; i<arrThumbnails.length; i++){
             arrThumbnails[i].x = xPos;
-            changeOpacity(arrThumbnails[i]);
-            arrThumbnails[i].addEventListener(TouchEvent.TOUCH, thumbnailTouchHandler);
             thumbnailsHolder.addChild(arrThumbnails[i]);
             xPos += arrThumbnails[i].width + 25;
         }
@@ -76,25 +74,9 @@ public class TimelineThumbnails extends Sprite{
         }
     }
 
-    private function thumbnailTouchHandler(event:TouchEvent):void {
-        if(event.getTouch(event.currentTarget as DisplayObject, TouchPhase.BEGAN)){
-            var currPageIndex:uint = arrThumbnails.indexOf(event.currentTarget);
-            trace(currPageIndex);
-        }
-    }
-
-    private function selectedPageIndexChanged(event:Event):void {
-        for(var i:int = 0; i<arrThumbnails.length; i++){
-               changeOpacity(arrThumbnails[i]);
-            }
-    }
-
-    private function changeOpacity(thumbnail:Thumbnail):void{
-        if(thumbnail == arrThumbnails[appModel.selectedPageIndex]){
-            thumbnail.alpha = 1;
-        }else{
-             thumbnail.alpha = 0.4;
-        }
+    private function resizeHandler(event:Event):void {
+        maskObject = new Quad(appModel.appwidth-60, 258, 0x000000);
+        maskedThumbnails.mask = maskObject;
     }
 }
 }

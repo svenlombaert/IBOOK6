@@ -2,6 +2,7 @@ package be.devine.cp3.view.controls {
 import be.devine.cp3.model.AppModel;
 import be.devine.cp3.style.Style;
 import be.devine.cp3.utils.mask.PixelMaskDisplayObject;
+import be.devine.cp3.view.ViewModeController;
 
 import flash.display.BitmapData;
 
@@ -76,12 +77,10 @@ public class Scrollbar extends Sprite{
         if(touch != null){
             switch(touch.phase){
                 case TouchPhase.BEGAN:
-                        trace('began');
                         _draggedObject = event.currentTarget as DisplayObject;
                         touch.getLocation(touchObject, startDragLocation);
                     break;
                 case TouchPhase.MOVED:
-                        trace('moved');
                         if(_draggedObject != null){
                             var localPos:Point = globalToLocal(new Point(touch.globalX, touch.globalY), resultPoint);
                             _draggedObject.x = localPos.x - startDragLocation.x;

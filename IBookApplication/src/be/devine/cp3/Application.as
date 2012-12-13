@@ -18,6 +18,7 @@ import flash.display.Loader;
 import flash.events.Event;
 import flash.geom.Point;
 import flash.net.URLRequest;
+import flash.text.Font;
 import flash.text.TextDisplayMode;
 import flash.ui.Keyboard;
 
@@ -50,7 +51,10 @@ public class Application extends Sprite {
     public static const ButtonTexture:Class;
 
     [Embed(source="/assets/font/HelveticaNeueLTStd-Roman.otf", embedAsCFF="false", fontFamily="HelveticaNeue")]
-    private static const HeleveticaNeue:Class;
+    private static const HelveticaNeue:Class;
+
+    [Embed(source="/assets/font/HelveticaNeueLTStd-Bd.otf", embedAsCFF="false", fontFamily="HelveticaNeueBold")]
+    private static const HelveticaNeueBold:Class;
 
     public function Application() {
         trace('[APP] CONSTRUCT');
@@ -70,6 +74,16 @@ public class Application extends Sprite {
 
         Starling.current.stage.addEventListener(KeyboardEvent.KEY_DOWN, keyboardDownEventHandler);
         this.addEventListener("BACKGROUNDINITIALIZING_COMPLETE", backgroundInitializingComplete);
+        showEmbeddedFonts();
+    }
+
+    public function showEmbeddedFonts():void {
+        trace("========Embedded Fonts========");
+        var fonts:Array = Font.enumerateFonts();
+        fonts.sortOn("fontName", Array.CASEINSENSITIVE);
+        for (var i:int = 0; i < fonts.length; i++) {
+            trace(fonts[i].fontName + ", " + fonts[i].fontStyle);
+        }
     }
 
     //----METHODS

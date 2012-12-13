@@ -11,6 +11,8 @@ public class Style {
     public static const THUMBNAILBACKGROUNDCOLOR:uint = 0xffffff;
     public static const THUMBCOLOR:uint = 0xbfbcbc;
     public static const TRACKCOLOR:uint = 0x5d5c5c;
-    public static const SELECTEDTHUMBNAILCOLOR:uint = 0xff0000;
+    public static const HOVERTHUMBNAILCOLOR:uint = 0x4f4e4e;
+    public static const FONT:String = "HelveticaNeue";
+    public static const FONTBOLD:String = "HelveticaNeueBold";
 }
 }

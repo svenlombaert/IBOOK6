@@ -116,15 +116,18 @@ public class AppModel extends EventDispatcher {
     }
 
     public function set selectedPageIndex(value:int):void {
-        if(value == pages.length){
+        if(value != _selectedPageIndex){
+            if(value == pages.length){
                 _selectedPageIndex = pages.length-1;
-        }else if(value == -1){
+            }else if(value == -1){
                 _selectedPageIndex = 0;
-        }else{
+            }else{
                 _selectedPageIndex = value;
                 dispatchEvent(new Event(SELECTEDPAGEINDEX_CHANGED));
+            }
+            trace("[APPMODEL] selectedPageIndex: ", selectedPageIndex);
         }
-        trace(_selectedPageIndex);
+
     }
 
     public function get selectedColorIndex():uint {

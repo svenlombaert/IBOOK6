@@ -137,6 +137,7 @@ public class Application extends Sprite {
     }
 
     private function display():void{
+
         var horizontalReps:Number = appModel.appwidth/originalBgWidth;
         var verticalReps:Number = appModel.appheight/originalBgHeight;
         backgroundImg.setTexCoords(1, new Point(horizontalReps, 0));

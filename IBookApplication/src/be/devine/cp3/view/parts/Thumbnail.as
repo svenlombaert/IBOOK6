@@ -101,7 +101,7 @@ public class Thumbnail extends Sprite{
 
     private function createHoverOverlay():void{
         hoverOverlay = new Sprite();
-        var text:TextField = new TextField(MAXWIDTH, MAXHEIGHT, "p" + this.pageNumber, "HelveticaNeue", 42, Style.HOVERTHUMBNAILCOLOR);
+        var text:TextField = new TextField(MAXWIDTH, MAXHEIGHT, "p" + this.pageNumber, Style.FONTBOLD, 42, Style.HOVERTHUMBNAILCOLOR);
         hoverOverlay.addChild(text);
         hoverOverlay.visible = false;
         addChild(hoverOverlay);

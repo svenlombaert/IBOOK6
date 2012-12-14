@@ -19,6 +19,7 @@ public class ElementVOFactory {
             case "backgroundPhoto": return createBackgroundPhotoElementVO(elementXML); break;
             case "intro": return createIntroTextElementVO(elementXML); break;
             case "body": return createBodyElementVO(elementXML); break;
+
         }
         return null;
     }
@@ -45,6 +46,7 @@ public class ElementVOFactory {
     public static function createBodyElementVO(elementXML:XML):BodyTextElementVO {
         var elementVO:BodyTextElementVO = new BodyTextElementVO();
         elementVO.text = elementXML;
+        elementVO.column = int(elementXML.@column);
         return elementVO;
     }
 }

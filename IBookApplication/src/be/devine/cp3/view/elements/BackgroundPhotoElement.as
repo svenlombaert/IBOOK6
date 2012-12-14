@@ -9,6 +9,7 @@ package be.devine.cp3.view.elements {
 public class BackgroundPhotoElement {
     //TODO: Thomas: backgroundphoto element opmaken, eventueel aan de hand van breedte en hoogte vanuit XML (die dus ook in de BackgroundPhotoVO zal zitten)
     public function BackgroundPhotoElement() {
+
     }
 }
 }

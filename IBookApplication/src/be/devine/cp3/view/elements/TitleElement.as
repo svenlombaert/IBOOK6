@@ -6,18 +6,24 @@
  * To change this template use File | Settings | File Templates.
  */
 package be.devine.cp3.view.elements {
+import be.devine.cp3.model.AppModel;
 import be.devine.cp3.style.Style;
 import be.devine.cp3.vo.TitleElementVO;
 
 import starling.text.TextField;
+import starling.utils.HAlign;
 
 //TODO: Thomas: titel element opmaken (text in tekstveld, juiste kleur, eventueel al de properties aanmaken in appModel voor accentkleur)
 public class TitleElement extends Element{
+    private var appModel:AppModel;
+
     public function TitleElement(titleElementVO:TitleElementVO) {
         super (titleElementVO);
-        var t:TextField = new TextField(900, 50, titleElementVO.title, Style.FONTBOLD , 72, titleElementVO.color, true);
+        appModel = AppModel.getInstance();
+        var t:TextField = new TextField(900, 60, titleElementVO.title, Style.FONTBOLD , 46, appModel.selectedColorIndex, true);
         t.vAlign = "top";
-        t.border = true;
+        t.hAlign = HAlign.LEFT;
+        //t.border = true;
         addChild(t);
     }
 }

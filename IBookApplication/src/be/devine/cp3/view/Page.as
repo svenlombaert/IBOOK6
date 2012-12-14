@@ -9,6 +9,7 @@ package be.devine.cp3.view {
 import be.devine.cp3.factory.view.ElementViewFactory;
 import be.devine.cp3.model.AppModel;
 import be.devine.cp3.view.elements.BackgroundPhotoElement;
+import be.devine.cp3.view.elements.BodyTextElement;
 import be.devine.cp3.view.elements.Element;
 import be.devine.cp3.view.elements.IntroTextElement;
 import be.devine.cp3.view.elements.TitleElement;
@@ -49,24 +50,31 @@ public class Page extends Sprite{
                 _container = new Sprite();
                 _container.width = 900;
                 _container.height = 600;
-                //_container.x = Starling.current.stage.width *.5 - _container.width*.5;
-                //_container.y = Starling.current.stage.height*.5 - _container.height*.5;
+
                 addChild(_container);
                 if (element is TitleElement) {
                     _hasTitle = true;
                     //element = title;
                 }
+
                 if (element is IntroTextElement){
                     //plaats vanboven
                     _hasIntro = true;
-                    element.x = 20;
-                    element.y = 20;
+
+                    element.y = 100;
                     //element = intro;
+                }
+
+                if (element is BodyTextElement) {
+                    element.x = 300;
+
+                    element.y = 100;
                 }
                 if(element is BackgroundPhotoElement){
                     _hasBackground = true;
                     //element = photo;
                 }
+
 
                 _container.addChild(element);
             }

@@ -9,8 +9,8 @@ package be.devine.cp3.view.controls {
 import be.devine.cp3.model.AppModel;
 import be.devine.cp3.style.Style;
 import be.devine.cp3.view.Page;
-import be.devine.cp3.view.parts.Thumbnail;
-import be.devine.cp3.view.parts.TimelineThumbnails;
+import be.devine.cp3.view.Thumbnail;
+import be.devine.cp3.view.TimelineThumbnails;
 import be.devine.cp3.vo.PageVO;
 
 import flash.events.Event;

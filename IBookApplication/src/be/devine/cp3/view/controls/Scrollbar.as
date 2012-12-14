@@ -8,7 +8,6 @@ import flash.display.BitmapData;
 
 import flash.display.Shape;
 
-import flash.events.Event;
 import flash.geom.Point;
 
 import starling.animation.Transitions;
@@ -20,6 +19,7 @@ import starling.display.DisplayObject;
 import starling.display.Image;
 import starling.display.Quad;
 import starling.display.Sprite;
+import starling.events.Event;
 import starling.events.Touch;
 import starling.events.TouchEvent;
 import starling.events.TouchPhase;
@@ -30,25 +30,26 @@ public class Scrollbar extends Sprite{
 
     private var track:Quad;
     private var thumb:Quad;
-    private var _draggedObject:DisplayObject;
 
     private var trackWidth:int;
     private var trackHeight:int;
     private var thumbWidth:int;
-    private var appModel:AppModel;
+    private var _thumbPosition:int;
+
     private var startDragLocation:Point;
+    private var _draggedObject:DisplayObject;
 
     private var maskedThumb:PixelMaskDisplayObject;
     private var maskedTrack:PixelMaskDisplayObject;
 
+    public static const THUMBPOSITION_CHANGED:String = "thumbPositionChanged";
+
 
     public function Scrollbar(w:int,  h:int, tw:int) {
-        appModel = AppModel.getInstance();
         trackHeight = h;
         trackWidth = w;
         thumbWidth = tw;
         startDragLocation = new Point();
-        this.appModel.addEventListener(AppModel.SELECTEDPAGEINDEX_CHANGED, selectedPageIndexChangedHandler);
 
         track = new Quad(trackWidth, trackHeight,Style.TRACKCOLOR);
         thumb = new Quad(thumbWidth, trackHeight,Style.THUMBCOLOR);
@@ -61,8 +62,6 @@ public class Scrollbar extends Sprite{
         maskedThumb.addChild(thumb);
         maskedThumb.mask = drawRoundedMask(thumbWidth, trackHeight, trackHeight);
 
-        appModel.addEventListener(AppModel.THUMBSCROLLBARPOSITION_CHANGED, thumbPostionChanged);
-        maskedThumb.x = appModel.thumbScrollbarPosition * (track.width - thumb.width);
         maskedThumb.addEventListener(TouchEvent.TOUCH, touchHandler);
 
         addChild(maskedTrack);
@@ -89,7 +88,7 @@ public class Scrollbar extends Sprite{
                             }else if(_draggedObject.x <= 0){
                                 _draggedObject.x = 0;
                             }
-                            appModel.thumbScrollbarPosition = maskedThumb.x / (maskedTrack.width - maskedThumb.width);
+                            thumbPosition = maskedThumb.x / (maskedTrack.width - maskedThumb.width);
                         }
                     break;
                 case TouchPhase.ENDED:
@@ -101,7 +100,7 @@ public class Scrollbar extends Sprite{
 
     private function thumbPostionChanged(event:Event):void {
         var tween:Tween = new Tween(maskedThumb, 0.3, Transitions.EASE_OUT);
-        tween.animate("x", appModel.thumbScrollbarPosition * (maskedTrack.width - maskedThumb.width));
+        //tween.animate("x", appModel.thumbScrollbarPosition * (maskedTrack.width - maskedThumb.width));
         Starling.juggler.add(tween);
     }
 
@@ -117,9 +116,15 @@ public class Scrollbar extends Sprite{
         return new Image(Texture.fromBitmapData(bmp));
     }
 
-    private function selectedPageIndexChangedHandler(event:Event):void {
-        //TODO: vragen aan wouter om geselecteerd item in het midden te krijgen
-        appModel.thumbScrollbarPosition = appModel.selectedPageIndex/(appModel.pages.length-1);
+    public function get thumbPosition():int {
+        return _thumbPosition;
+    }
+
+    public function set thumbPosition(value:int):void {
+        if(_thumbPosition != value){
+            _thumbPosition = value;
+            dispatchEvent(new Event(THUMBPOSITION_CHANGED));
+        }
     }
 }
 }

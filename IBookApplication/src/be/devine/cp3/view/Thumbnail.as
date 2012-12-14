@@ -5,7 +5,7 @@
  * Time: 10:53
  * To change this template use File | Settings | File Templates.
  */
-package be.devine.cp3.view.parts {
+package be.devine.cp3.view {
 import be.devine.cp3.model.AppModel;
 import be.devine.cp3.view.*;
 

@@ -115,6 +115,7 @@ public class Application extends Sprite {
     }
 
     private function backgroundInitializingComplete(event:starling.events.Event):void {
+
         pageContainer = new PageContainer();
         addChild(pageContainer);
 
@@ -139,8 +140,8 @@ public class Application extends Sprite {
         backgroundImg.setTexCoords(1, new Point(horizontalReps, 0));
         backgroundImg.setTexCoords(2, new Point(0, verticalReps));
         backgroundImg.setTexCoords(3, new Point(horizontalReps, verticalReps));
-        backgroundImg.width *= horizontalReps;
-        backgroundImg.height *= verticalReps;
+        backgroundImg.width = originalBgWidth * horizontalReps;
+        backgroundImg.height = originalBgHeight * verticalReps;
 
         previousControl.y = (appModel.appheight - previousControl.height) >> 1;
         previousControl.x = -previousControl.width/2;

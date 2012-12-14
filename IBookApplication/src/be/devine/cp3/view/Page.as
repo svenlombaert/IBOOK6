@@ -12,11 +12,15 @@ import be.devine.cp3.view.elements.BackgroundPhotoElement;
 import be.devine.cp3.view.elements.BodyTextElement;
 import be.devine.cp3.view.elements.Element;
 import be.devine.cp3.view.elements.IntroTextElement;
+import be.devine.cp3.view.elements.LinkElement;
+import be.devine.cp3.view.elements.PageNumberElement;
 import be.devine.cp3.view.elements.TitleElement;
 import be.devine.cp3.vo.ElementVO;
 import be.devine.cp3.vo.PageVO;
+import be.devine.cp3.vo.TitleElementVO;
 
 import starling.core.Starling;
+import starling.display.Quad;
 import starling.display.Sprite;
 
 public class Page extends Sprite{
@@ -27,8 +31,10 @@ public class Page extends Sprite{
     private var _hasBackground:Boolean = false;
     private var _hasTitle:Boolean = false;
     private var appModel:AppModel;
-    private var _container:Sprite;
+    private var _background:Quad;
+    private var _elementContainer:Sprite;
     public var pagenumber:int;
+    private var pageNumberElement:PageNumberElement;
 
     /*private var title:Element,
                 intro:Element,
@@ -43,17 +49,22 @@ public class Page extends Sprite{
         //paginanummer halen uit de pageVO, dit paginanummer is nodig voor de klik functie in de thumbnail die gebruikt maakt van een 'Page' object
         this.pagenumber = pageVO.pageNumber;
 
+        _background = new Quad(900, 700);
+        _background.x = (appModel.appwidth * 0.5) - (_background.width *.5);
+        _background.y = (appModel.appheight * 0.5) - (_background.height *.5);
+        addChild(_background);
+
+        _elementContainer = new Sprite();
+        _elementContainer.x = _background.x + 20;
+        _elementContainer.y = _background.y + 20;
+        addChild(_elementContainer);
+
         for each(var elementVO:ElementVO in pageVO.elements){
             var element:Element = ElementViewFactory.createFromVO(elementVO);
             if(element != null){
-                trace('[PAGE]' + element);
-                _container = new Sprite();
-                _container.width = 900;
-                _container.height = 600;
-
-                addChild(_container);
                 if (element is TitleElement) {
                     _hasTitle = true;
+                    //element.x = (elementVO as TitleElementVO).
                     //element = title;
                 }
 
@@ -66,22 +77,32 @@ public class Page extends Sprite{
                 }
 
                 if (element is BodyTextElement) {
-                    element.x = 300;
+                    //element.x = 300;
+                    //element.y = 100;
 
-                    element.y = 100;
                 }
                 if(element is BackgroundPhotoElement){
                     _hasBackground = true;
                     //element = photo;
                 }
+                if (element is LinkElement) {
 
-
-                _container.addChild(element);
+                }
+                _elementContainer.addChild(element);
             }
         }
         if(_hasText && _hasBackground){
             //TODO: quad maken en addChilden
         }
+
+
+        pageNumberElement = new PageNumberElement(pagenumber);
+        pageNumberElement.x = (_background.width/2)-(pageNumberElement.width/2);
+        //trace(pageNumberElement.width);
+        pageNumberElement.y = _background.y + _background.height - pageNumberElement.height -10;
+        addChild(pageNumberElement);
+
+
 
     }
 }

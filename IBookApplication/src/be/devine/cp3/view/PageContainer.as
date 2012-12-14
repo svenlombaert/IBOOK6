@@ -39,7 +39,6 @@ public class PageContainer extends Sprite{
     }
 
     private function initialisePagesToView():void {
-        trace('[PAGECONTAINER] MAAK PAGINA AAN');
         this.removeChildren();
         this.dispose();
         pages = appModel.pages;
@@ -53,14 +52,12 @@ public class PageContainer extends Sprite{
         currPageview = new Page(pages[appModel.selectedPageIndex]);
         var tween:Tween;
         if(appModel.selectedPageIndex > currentPageIndex){
-            trace('GA NAAR NEXT');
             currPageview.x = appModel.appwidth;
             addChild(currPageview);
             tween = new Tween(currPageview, 0.3, Transitions.EASE_IN_OUT);
             tween.animate("x", 0);
             Starling.juggler.add(tween);
         }else{
-            trace('GA NAAR PREVIOUS');
             currPageview.x = -appModel.appwidth;
             addChild(currPageview);
             tween = new Tween(currPageview, 0.3, Transitions.EASE_IN_OUT);
@@ -73,13 +70,11 @@ public class PageContainer extends Sprite{
     private function pageIndexChangedHandler(event:Event):void {
         var tween:Tween;
         if(appModel.selectedPageIndex > currentPageIndex){
-            trace('[PAGECONTAINER][next] TWEEN CURRPAGE');
             tween = new Tween(currPageview, 0.3, Transitions.EASE_IN_OUT);
             tween.animate("x", -appModel.appwidth);
             tween.onComplete = switchPages;
             Starling.juggler.add(tween);
         }else{
-            trace('[PAGECONTAINER][previous] TWEEN CURRPAGE');
             tween = new Tween(currPageview, 0.3, Transitions.EASE_IN_OUT);
             tween.animate("x", appModel.appwidth);
             tween.onComplete = switchPages;

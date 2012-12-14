@@ -37,7 +37,6 @@ public class ElementVOFactory {
     }
 
     public static function createIntroTextElementVO(elementXML:XML):IntroTextElementVO {
-        trace('AANMAKEN INTRO TEXT VO');
         var elementVO:IntroTextElementVO = new IntroTextElementVO();
         elementVO.text = elementXML;
         return elementVO;

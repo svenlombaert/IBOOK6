@@ -50,7 +50,7 @@
         <element type="intro">
             Alexander Kumar, a physician and researcher at Concordia Station, wrote from Antarctica, where he conducted scientific experiments for the European Space Agency’s human spaceflight program. This is his last post.
         </element>
-        <element type="body">
+        <element type="body" column="1">
             A few last tricks are played on you as you try to leave Antarctica. Almost as a last jest to remind you that nature is in control, the continent threw up several delays to our planned departure. For a while, it was a groundhog day of sorts with flights being planned and then canceled because of bad weather.
             Finally we were on the runway for take-off. I caught a glimpse of Concordia Station, perched on its grand white plateau, before it disappeared from sight. Then it was three and a half hours of slow descent to sea level to an Italian coastal station.
             After some time, a fellow crew member, peering out of the window of the 1940s DC-3 Basler, excitedly exclaimed, “There’s something.” And there was — a mountain, something we had not seen while living on the blank canvas high up at our isolated base.
@@ -58,6 +58,8 @@
             As I left the plane, I took a long, deep breath. Then, finding my movement unrestricted, I took a little jog. There was oxygen again, served on a salty sea breeze.
 
             I picked up some earth and let it run through my fingers. A coastal wind felt strange as it caught my long winter beard. We headed in for dinner and later to our beds, but our altered day-night cycles drew a colleague and me out at 3:30 a.m., our reward a wonderful sunrise.
+        </element>
+        <element type="body" column="2">
             One more day’s delay, and we were finally boarding our flight to New Zealand. This time there were just five passengers on a South African Hercules C-130 aircraft.
             The wheels kissed Antarctica a gentle goodbye as we lifted off in style, on board one of the greatest flying machines ever created.
             We flew over Antarctica for nearly an hour of our eight-hour long flight back to civilization. As we swung a hard right, I watched as the ice disappeared from sight. The sun had set, and eventually all was dark until a few lights appeared below — signs of civilization. There were shouts of joy, cheers and hugs as we landed. My mobile phone buzzed, you have a message, then another and then many more.

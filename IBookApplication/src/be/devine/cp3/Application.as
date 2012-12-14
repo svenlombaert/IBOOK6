@@ -57,7 +57,7 @@ public class Application extends Sprite {
     private static const HelveticaNeueBold:Class;
 
     public function Application() {
-        trace('[APP] CONSTRUCT');
+
         appModel = AppModel.getInstance();
         appModel.load();
         appModel.timelineView = true;
@@ -74,7 +74,7 @@ public class Application extends Sprite {
 
         Starling.current.stage.addEventListener(KeyboardEvent.KEY_DOWN, keyboardDownEventHandler);
         this.addEventListener("BACKGROUNDINITIALIZING_COMPLETE", backgroundInitializingComplete);
-        showEmbeddedFonts();
+        //showEmbeddedFonts();
     }
 
     public function showEmbeddedFonts():void {
@@ -116,11 +116,8 @@ public class Application extends Sprite {
 
     private function backgroundInitializingComplete(event:starling.events.Event):void {
         pageContainer = new PageContainer();
-        pageContainer.x = 30;
-        pageContainer.y = 30;
         addChild(pageContainer);
 
-        trace('[APP] AANMAKEN BUTTONS EN PAGECONTAINER');
         previousControl= new PrevNextSlideButton(textureAtlas, "previous");
         nextControl= new PrevNextSlideButton(textureAtlas, "next");
         viewModeController = new ViewModeController(textureAtlas);
@@ -132,7 +129,6 @@ public class Application extends Sprite {
     }
 
     private function resizeHandler(event:flash.events.Event):void {
-        trace('Resize handler');
         display();
     }
 

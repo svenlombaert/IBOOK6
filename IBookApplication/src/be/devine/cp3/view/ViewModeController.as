@@ -184,7 +184,6 @@ public class ViewModeController extends Sprite {
     }
 
     private function display():void{
-        trace("APPHEIGHT: ",appModel.appheight);
         if(appModel.viewModesOpened){
             if(appModel.timelineView){
                 thumbnailContainer.y = appModel.appheight - 258;

@@ -15,6 +15,7 @@ import be.devine.cp3.view.elements.IntroTextElement;
 import be.devine.cp3.view.elements.LinkElement;
 import be.devine.cp3.view.elements.PageNumberElement;
 import be.devine.cp3.view.elements.TitleElement;
+import be.devine.cp3.vo.BodyTextElementVO;
 import be.devine.cp3.vo.ElementVO;
 import be.devine.cp3.vo.PageVO;
 import be.devine.cp3.vo.TitleElementVO;
@@ -35,6 +36,8 @@ public class Page extends Sprite{
     private var _elementContainer:Sprite;
     public var pagenumber:int;
     private var pageNumberElement:PageNumberElement;
+    private var marginLeft: int = 20;
+    private var marginTop: int = 20;
 
     /*private var title:Element,
                 intro:Element,
@@ -49,14 +52,14 @@ public class Page extends Sprite{
         //paginanummer halen uit de pageVO, dit paginanummer is nodig voor de klik functie in de thumbnail die gebruikt maakt van een 'Page' object
         this.pagenumber = pageVO.pageNumber;
 
-        _background = new Quad(900, 700);
+        _background = new Quad(910, 700);
         _background.x = (appModel.appwidth * 0.5) - (_background.width *.5);
         _background.y = (appModel.appheight * 0.5) - (_background.height *.5);
         addChild(_background);
 
         _elementContainer = new Sprite();
-        _elementContainer.x = _background.x + 20;
-        _elementContainer.y = _background.y + 20;
+        _elementContainer.x = _background.x + marginLeft;
+        _elementContainer.y = _background.y + marginTop;
         addChild(_elementContainer);
 
         for each(var elementVO:ElementVO in pageVO.elements){
@@ -77,8 +80,9 @@ public class Page extends Sprite{
                 }
 
                 if (element is BodyTextElement) {
-                    //element.x = 300;
-                    //element.y = 100;
+                    element.x = (elementVO as BodyTextElementVO).xPos;
+                    element.y = (elementVO as BodyTextElementVO).yPos;
+
 
                 }
                 if(element is BackgroundPhotoElement){
@@ -97,10 +101,10 @@ public class Page extends Sprite{
 
 
         pageNumberElement = new PageNumberElement(pagenumber);
-        pageNumberElement.x = (_background.width/2)-(pageNumberElement.width/2);
+        pageNumberElement.x = (_background.width>>1)-(pageNumberElement.width>>1) - marginLeft;
         //trace(pageNumberElement.width);
-        pageNumberElement.y = _background.y + _background.height - pageNumberElement.height -10;
-        addChild(pageNumberElement);
+        pageNumberElement.y = _background.height - pageNumberElement.height - 30 - marginTop;
+        _elementContainer.addChild(pageNumberElement);
 
 
 

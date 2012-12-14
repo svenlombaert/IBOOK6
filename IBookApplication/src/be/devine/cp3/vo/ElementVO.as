@@ -9,6 +9,8 @@ package be.devine.cp3.vo {
 public class ElementVO {
 
     public var type:String;
+    public var xPos:uint;
+    public var yPos:uint;
 
     public function ElementVO() {
     }

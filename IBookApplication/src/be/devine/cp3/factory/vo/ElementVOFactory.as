@@ -46,6 +46,8 @@ public class ElementVOFactory {
         var elementVO:BodyTextElementVO = new BodyTextElementVO();
         elementVO.text = elementXML;
         elementVO.column = int(elementXML.@column);
+        elementVO.xPos = elementXML.@x;
+        elementVO.yPos = elementXML.@y;
         return elementVO;
     }
 }

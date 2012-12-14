@@ -11,7 +11,6 @@ import be.devine.cp3.vo.PageVO;
 public class PageVOFactory {
 
     public static function createFromXML(pageXML:XML, pageNumber:uint):PageVO {
-        //TODO: kijken hoe xml zo makkelijk mogelijk te parsen
 
         var pageVO:PageVO = new PageVO();
 

@@ -8,7 +8,7 @@
 package be.devine.cp3.view {
 import be.devine.cp3.model.AppModel;
 import be.devine.cp3.view.controls.Scrollbar;
-import be.devine.cp3.view.controls.ThumbnailContainer;
+import be.devine.cp3.view.ThumbnailContainer;
 import be.devine.cp3.view.controls.ViewModeChangerButton;
 import be.devine.cp3.view.controls.ViewModeOpenButton;
 

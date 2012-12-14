@@ -20,8 +20,8 @@
             While collared wolves roam throughout the Rockies, Kim Beam, a member of the Montana-based wildlife advocacy group Wolves of the Rockies, says that around Yellowstone she is “frightened that collared wolves are being targeted.”
             Inga Cabral, co-owner of Russell Pond Outfitters, which leads wolf hunts in the Idaho Panhandle northwest of Yellowstone, said thus far her organization has opted not to shoot any collared animals, but added, “I wouldn’t fault anyone for doing what’s legal.”
             Other hunters call for culling wolves at any opportunity.
-            </element>
-            <element type="body" column="2">
+        </element>
+        <element type="body" column="2">
             “I think it’s necessary that we be able to hunt any wolf whether it’s collared or not,” said Keith Kubista, president of Montana Sportsmen for Fish and Wildlife, a group that is as fervently in favor of hunting wolves as Ms. Deniel is against it.
             David Hallac, chief of the Yellowstone Center for Resources, quantified the loss as “not just the cost of the collar, but the cost of getting the collar on the animal,” which includes biologists’ time, plus a helicopter and crew. Two of the dead wolves’ collars had GPS technology; they cost $4,000 each.
             Those two collars, plus three others, were returned. Two collars, including the one worn by wolf 754, have not yet been returned, officials said. Ray Mora, 71, of Dunedin, Fla., who has donated more than $10,000 in the last few years to help wolf biologists purchase research collars, calls the killings “like going back to square one.”
@@ -44,7 +44,7 @@
     </page>
 
     <page>
-        <element type="title">Re-Entry After the ‘Worst Winter in the World’</element>
+        <element type="title">The Worst Winter in the World</element>
         <!--<element type="backgroundPhoto">winter.jpg</element>-->
 
         <element type="intro">
@@ -213,7 +213,7 @@
     </page>
 
     <page>
-        <element type="title">Re-Entry After the ‘Worst Winter in the World’</element>
+        <element type="title">The Worst Winter in the World</element>
         <!--<element type="backgroundPhoto">winter.jpg</element>-->
 
         <element type="intro">
@@ -382,7 +382,7 @@
     </page>
 
     <page>
-        <element type="title">Re-Entry After the ‘Worst Winter in the World’</element>
+        <element type="title">The Worst Winter in the World</element>
         <!--<element type="backgroundPhoto">winter.jpg</element>-->
 
         <element type="intro">

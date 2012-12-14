@@ -8,7 +8,7 @@
 package be.devine.cp3.view {
 import be.devine.cp3.model.AppModel;
 import be.devine.cp3.view.controls.Scrollbar;
-import be.devine.cp3.view.ThumbnailContainer;
+import be.devine.cp3.view.viewmodes.ThumbnailContainer;
 import be.devine.cp3.view.controls.ViewModeChangerButton;
 import be.devine.cp3.view.controls.ViewModeOpenButton;
 
@@ -18,6 +18,7 @@ import starling.animation.Transitions;
 import starling.animation.Tween;
 import starling.core.Starling;
 import starling.display.Sprite;
+import starling.events.Event;
 import starling.textures.TextureAtlas;
 import starling.utils.deg2rad;
 
@@ -43,7 +44,9 @@ public class ViewModeController extends Sprite {
         if(appModel.timelineView){
             _maxItemsToView = appModel.maxItemsToView = 4;
             if(_maxItemsToView < appModel.pages.length){
+                //TODO: luisteren naar klik event op de pagina's.
                 scrollbar = new Scrollbar(appModel.appwidth - 60, 10, ((appModel.appwidth-60)/appModel.pages.length) * _maxItemsToView);
+                scrollbar.addEventListener(Scrollbar.THUMBPOSITION_CHANGED, thumbPositionChanged);
             }
         }else{
             _maxItemsToView = appModel.maxItemsToView = 16;
@@ -62,10 +65,11 @@ public class ViewModeController extends Sprite {
         addChild(scrollbar);
         this.appModel.addEventListener(AppModel.VIEWMODES_OPENED, viewModesOpenedHandler);
         this.appModel.addEventListener(AppModel.VIEWMODES_CHANGED, viewModesChangedHandler);
+        this.appModel.addEventListener(AppModel.SELECTEDPAGEINDEX_CHANGED, pageIndexChangedHandler);
     }
     //TODO: openControl en changeviewmodecontrol in 1 container steken
     //TODO: pijltjes toevoegen
-    private function viewModesOpenedHandler(event:Event):void {
+    private function viewModesOpenedHandler(event:flash.events.Event):void {
         Starling.juggler.removeTweens(this);
         Starling.juggler.removeTweens(openControl);
         Starling.juggler.removeTweens(thumbnailContainer);
@@ -154,7 +158,7 @@ public class ViewModeController extends Sprite {
         openControl.updateListeners = false;
     }
 
-    private function viewModesChangedHandler(event:Event):void {
+    private function viewModesChangedHandler(event:flash.events.Event):void {
         Starling.juggler.removeTweens(this);
         Starling.juggler.removeTweens(openControl);
         Starling.juggler.removeTweens(thumbnailContainer);
@@ -179,7 +183,7 @@ public class ViewModeController extends Sprite {
         }
     }
 
-    private function resizeHandler(event:Event):void {
+    private function resizeHandler(event:flash.events.Event):void {
         display();
     }
 
@@ -204,6 +208,15 @@ public class ViewModeController extends Sprite {
         timeLineButtonsContainer.pivotX = timeLineButtonsContainer.width/2;
         timeLineButtonsContainer.pivotY = timeLineButtonsContainer.height/2;
         timeLineButtonsContainer.x = appModel.appwidth/2;
+    }
+
+    private function thumbPositionChanged(event:starling.events.Event):void {
+        trace('[VIEWMODECONTROL] thumbpos changed');
+        appModel.thumbScrollbarPosition = scrollbar.thumbPosition;
+    }
+
+    private function pageIndexChangedHandler(event:flash.events.Event):void {
+        appModel.thumbScrollbarPosition = scrollbar.thumbPosition = appModel.selectedPageIndex/appModel.pages.length;
     }
 }
 }

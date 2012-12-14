@@ -34,7 +34,7 @@ public class Scrollbar extends Sprite{
     private var trackWidth:int;
     private var trackHeight:int;
     private var thumbWidth:int;
-    private var _thumbPosition:int;
+    private var _thumbPosition:Number;
 
     private var startDragLocation:Point;
     private var _draggedObject:DisplayObject;
@@ -98,12 +98,6 @@ public class Scrollbar extends Sprite{
         }
     }
 
-    private function thumbPostionChanged(event:Event):void {
-        var tween:Tween = new Tween(maskedThumb, 0.3, Transitions.EASE_OUT);
-        //tween.animate("x", appModel.thumbScrollbarPosition * (maskedTrack.width - maskedThumb.width));
-        Starling.juggler.add(tween);
-    }
-
     private function drawRoundedMask(width:int,  height:int,  radius:int): Image{
         var maskShape:Shape = new Shape();
         maskShape.graphics.beginFill(0x000000);
@@ -116,13 +110,16 @@ public class Scrollbar extends Sprite{
         return new Image(Texture.fromBitmapData(bmp));
     }
 
-    public function get thumbPosition():int {
+    public function get thumbPosition():Number {
         return _thumbPosition;
     }
 
-    public function set thumbPosition(value:int):void {
+    public function set thumbPosition(value:Number):void {
+        trace('[scrollbar] thumbpos changed', value);
         if(_thumbPosition != value){
+            trace('dispatch event');
             _thumbPosition = value;
+            maskedThumb.x = _thumbPosition * (maskedTrack.width - maskedThumb.width);
             dispatchEvent(new Event(THUMBPOSITION_CHANGED));
         }
     }

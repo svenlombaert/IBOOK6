@@ -20,7 +20,7 @@ public class TitleElement extends Element{
     public function TitleElement(titleElementVO:TitleElementVO) {
         super (titleElementVO);
         appModel = AppModel.getInstance();
-        var t:TextField = new TextField(900, 50, titleElementVO.title, Style.FONTBOLD , 46, appModel.selectedColorIndex, true);
+        var t:TextField = new TextField(900, 63, titleElementVO.title, Style.FONTBOLD , 46, appModel.selectedColorIndex, true);
         t.vAlign = "top";
         t.hAlign = HAlign.LEFT;
         //t.border = true;

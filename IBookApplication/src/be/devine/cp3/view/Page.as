@@ -18,6 +18,7 @@ import be.devine.cp3.view.elements.SubTitleElement;
 import be.devine.cp3.view.elements.TitleElement;
 import be.devine.cp3.vo.BodyTextElementVO;
 import be.devine.cp3.vo.ElementVO;
+import be.devine.cp3.vo.IntroTextElementVO;
 import be.devine.cp3.vo.PageVO;
 import be.devine.cp3.vo.TitleElementVO;
 import starling.core.Starling;
@@ -46,9 +47,11 @@ public class Page extends Sprite{
         //paginanummer halen uit de pageVO, dit paginanummer is nodig voor de klik functie in de thumbnail die gebruikt maakt van een 'Page' object
         this.pagenumber = pageVO.pageNumber;
 
-        _background = new Quad(910, 650);
+        _background = new Quad(910, 600);
         _background.x = (appModel.appwidth * 0.5) - (_background.width *.5);
         _background.y = (appModel.appheight * 0.5) - (_background.height *.5);
+        //_background.alpha = 0;
+        _background.color = 0xedefef;
         addChild(_background);
 
         _elementContainer = new Sprite();
@@ -69,7 +72,8 @@ public class Page extends Sprite{
 
                 if (element is IntroTextElement){
                     _hasIntro = true;
-                    element.y = 100;
+                    element.x = (elementVO as IntroTextElementVO).xPos;
+                    element.y = (elementVO as IntroTextElementVO).yPos;
                 }
 
                 if (element is BodyTextElement) {
@@ -89,6 +93,7 @@ public class Page extends Sprite{
         }
         if(_hasText && _hasBackground){
             //TODO: quad opacity aanpassen
+            _background.alpha = 0.7;
         }
 
         pageNumberElement = new PageNumberElement(pagenumber);

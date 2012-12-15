@@ -9,6 +9,7 @@ package be.devine.cp3.factory.vo {
 import be.devine.cp3.vo.BackgroundPhotoElementVO;
 import be.devine.cp3.vo.BodyTextElementVO;
 import be.devine.cp3.vo.IntroTextElementVO;
+import be.devine.cp3.vo.SubTitleElementVO;
 import be.devine.cp3.vo.TitleElementVO;
 
 public class ElementVOFactory {
@@ -16,12 +17,20 @@ public class ElementVOFactory {
         //TODO: alle cases toevoegen, juiste properties meegeven aan elementVO
         switch("" + elementXML.@type){
             case "title": return createTitleElementVO(elementXML); break;
+            case "subtitle": return createSubTitleElementVO(elementXML); break;
             case "backgroundPhoto": return createBackgroundPhotoElementVO(elementXML); break;
             case "intro": return createIntroTextElementVO(elementXML); break;
             case "body": return createBodyElementVO(elementXML); break;
 
         }
         return null;
+    }
+
+    private static function createSubTitleElementVO(elementXML:XML): SubTitleElementVO{
+        var elementVO:SubTitleElementVO = new SubTitleElementVO();
+        elementVO.type = elementXML.@type;
+        elementVO.subtitle = elementXML;
+        return elementVO;
     }
 
     public static function createTitleElementVO(elementXML:XML):TitleElementVO {

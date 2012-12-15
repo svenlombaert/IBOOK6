@@ -12,10 +12,10 @@ public class PageNumberElement extends Sprite{
 
     public function PageNumberElement(pageNumber:int) {
         this.pageNumber = pageNumber;
-        var t:TextField = new TextField(50, 20, '- p' + pageNumber + ' -', Style.FONT , 12, 0x353535, true);
+        var t:TextField = new TextField(50, 20, '- p' + pageNumber + ' -', Style.FONT , 12, 0x666666, true);
         t.vAlign = VAlign.TOP;
         t.hAlign = HAlign.CENTER;
-        t.border = true;
+        //t.border = true;
         addChild(t);
 
     }

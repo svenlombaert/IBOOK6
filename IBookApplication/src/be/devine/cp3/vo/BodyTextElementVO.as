@@ -7,8 +7,9 @@
  */
 package be.devine.cp3.vo {
 public class BodyTextElementVO extends ElementVO{
+
     public var text:String;
-    public var column:int;
+
     public function BodyTextElementVO() {
     }
 }

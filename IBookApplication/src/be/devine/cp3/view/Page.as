@@ -19,8 +19,13 @@ import be.devine.cp3.view.elements.TitleElement;
 import be.devine.cp3.vo.BodyTextElementVO;
 import be.devine.cp3.vo.ElementVO;
 import be.devine.cp3.vo.IntroTextElementVO;
+import be.devine.cp3.vo.LinkElementVO;
 import be.devine.cp3.vo.PageVO;
+import be.devine.cp3.vo.SubTitleElementVO;
 import be.devine.cp3.vo.TitleElementVO;
+
+import flash.filters.BlurFilter;
+
 import starling.core.Starling;
 import starling.display.Quad;
 import starling.display.Sprite;
@@ -64,14 +69,17 @@ public class Page extends Sprite{
             if(element != null){
                 if (element is TitleElement) {
                     _hasTitle = true;
+                    element.x = (elementVO as TitleElementVO).xPos;
+                    element.y = (elementVO as TitleElementVO).yPos;
                 }
 
                 if (element is SubTitleElement) {
-                   element.x = (_background.width>>1)-(element.width>>1) - marginLeft;
+                    element.x = (_background.width>>1)-(element.width>>1) - marginLeft;
+                    element.y = (elementVO as SubTitleElementVO).xPos;
                 }
 
                 if (element is IntroTextElement){
-                    _hasIntro = true;
+                    _hasText = true;
                     element.x = (elementVO as IntroTextElementVO).xPos;
                     element.y = (elementVO as IntroTextElementVO).yPos;
                 }
@@ -85,8 +93,11 @@ public class Page extends Sprite{
                     _hasBackground = true;
                 }
 
-                if (element is LinkElement) {
 
+                if (element is LinkElement) {
+                    element.x = (elementVO as LinkElementVO).xPos;
+                    element.y = (elementVO as LinkElementVO).yPos;
+                    //TODO: element.buttonMode = true in Starling?
                 }
                 _elementContainer.addChild(element);
             }
@@ -95,6 +106,7 @@ public class Page extends Sprite{
             //TODO: quad opacity aanpassen
             _background.alpha = 0.7;
         }
+
 
         pageNumberElement = new PageNumberElement(pagenumber);
         pageNumberElement.x = (_background.width>>1)-(pageNumberElement.width>>1) - marginLeft;

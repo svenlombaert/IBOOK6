@@ -7,6 +7,7 @@
  */
 package be.devine.cp3.vo {
 public class TitleElementVO extends ElementVO{
+
     public var title:String;
     public var color:uint;
 

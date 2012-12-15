@@ -9,6 +9,7 @@ package be.devine.cp3.factory.vo {
 import be.devine.cp3.vo.BackgroundPhotoElementVO;
 import be.devine.cp3.vo.BodyTextElementVO;
 import be.devine.cp3.vo.IntroTextElementVO;
+import be.devine.cp3.vo.LinkElementVO;
 import be.devine.cp3.vo.SubTitleElementVO;
 import be.devine.cp3.vo.TitleElementVO;
 
@@ -21,9 +22,18 @@ public class ElementVOFactory {
             case "backgroundPhoto": return createBackgroundPhotoElementVO(elementXML); break;
             case "intro": return createIntroTextElementVO(elementXML); break;
             case "body": return createBodyElementVO(elementXML); break;
-
+            case "link": return createLinkElementVO(elementXML); break;
         }
         return null;
+    }
+
+    private static function createLinkElementVO(elementXML:XML): LinkElementVO{
+        var elementVO:LinkElementVO = new LinkElementVO();
+        elementVO.type = elementXML.@type;
+        elementVO.text = elementXML;
+        elementVO.xPos = elementXML.@x;
+        elementVO.yPos = elementXML.@y;
+        return elementVO;
     }
 
     private static function createSubTitleElementVO(elementXML:XML): SubTitleElementVO{
@@ -48,13 +58,14 @@ public class ElementVOFactory {
     public static function createIntroTextElementVO(elementXML:XML):IntroTextElementVO {
         var elementVO:IntroTextElementVO = new IntroTextElementVO();
         elementVO.text = elementXML;
+        elementVO.xPos = elementXML.@x;
+        elementVO.yPos = elementXML.@y;
         return elementVO;
     }
 
     public static function createBodyElementVO(elementXML:XML):BodyTextElementVO {
         var elementVO:BodyTextElementVO = new BodyTextElementVO();
         elementVO.text = elementXML;
-        elementVO.column = int(elementXML.@column);
         elementVO.xPos = elementXML.@x;
         elementVO.yPos = elementXML.@y;
         return elementVO;

@@ -6,19 +6,26 @@
  * To change this template use File | Settings | File Templates.
  */
 package be.devine.cp3.view.elements {
+import be.devine.cp3.model.AppModel;
 import be.devine.cp3.style.Style;
 import be.devine.cp3.vo.LinkElementVO;
 
 import starling.text.TextField;
+import starling.utils.HAlign;
+import starling.utils.VAlign;
 
 public class LinkElement extends Element {
-    //TODO:Thomas: linkelement opmaken CHECK
+
+    private var appModel:AppModel;
+
     public function LinkElement(linkElementVO:LinkElementVO) {
         super (linkElementVO);
-        var t:TextField = new TextField(350, 20, linkElementVO.text, Style.FONT , 12, linkElementVO.color, true);
-        t.vAlign = "top";
-        //trace(t.textBounds);
-        t.border = true;
+        appModel = AppModel.getInstance();
+        var t:TextField = new TextField(270, 20, linkElementVO.text, Style.FONT , 12, appModel.selectedColorIndex, true);
+        t.vAlign = VAlign.TOP;
+        t.hAlign = HAlign.LEFT;
+        t.underline = true;
+        //t.border = true;
         addChild(t);
     }
 }

@@ -19,9 +19,6 @@ public class BodyTextElement extends Element{
         t.vAlign = "top";
         t.hAlign = HAlign.LEFT;
         //t.border = true;
-        /*if (bodyTextElementVO.column == 2) {
-            t.x = 300;
-        }*/
         addChild(t);
     }
 }

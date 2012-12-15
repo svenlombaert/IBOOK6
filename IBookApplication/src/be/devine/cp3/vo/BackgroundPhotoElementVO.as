@@ -8,7 +8,7 @@
 package be.devine.cp3.vo {
 public class BackgroundPhotoElementVO extends ElementVO{
 
-
+    public var path:String;
 
     public function BackgroundPhotoElementVO() {
 

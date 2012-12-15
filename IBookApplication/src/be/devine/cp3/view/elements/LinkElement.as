@@ -20,6 +20,7 @@ public class LinkElement extends Element {
 
     public function LinkElement(linkElementVO:LinkElementVO) {
         super (linkElementVO);
+
         appModel = AppModel.getInstance();
         var t:TextField = new TextField(270, 20, linkElementVO.text, Style.FONT , 12, appModel.selectedColorIndex, true);
         t.vAlign = VAlign.TOP;

@@ -52,6 +52,7 @@ public class ElementVOFactory {
 
     public static function createBackgroundPhotoElementVO(elementXML:XML):BackgroundPhotoElementVO {
         var elementVO:BackgroundPhotoElementVO = new BackgroundPhotoElementVO();
+        elementVO.path = elementXML;
         return elementVO;
     }
 

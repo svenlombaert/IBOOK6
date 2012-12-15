@@ -67,15 +67,21 @@ public class Page extends Sprite{
         for each(var elementVO:ElementVO in pageVO.elements){
             var element:Element = ElementViewFactory.createFromVO(elementVO);
             if(element != null){
+
+                if(element is BackgroundPhotoElement){
+                    _hasBackground = true;
+                }
+
                 if (element is TitleElement) {
                     _hasTitle = true;
                     element.x = (elementVO as TitleElementVO).xPos;
                     element.y = (elementVO as TitleElementVO).yPos;
+                   // element.filter =
                 }
 
                 if (element is SubTitleElement) {
                     element.x = (_background.width>>1)-(element.width>>1) - marginLeft;
-                    element.y = (elementVO as SubTitleElementVO).xPos;
+                    element.y = (elementVO as SubTitleElementVO).yPos;
                 }
 
                 if (element is IntroTextElement){
@@ -89,15 +95,12 @@ public class Page extends Sprite{
                     element.y = (elementVO as BodyTextElementVO).yPos;
                 }
 
-                if(element is BackgroundPhotoElement){
-                    _hasBackground = true;
-                }
 
 
                 if (element is LinkElement) {
                     element.x = (elementVO as LinkElementVO).xPos;
                     element.y = (elementVO as LinkElementVO).yPos;
-                    //TODO: element.buttonMode = true in Starling?
+                    element.useHandCursor = true;
                 }
                 _elementContainer.addChild(element);
             }

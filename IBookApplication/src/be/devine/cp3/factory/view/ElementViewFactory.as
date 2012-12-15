@@ -38,9 +38,9 @@ public class ElementViewFactory {
         if(elementVO is SubTitleElementVO) {
             return new SubTitleElement(elementVO as SubTitleElementVO);
         }
-        /*if (elementVO is BackgroundPhotoElementVO) {
+        if (elementVO is BackgroundPhotoElementVO) {
             return new BackgroundPhotoElement(elementVO as BackgroundPhotoElementVO);
-        }*/
+        }
         return null;
     }
 }

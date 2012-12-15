@@ -22,6 +22,7 @@ public class TitleElement extends Element{
         appModel = AppModel.getInstance();
 
         //DROPSHADOW
+        //TODO: bestaat er een betere manier om dropshadow te creëren?
         var d:TextField = new TextField(900, 63, titleElementVO.title, Style.FONTBOLD , 46, 0xedefef, true);
         d.vAlign = "top";
         d.hAlign = HAlign.LEFT;

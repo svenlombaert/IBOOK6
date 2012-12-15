@@ -30,7 +30,6 @@ public class PageContainer extends Sprite{
         appModel = AppModel.getInstance();
         currentPageIndex = appModel.selectedPageIndex = 0;
         this.appModel.addEventListener(AppModel.PAGES_CHANGED, pagesChangedHandler);
-        this.appModel.addEventListener(AppModel.SELECTEDPAGEINDEX_CHANGED, pageIndexChangedHandler);
         initialisePagesToView();
     }
 

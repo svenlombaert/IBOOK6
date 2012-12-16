@@ -95,13 +95,12 @@ public class Page extends Sprite{
                     element.y = (elementVO as BodyTextElementVO).yPos;
                 }
 
-
-
                 if (element is LinkElement) {
                     element.x = (elementVO as LinkElementVO).xPos;
                     element.y = (elementVO as LinkElementVO).yPos;
                     element.useHandCursor = true;
                 }
+                //TODO: background mag niet in de elementContainer geadd worden.
                 _elementContainer.addChild(element);
             }
         }

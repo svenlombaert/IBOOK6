@@ -55,7 +55,7 @@ public class Page extends Sprite{
         _background = new Quad(910, 600);
         _background.x = (appModel.appwidth * 0.5) - (_background.width *.5);
         _background.y = (appModel.appheight * 0.5) - (_background.height *.5);
-        //_background.alpha = 0;
+        _background.alpha = 0;
         _background.color = 0xedefef;
         addChild(_background);
 
@@ -70,6 +70,7 @@ public class Page extends Sprite{
 
                 if(element is BackgroundPhotoElement){
                     _hasBackground = true;
+                    addChildAt(element, 0);
                 }
 
                 if (element is TitleElement) {
@@ -77,31 +78,40 @@ public class Page extends Sprite{
                     element.x = (elementVO as TitleElementVO).xPos;
                     element.y = (elementVO as TitleElementVO).yPos;
                    // element.filter =
+                    _elementContainer.addChild(element);
                 }
 
                 if (element is SubTitleElement) {
                     element.x = (_background.width>>1)-(element.width>>1) - marginLeft;
                     element.y = (elementVO as SubTitleElementVO).yPos;
+                    _elementContainer.addChild(element);
+
                 }
 
                 if (element is IntroTextElement){
                     _hasText = true;
                     element.x = (elementVO as IntroTextElementVO).xPos;
                     element.y = (elementVO as IntroTextElementVO).yPos;
+                    _elementContainer.addChild(element);
+
                 }
 
                 if (element is BodyTextElement) {
                     element.x = (elementVO as BodyTextElementVO).xPos;
                     element.y = (elementVO as BodyTextElementVO).yPos;
+                    _elementContainer.addChild(element);
+
                 }
 
                 if (element is LinkElement) {
                     element.x = (elementVO as LinkElementVO).xPos;
                     element.y = (elementVO as LinkElementVO).yPos;
                     element.useHandCursor = true;
+                    _elementContainer.addChild(element);
+
                 }
                 //TODO: background mag niet in de elementContainer geadd worden.
-                _elementContainer.addChild(element);
+
             }
         }
         if(_hasText && _hasBackground){

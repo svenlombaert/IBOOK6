@@ -7,7 +7,10 @@
  */
 package be.devine.cp3.view {
 import be.devine.cp3.model.AppModel;
+import be.devine.cp3.utils.memory.ClearMemory;
+import be.devine.cp3.view.elements.BackgroundPhotoElement;
 import be.devine.cp3.vo.PageVO;
+
 
 import flash.events.Event;
 
@@ -15,6 +18,8 @@ import starling.animation.Transitions;
 
 import starling.animation.Tween;
 import starling.core.Starling;
+import starling.display.DisplayObject;
+import starling.display.DisplayObjectContainer;
 
 import starling.display.Sprite;
 
@@ -27,8 +32,9 @@ public class PageContainer extends Sprite{
     private var tween:Tween;
     //TODO: spammen op de linker en rechter knop
     public function PageContainer() {
+
         appModel = AppModel.getInstance();
-        currentPageIndex = appModel.selectedPageIndex = 0;
+        currentPageIndex = appModel.selectedPageIndex;
         this.appModel.addEventListener(AppModel.PAGES_CHANGED, pagesChangedHandler);
         this.appModel.addEventListener(AppModel.SELECTEDPAGEINDEX_CHANGED, pageIndexChangedHandler);
         initialisePagesToView();
@@ -39,6 +45,8 @@ public class PageContainer extends Sprite{
     }
 
     private function initialisePagesToView():void {
+        //TODO: memory clearen
+
         this.removeChildren();
         this.dispose();
         pages = appModel.pages;
@@ -47,8 +55,9 @@ public class PageContainer extends Sprite{
     }
 
     private function switchPages():void {
-        this.removeChildren();
-        this.dispose();
+
+        ClearMemory.clear(currPageview);
+
         currPageview = new Page(pages[appModel.selectedPageIndex]);
         var tween:Tween;
         if(appModel.selectedPageIndex > currentPageIndex){

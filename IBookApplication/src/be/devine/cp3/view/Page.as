@@ -24,11 +24,14 @@ import be.devine.cp3.vo.PageVO;
 import be.devine.cp3.vo.SubTitleElementVO;
 import be.devine.cp3.vo.TitleElementVO;
 
+import flash.events.Event;
+
 import flash.filters.BlurFilter;
 
 import starling.core.Starling;
 import starling.display.Quad;
 import starling.display.Sprite;
+import starling.events.Event;
 
 public class Page extends Sprite{
 
@@ -70,6 +73,7 @@ public class Page extends Sprite{
 
                 if(element is BackgroundPhotoElement){
                     _hasBackground = true;
+                    element.addEventListener(starling.events.Event.COMPLETE, backgroundLoadedHandler);
                     addChildAt(element, 0);
                 }
 
@@ -124,6 +128,11 @@ public class Page extends Sprite{
         pageNumberElement.x = (_background.width>>1)-(pageNumberElement.width>>1) - marginLeft;
         pageNumberElement.y = _background.height - pageNumberElement.height - 30 - marginTop;
         _elementContainer.addChild(pageNumberElement);
+    }
+
+    private function backgroundLoadedHandler(event:starling.events.Event):void {
+        trace('BG LOADED');
+        dispatchEvent(new starling.events.Event(starling.events.Event.COMPLETE));
     }
 }
 }

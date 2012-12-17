@@ -12,10 +12,10 @@ import be.devine.cp3.queue.Queue;
 import be.devine.cp3.vo.BackgroundPhotoElementVO;
 
 import flash.display.Bitmap;
-
 import flash.events.Event;
 
 import starling.display.Image;
+import starling.events.Event;
 
 public class BackgroundPhotoElement extends Element{
     //TODO: Thomas: backgroundphoto element opmaken, eventueel aan de hand van breedte en hoogte vanuit XML (die dus ook in de BackgroundPhotoVO zal zitten)
@@ -29,11 +29,11 @@ public class BackgroundPhotoElement extends Element{
 
         _requestQueue = new Queue();
         _requestQueue.add(new ImageLoaderTask('assets/images/' + backgroundPhotoElementVO.path));
-        _requestQueue.addEventListener(Event.COMPLETE, photoLoaded);
+        _requestQueue.addEventListener(flash.events.Event.COMPLETE, photoLoaded);
         _requestQueue.start();
     }
 
-    private function photoLoaded(event:Event):void {
+    private function photoLoaded(event:flash.events.Event):void {
         var loadedImage:ImageLoaderTask = _requestQueue.completedTasks[0] as ImageLoaderTask;
         var bitmap:Bitmap = loadedImage.content as Bitmap;
         var image:Image = Image.fromBitmap(bitmap);
@@ -44,6 +44,7 @@ public class BackgroundPhotoElement extends Element{
             image.height = appModel.appheight;
         }
         addChild(image);
+        dispatchEvent(new starling.events.Event(starling.events.Event.COMPLETE));
     }
 }
 }

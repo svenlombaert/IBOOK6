@@ -30,7 +30,6 @@ public class AppModel extends EventDispatcher {
     private var _pages:Vector.<PageVO>;
     private var _timelineView:Boolean;
     private var _viewModesOpened:Boolean = false;
-    private var _urlLoader:URLLoader;
     private var _thumbScrollbarPosition:Number;
     private var _maxItemsToView:int;
 
@@ -56,11 +55,7 @@ public class AppModel extends EventDispatcher {
 
     //----METHODS
     //TODO: xml laden in een service
-    public function load():void{
-        _urlLoader = new URLLoader();
-        _urlLoader.addEventListener(Event.COMPLETE, xmlLoadedHandler);
-        _urlLoader.load(new URLRequest("assets/xml/books.xml"));
-    }
+
     public function gotoNextPage():void{
         trace('[APPMODEL] gotonextpage');
         selectedPageIndex++;
@@ -86,18 +81,6 @@ public class AppModel extends EventDispatcher {
         }else{
             timelineView = true;
         }
-    }
-
-    private function xmlLoadedHandler(event:Event):void {
-        trace("LOADED XML");
-        var content:XML = new XML(event.target.data);
-        var pages:Vector.<PageVO> = new Vector.<PageVO>();
-        var i:uint = 1;
-        for each (var page:XML in content.page){
-            pages.push(PageVOFactory.createFromXML(page, i));
-            i++;
-        }
-        this.pages = pages;
     }
 
     //----GETTERS EN SETTERS

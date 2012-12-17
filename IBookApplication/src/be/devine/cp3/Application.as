@@ -9,6 +9,7 @@ package be.devine.cp3 {
 
 
 import be.devine.cp3.model.AppModel;
+import be.devine.cp3.service.PageService;
 import be.devine.cp3.view.PageContainer;
 import be.devine.cp3.view.ViewModeController;
 import be.devine.cp3.view.controls.PrevNextSlideButton;
@@ -44,6 +45,8 @@ public class Application extends Sprite {
     private var originalBgWidth:int;
     private var originalBgHeight:int;
 
+    private var pageService:PageService;
+
     [Embed(source="/assets/images_design/spritesheet.xml", mimeType="application/octet-stream")]
     public static const ButtonXML:Class;
 
@@ -59,11 +62,14 @@ public class Application extends Sprite {
     public function Application() {
 
         appModel = AppModel.getInstance();
-        appModel.load();
         appModel.timelineView = true;
         appModel.selectedColorIndex = 0xdd8716;
         appModel.thumbScrollbarPosition = 0;
         this.appModel.addEventListener(AppModel.APPSIZE_CHANGED, resizeHandler);
+
+        pageService = new PageService();
+        pageService.load();
+        pageService.addEventListener(flash.events.Event.COMPLETE, pageServiceCompleteHandler);
 
         var texture:Texture = Texture.fromBitmap(new ButtonTexture());
         var xml:XML = XML(new ButtonXML());
@@ -74,16 +80,6 @@ public class Application extends Sprite {
 
         Starling.current.stage.addEventListener(KeyboardEvent.KEY_DOWN, keyboardDownEventHandler);
         this.addEventListener("BACKGROUNDINITIALIZING_COMPLETE", backgroundInitializingComplete);
-        //showEmbeddedFonts();
-    }
-
-    public function showEmbeddedFonts():void {
-        trace("========Embedded Fonts========");
-        var fonts:Array = Font.enumerateFonts();
-        fonts.sortOn("fontName", Array.CASEINSENSITIVE);
-        for (var i:int = 0; i < fonts.length; i++) {
-            trace(fonts[i].fontName + ", " + fonts[i].fontStyle);
-        }
     }
 
     //----METHODS
@@ -147,6 +143,11 @@ public class Application extends Sprite {
         previousControl.x = -previousControl.width/2;
         nextControl.x = appModel.appwidth - nextControl.width/2;
         nextControl.y = (appModel.appheight - nextControl.height) >> 1;
+    }
+
+    private function pageServiceCompleteHandler(event:flash.events.Event):void {
+        this.appModel.pages = pageService.pages;
+        this.appModel.selectedPageIndex = 0;
     }
 }
 }

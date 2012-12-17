@@ -1,8 +1,50 @@
 <magazine title="Blogging">
 
-
+    <!--page met foto en titel-->
+    <page>
+        <element type="title">I have a cunning plan!</element>
+        <element type="backgroundPhoto">blackadder.jpg</element>
+    </page>
 
     <!--page met title en tekst-->
+    <page>
+        <element type="title" x="0" y="0">Wolf Hunts Near Yellowstone</element>
+
+        <element type="intro" x="0" y="100">
+            The bullet that killed one of Yellowstone National Park’s most popular wolves was felt halfway around the world by Gwen Deniel, of Brittany, France. She cried when she learned that the animal, which wore a research collar, was shot by a hunter in Wyoming’s Shoshone National Forest, a few miles outside the park boundary.
+        </element>
+
+        <element type="body" x="0" y="237">
+            This fall, the first wolf hunts in decades were authorized in Wyoming. Ranchers and hunters say the harvests are a way to protect their livelihoods. Wildlife advocates like Ms. Deniel are concerned that the hunts are having detrimental effects on both a thriving tourist industry and scientific studies that cost tens of thousands of dollars and provide data on wolf behavior and biology that is useful to all.
+            And, as with many wildlife issues, emotions come into play. “He was so beautiful, so loyal,” said Ms. Deniel, who has spent about $4,000 each of the last three summers traveling to northeast Yellowstone’s sweeping Lamar Valley to admire No. 754, a highly visible wolf with tawny eyes and a grizzled, jet coat. Her attitude is widely shared, but also widely disparaged by those who live and work in what is now wolf country.
+        </element>
+        <element type="body" x="300" y="100">
+            “I think it’s necessary that we be able to hunt any wolf whether it’s collared or not,” said Keith Kubista, president of Montana Sportsmen for Fish and Wildlife, a group that is as fervently in favor of hunting wolves as Ms. Deniel is against it.
+            David Hallac, chief of the Yellowstone Center for Resources, quantified the loss as “not just the cost of the collar, but the cost of getting the collar on the animal,” which includes biologists’ time, plus a helicopter and crew. Two of the dead wolves’ collars had GPS technology; they cost $4,000 each.
+            Those two collars, plus three others, were returned. Two collars, including the one worn by wolf 754, have not yet been returned, officials said. Ray Mora, 71, of Dunedin, Fla., who has donated more than $10,000 in the last few years to help wolf biologists purchase research collars, calls the killings “like going back to square one.”
+            Biologists say that in Yellowstone, where wolves were extirpated in the early 1900s and then reintroduced in 1995, there are 88 left, part of an overall Northern Rockies wolf population estimated earlier this year at 1,774, including 748 in Idaho, 653 in Montana, 328 in Wyoming, plus a few in Washington and Oregon.
+            Wolf harvests were litigated for years until Congress, under pressure from hunters and ranchers who felt that environmental lobbyists disregarded data saying that wolf populations were sufficiently robust, removed the animal from the Endangered Species List in 2011. Montana and Idaho manage wolf quotas by region, but in most of Wyoming wolves are classified as predators that can be shot on sight. Several environmental groups are suing to change that law.
+            “Some of the things that we’re seeing is maybe an outlet of some frustration from some folks who feel like wolf management should’ve started sooner,” said Ryan Benson, founder of Big Game Forever, a Utah-based organization that lobbied for wolves to be removed from the Endangered Species list.
+            Four of the collared wolves were shot in Montana, two in Idaho and one in Wyoming. Some conservationists are still worried that wolf numbers in the Northern Rockies remain too small to provide enough genetic exchange to ensure the species’ long-term survival.
+            While there is widespread support for exterminating any wolf that kills a domestic animal, which Jim Macgagna, the executive vice president of theWyoming Stockgrowers Association said can cost a rancher anywhere from $800 to $1,500, hunters and other wildlife advocates have clashed over shooting wolves to raise populations of big game like moose, bighorn sheep and, especially, elk.
+            Environmental groups like the Greater Yellowstone Coalition are calling on states to more tightly regulate a buffer zone around the park to reduce the number of study wolves that are killed.
+        </element>
+        <element type="body" x="600" y="100">
+            “Those collared wolves provide vital information, particularly with regard to elk,” said Chris Colligan, a wildlife advocate for the coalition. The collars, he said, provide key data helping explain why certain elk herds have been depleted by wolves while others have not — an issue of great concern to both hunters and biologists.
+            Adding to the tumult is the fact that several of the dead wolves came from Yellowstone’s most popular packs, including one that roams the Lamar Valley, a frequent destination for tour guides and wildlife photographers.
+            Nathan Varley, co-owner of Yellowstone Wolf Tracker tours in Gardiner, Mont., has taken scores of hopeful wolf-watchers to see the Lamar Canyon pack, and says that the majority of his company’s $500,000 gross income comes from tourists like these.
+            “I estimate that a half-million people saw 754,” he said. “It was one of the million dollar wolves that was taken out of the population.”
+            While Yellowstone park officials can’t say exactly how many visitors saw wolf 754, most of the animal’s life played out in front of binoculars and telescopic lenses inside a park visited by more than 3 million people annually. Doug McLaughlin, 65, a lodge manager in Silver Gate, Mont., watched 754 mature from a clumsy yearling into a regal sentinel with a sonorous howl who scoured the valley floor to rescue lost pups.
+            Mr. McLaughlin received a call from a friend in Wyoming’s Sunlight Basin early one mid-November morning saying that 754’s tracking collar was emitting a mortality signal.
+            “There were a lot of tears,” he said.
+        </element>
+
+        <element type="link" x="0" y="500" linkTo="4">Yellowstone</element>
+        <element type="link" x="300" y="500" linkTo="4">Winter</element>
+        <element type="link" x="600" y="500" linkTo="4">Blackadder</element>
+    </page>
+
+    <!--page met title en tekst en foto-->
     <page>
         <element type="title" x="0" y="0">Wolf Hunts Near Yellowstone</element>
         <element type="backgroundPhoto">wolf.jpg</element>
@@ -11,7 +53,102 @@
             The bullet that killed one of Yellowstone National Park’s most popular wolves was felt halfway around the world by Gwen Deniel, of Brittany, France. She cried when she learned that the animal, which wore a research collar, was shot by a hunter in Wyoming’s Shoshone National Forest, a few miles outside the park boundary.
         </element>
 
-        <element type="body" x="0" y="237">This fall, the first wolf hunts in decades were authorized in Wyoming. Ranchers and hunters say the harvests are a way to protect their livelihoods. Wildlife advocates like Ms. Deniel are concerned that the hunts are having detrimental effects on both a thriving tourist industry and scientific studies that cost tens of thousands of dollars and provide data on wolf behavior and biology that is useful to all.
+        <element type="body" x="0" y="237">
+            This fall, the first wolf hunts in decades were authorized in Wyoming. Ranchers and hunters say the harvests are a way to protect their livelihoods. Wildlife advocates like Ms. Deniel are concerned that the hunts are having detrimental effects on both a thriving tourist industry and scientific studies that cost tens of thousands of dollars and provide data on wolf behavior and biology that is useful to all.
+            And, as with many wildlife issues, emotions come into play. “He was so beautiful, so loyal,” said Ms. Deniel, who has spent about $4,000 each of the last three summers traveling to northeast Yellowstone’s sweeping Lamar Valley to admire No. 754, a highly visible wolf with tawny eyes and a grizzled, jet coat. Her attitude is widely shared, but also widely disparaged by those who live and work in what is now wolf country.
+        </element>
+        <element type="body" x="300" y="100">
+            “I think it’s necessary that we be able to hunt any wolf whether it’s collared or not,” said Keith Kubista, president of Montana Sportsmen for Fish and Wildlife, a group that is as fervently in favor of hunting wolves as Ms. Deniel is against it.
+            David Hallac, chief of the Yellowstone Center for Resources, quantified the loss as “not just the cost of the collar, but the cost of getting the collar on the animal,” which includes biologists’ time, plus a helicopter and crew. Two of the dead wolves’ collars had GPS technology; they cost $4,000 each.
+            Those two collars, plus three others, were returned. Two collars, including the one worn by wolf 754, have not yet been returned, officials said. Ray Mora, 71, of Dunedin, Fla., who has donated more than $10,000 in the last few years to help wolf biologists purchase research collars, calls the killings “like going back to square one.”
+            Biologists say that in Yellowstone, where wolves were extirpated in the early 1900s and then reintroduced in 1995, there are 88 left, part of an overall Northern Rockies wolf population estimated earlier this year at 1,774, including 748 in Idaho, 653 in Montana, 328 in Wyoming, plus a few in Washington and Oregon.
+            Wolf harvests were litigated for years until Congress, under pressure from hunters and ranchers who felt that environmental lobbyists disregarded data saying that wolf populations were sufficiently robust, removed the animal from the Endangered Species List in 2011. Montana and Idaho manage wolf quotas by region, but in most of Wyoming wolves are classified as predators that can be shot on sight. Several environmental groups are suing to change that law.
+            “Some of the things that we’re seeing is maybe an outlet of some frustration from some folks who feel like wolf management should’ve started sooner,” said Ryan Benson, founder of Big Game Forever, a Utah-based organization that lobbied for wolves to be removed from the Endangered Species list.
+            Four of the collared wolves were shot in Montana, two in Idaho and one in Wyoming. Some conservationists are still worried that wolf numbers in the Northern Rockies remain too small to provide enough genetic exchange to ensure the species’ long-term survival.
+            While there is widespread support for exterminating any wolf that kills a domestic animal, which Jim Macgagna, the executive vice president of theWyoming Stockgrowers Association said can cost a rancher anywhere from $800 to $1,500, hunters and other wildlife advocates have clashed over shooting wolves to raise populations of big game like moose, bighorn sheep and, especially, elk.
+            Environmental groups like the Greater Yellowstone Coalition are calling on states to more tightly regulate a buffer zone around the park to reduce the number of study wolves that are killed.
+        </element>
+        <element type="body" x="600" y="100">
+            “Those collared wolves provide vital information, particularly with regard to elk,” said Chris Colligan, a wildlife advocate for the coalition. The collars, he said, provide key data helping explain why certain elk herds have been depleted by wolves while others have not — an issue of great concern to both hunters and biologists.
+            Adding to the tumult is the fact that several of the dead wolves came from Yellowstone’s most popular packs, including one that roams the Lamar Valley, a frequent destination for tour guides and wildlife photographers.
+            Nathan Varley, co-owner of Yellowstone Wolf Tracker tours in Gardiner, Mont., has taken scores of hopeful wolf-watchers to see the Lamar Canyon pack, and says that the majority of his company’s $500,000 gross income comes from tourists like these.
+            “I estimate that a half-million people saw 754,” he said. “It was one of the million dollar wolves that was taken out of the population.”
+            While Yellowstone park officials can’t say exactly how many visitors saw wolf 754, most of the animal’s life played out in front of binoculars and telescopic lenses inside a park visited by more than 3 million people annually. Doug McLaughlin, 65, a lodge manager in Silver Gate, Mont., watched 754 mature from a clumsy yearling into a regal sentinel with a sonorous howl who scoured the valley floor to rescue lost pups.
+            Mr. McLaughlin received a call from a friend in Wyoming’s Sunlight Basin early one mid-November morning saying that 754’s tracking collar was emitting a mortality signal.
+            “There were a lot of tears,” he said.
+        </element>
+
+        <element type="link" x="0" y="500" linkTo="4">Yellowstone</element>
+        <element type="link" x="300" y="500" linkTo="4">Winter</element>
+        <element type="link" x="600" y="500" linkTo="4">Blackadder</element>
+    </page>
+
+
+
+<!--page met foto-->
+    <page>
+        <!--<element type="title">I have a cunning plan!</element>-->
+        <element type="backgroundPhoto">blackadder.jpg</element>
+
+
+    </page>
+
+
+<!--page met title-->
+    <page>
+        <element type="title">I have a cunning plan!</element>
+    </page>
+
+
+<!--page met title en tekst-->
+    <page>
+        <element type="title" x="0" y="0">Wolf Hunts Near Yellowstone</element>
+
+        <element type="intro" x="0" y="100">
+            The bullet that killed one of Yellowstone National Park’s most popular wolves was felt halfway around the world by Gwen Deniel, of Brittany, France. She cried when she learned that the animal, which wore a research collar, was shot by a hunter in Wyoming’s Shoshone National Forest, a few miles outside the park boundary.
+        </element>
+
+        <element type="body" x="0" y="237">
+            This fall, the first wolf hunts in decades were authorized in Wyoming. Ranchers and hunters say the harvests are a way to protect their livelihoods. Wildlife advocates like Ms. Deniel are concerned that the hunts are having detrimental effects on both a thriving tourist industry and scientific studies that cost tens of thousands of dollars and provide data on wolf behavior and biology that is useful to all.
+And, as with many wildlife issues, emotions come into play. “He was so beautiful, so loyal,” said Ms. Deniel, who has spent about $4,000 each of the last three summers traveling to northeast Yellowstone’s sweeping Lamar Valley to admire No. 754, a highly visible wolf with tawny eyes and a grizzled, jet coat. Her attitude is widely shared, but also widely disparaged by those who live and work in what is now wolf country.
+        </element>
+        <element type="body" x="300" y="100">
+“I think it’s necessary that we be able to hunt any wolf whether it’s collared or not,” said Keith Kubista, president of Montana Sportsmen for Fish and Wildlife, a group that is as fervently in favor of hunting wolves as Ms. Deniel is against it.
+David Hallac, chief of the Yellowstone Center for Resources, quantified the loss as “not just the cost of the collar, but the cost of getting the collar on the animal,” which includes biologists’ time, plus a helicopter and crew. Two of the dead wolves’ collars had GPS technology; they cost $4,000 each.
+Those two collars, plus three others, were returned. Two collars, including the one worn by wolf 754, have not yet been returned, officials said. Ray Mora, 71, of Dunedin, Fla., who has donated more than $10,000 in the last few years to help wolf biologists purchase research collars, calls the killings “like going back to square one.”
+Biologists say that in Yellowstone, where wolves were extirpated in the early 1900s and then reintroduced in 1995, there are 88 left, part of an overall Northern Rockies wolf population estimated earlier this year at 1,774, including 748 in Idaho, 653 in Montana, 328 in Wyoming, plus a few in Washington and Oregon.
+Wolf harvests were litigated for years until Congress, under pressure from hunters and ranchers who felt that environmental lobbyists disregarded data saying that wolf populations were sufficiently robust, removed the animal from the Endangered Species List in 2011. Montana and Idaho manage wolf quotas by region, but in most of Wyoming wolves are classified as predators that can be shot on sight. Several environmental groups are suing to change that law.
+“Some of the things that we’re seeing is maybe an outlet of some frustration from some folks who feel like wolf management should’ve started sooner,” said Ryan Benson, founder of Big Game Forever, a Utah-based organization that lobbied for wolves to be removed from the Endangered Species list.
+Four of the collared wolves were shot in Montana, two in Idaho and one in Wyoming. Some conservationists are still worried that wolf numbers in the Northern Rockies remain too small to provide enough genetic exchange to ensure the species’ long-term survival.
+While there is widespread support for exterminating any wolf that kills a domestic animal, which Jim Macgagna, the executive vice president of theWyoming Stockgrowers Association said can cost a rancher anywhere from $800 to $1,500, hunters and other wildlife advocates have clashed over shooting wolves to raise populations of big game like moose, bighorn sheep and, especially, elk.
+Environmental groups like the Greater Yellowstone Coalition are calling on states to more tightly regulate a buffer zone around the park to reduce the number of study wolves that are killed.
+        </element>
+        <element type="body" x="600" y="100">
+“Those collared wolves provide vital information, particularly with regard to elk,” said Chris Colligan, a wildlife advocate for the coalition. The collars, he said, provide key data helping explain why certain elk herds have been depleted by wolves while others have not — an issue of great concern to both hunters and biologists.
+Adding to the tumult is the fact that several of the dead wolves came from Yellowstone’s most popular packs, including one that roams the Lamar Valley, a frequent destination for tour guides and wildlife photographers.
+Nathan Varley, co-owner of Yellowstone Wolf Tracker tours in Gardiner, Mont., has taken scores of hopeful wolf-watchers to see the Lamar Canyon pack, and says that the majority of his company’s $500,000 gross income comes from tourists like these.
+“I estimate that a half-million people saw 754,” he said. “It was one of the million dollar wolves that was taken out of the population.”
+While Yellowstone park officials can’t say exactly how many visitors saw wolf 754, most of the animal’s life played out in front of binoculars and telescopic lenses inside a park visited by more than 3 million people annually. Doug McLaughlin, 65, a lodge manager in Silver Gate, Mont., watched 754 mature from a clumsy yearling into a regal sentinel with a sonorous howl who scoured the valley floor to rescue lost pups.
+Mr. McLaughlin received a call from a friend in Wyoming’s Sunlight Basin early one mid-November morning saying that 754’s tracking collar was emitting a mortality signal.
+“There were a lot of tears,” he said.
+        </element>
+
+        <element type="link" x="0" y="500" linkTo="4">Yellowstone</element>
+        <element type="link" x="300" y="500" linkTo="4">Winter</element>
+        <element type="link" x="600" y="500" linkTo="4">Blackadder</element>
+    </page>
+
+<!--page met title en tekst en foto-->
+    <page>
+        <element type="title" x="0" y="0">Wolf Hunts Near Yellowstone</element>
+        <element type="backgroundPhoto">wolf.jpg</element>
+
+        <element type="intro" x="0" y="100">
+            The bullet that killed one of Yellowstone National Park’s most popular wolves was felt halfway around the world by Gwen Deniel, of Brittany, France. She cried when she learned that the animal, which wore a research collar, was shot by a hunter in Wyoming’s Shoshone National Forest, a few miles outside the park boundary.
+        </element>
+
+        <element type="body" x="0" y="237">
+            This fall, the first wolf hunts in decades were authorized in Wyoming. Ranchers and hunters say the harvests are a way to protect their livelihoods. Wildlife advocates like Ms. Deniel are concerned that the hunts are having detrimental effects on both a thriving tourist industry and scientific studies that cost tens of thousands of dollars and provide data on wolf behavior and biology that is useful to all.
 And, as with many wildlife issues, emotions come into play. “He was so beautiful, so loyal,” said Ms. Deniel, who has spent about $4,000 each of the last three summers traveling to northeast Yellowstone’s sweeping Lamar Valley to admire No. 754, a highly visible wolf with tawny eyes and a grizzled, jet coat. Her attitude is widely shared, but also widely disparaged by those who live and work in what is now wolf country.
         </element>
         <element type="body" x="300" y="100">
@@ -41,7 +178,7 @@ Mr. McLaughlin received a call from a friend in Wyoming’s Sunlight Basin early
     </page>
 
 
-    <!--page met 'subtitle'-->
+<!--page met subtitle-->
     <page>
         <element type="subtitle" y="0">The Worst Winter in the World</element>
         <!--<element type="backgroundPhoto">winter.jpg</element>-->

@@ -55,7 +55,7 @@ public class Page extends Sprite{
         _background = new Quad(910, 600);
         _background.x = (appModel.appwidth * 0.5) - (_background.width *.5);
         _background.y = (appModel.appheight * 0.5) - (_background.height *.5);
-        //_background.alpha = 0;
+        _background.alpha = 0;
         _background.color = 0xedefef;
         addChild(_background);
 
@@ -70,6 +70,8 @@ public class Page extends Sprite{
 
                 if(element is BackgroundPhotoElement){
                     _hasBackground = true;
+                    element.x = -100;
+                    element.y = -100;
                 }
 
                 if (element is TitleElement) {
@@ -102,19 +104,27 @@ public class Page extends Sprite{
                     element.y = (elementVO as LinkElementVO).yPos;
                     element.useHandCursor = true;
                 }
-                _elementContainer.addChild(element);
+
+
+                /*if (element is BackgroundPhotoElement) {
+                    addChildAt(element,0);
+                }else if (!element is BackgroundPhotoElement) {*/
+                    _elementContainer.addChild(element);
+
+
+                //}
             }
         }
         if(_hasText && _hasBackground){
-            //TODO: quad opacity aanpassen
             _background.alpha = 0.7;
         }
 
-
-        pageNumberElement = new PageNumberElement(pagenumber);
-        pageNumberElement.x = (_background.width>>1)-(pageNumberElement.width>>1) - marginLeft;
-        pageNumberElement.y = _background.height - pageNumberElement.height - 30 - marginTop;
-        _elementContainer.addChild(pageNumberElement);
+        //if (!element is BackgroundPhotoElement && element is BodyTextElement) {
+            pageNumberElement = new PageNumberElement(pagenumber);
+            pageNumberElement.x = (_background.width>>1)-(pageNumberElement.width>>1) - marginLeft;
+            pageNumberElement.y = _background.height - pageNumberElement.height - 30 - marginTop;
+            _elementContainer.addChild(pageNumberElement);
+        //}
     }
 }
 }

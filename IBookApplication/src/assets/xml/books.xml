@@ -1,118 +1,94 @@
 <magazine title="Blogging">
 
-    <!--page met foto en titel-->
+<!--page met foto 'Blackadder'-->
+    <page>
+        <element type="backgroundPhoto">rugby.jpg</element>
+    </page>
+
+<!--page met title en foto 'Hiking'-->
+    <page>
+        <element type="title">Hiking in Nature May Boost Creativity</element>
+        <element type="backgroundPhoto">hiking.jpg</element>
+    </page>
+
+<!--page met subtitle en tekst en links 'Hiking'-->
+    <page>
+        <element type="subtitle" x='0' y="0">Hiking in Nature May Boost Creativity</element>
+
+        <element type="intro" x="0" y='60'>
+Hiking in the wild may be good for the brain, especially if you are unplugged.
+New research shows that backpackers scored 50% better on a creativity test after spending four days in nature while disconnected from all electronic devices.
+        </element>
+
+        <element type="body" x='0' y='157'>
+Fifty-six people with an average age of 28 went on four- to six-day wilderness hiking trips organized by the Outward Bound expedition organization in Alaska, Colorado, Maine, and Washington. No phones, tablets, computers, or other electronic devices were allowed on the excursions.
+Of these people, 24 took a 10-item creativity test the morning before the trip, and 32 took the test on the morning of the trip's fourth day. People who had been backpacking for four days got about six of the 10 questions correct, compared with four among people who had not yet begun a backpacking trip.
+So is it the serene effects of nature that unlock creativity, or is it perhaps a perk of being unplugged?
+Maybe a little bit of each, says researcher David Strayer, PhD. He is a professor of psychology at the University of Utah in Salt Lake City.
+Still, the participants spent four full days in nature
+        </element>
+        <element type="body" x='300' y='60'>
+without any gadgets, which may not be possible for many people. But that doesn’t mean others can’t reap some of these benefits.
+“Take a stroll through the park if you can’t get away for longer,” he says. “If you could do that on a regular basis, you can reduce stress, and it may have mental or cognitive benefits as long as you disconnect from all technology.”
+Listening to music can be OK provided it is soothing. “If you talk on your phone or text, you may not get as many benefits.”
+James P. Nicolai, MD, is the medical director of the Andrew Weil, MD, Integrative Wellness Program at Miraval in Tucson, Ariz.  He says the new findings are “right on.”
+Disconnecting from media technology allows people to stay in the now, and nature can do the rest, he says. “Take a 10- to 15-minute walk in a park five days a week,” he says.  Or “if you can’t get to nature, bring nature to you by having flowers in your house or plants in your space.”
+That is good advice, says David Straker, DO. He is an adjunct assistant clinical professor of psychiatry at Columbia University Medical Center in New York City. “We know exercise is one of the most important things we can do for our mental health aside from medication and therapy.”
+        </element>
+        <element type="body" x='600' y='60'>
+It helps release feel-good brain chemicals called endorphins, and nature kicks these benefits up a notch. “Exercising in nature can have more mental health benefits than on a treadmill,” he says.
+        </element>
+
+        <element type="link" x="300" y="480" linkTo="4">Winter</element>
+    </page>
+
+<!--page met foto en titel 'Vostok'-->
+    <page>
+        <element type="title" x='0' y="0">Vostok's elusive microbes</element>
+        <element type="backgroundPhoto">microbes.jpg</element>
+    </page>
+
+<!--page met subtitle en tekst 'Vostok'-->
+    <page>
+        <element type="subtitle" x='0' y="0">Vostok's elusive microbes</element>
+
+        Lake Vostok is a stand-in for icy bodies that might harbor life, like Jupiter’s moon Europa. Gerda Horneck of the German Aerospace Center (DLR) said that any result from Lake Vostok is important for astrobiology, and the search for extremophiles that could give hints of what life could be like elsewhere. “Let’s see what comes out next round,” she told me at the end of the meeting on Wednesday.
+
+        <element type="intro" x="0" y='60'>
+            A first analysis of the ice that froze onto the drillbit used in last February’s landmark drilling to a pristine Antarctic lake shows no native microbes came up with the lake water, according to Sergey Bulat of Petersburg Nuclear Physics Institute (Russia). The very uppermost layer of Lake Vostok appears to be “lifeless” so far, says Bulat, but that doesn’t mean the rest of it is.
+        </element>
+
+        <element type="body" x='300' y='60'>
+            Bulat reported what he calls his team’s “very preliminary results” on Tuesday, at the 12th European Workshop on Astrobiology (ENEA 2012), in Stockholm, Sweden, at the AlbaNova University Center.
+Bulat and his colleagues counted the microbes present in the ice sample and checked their genetic makeup to figure out the phylotypes. They counted fewer than 10 microbes/ml — about the same magnitude they would expect to find in the background in their clean room. And three of the four phylotypes they identified matched contaminants from the drilling oil, with the fourth unknown but also most likely from the lubricant.
+Bulat hopes to get clean samples from the ice frozen in the borehole below where the drill bit stopped. That won’t be until next May (2013), if all goes well after the next Russian drilling expedition in December-January. Even if the top of the lake ends up being empty, Bulat suspects microbes will come from lower water depths, or from sediment samples at the bottom of the lake.
+Lake Vostok is a stand-in for icy bodies that might harbor life, like Jupiter’s moon Europa. Gerda Horneck of the German Aerospace Center (DLR) said that any result from Lake Vostok is
+        </element>
+        <element type="body" x='600' y='60'>
+            important for astrobiology, and the search for extremophiles that could give hints of what life could be like elsewhere. “Let’s see what comes out next round,” she told me at the end of the meeting on Wednesday.
+        </element>
+    </page>
+
+<!--page met foto en titel 'Cunning'-->
     <page>
         <element type="title">I have a cunning plan!</element>
         <element type="backgroundPhoto">blackadder.jpg</element>
     </page>
 
-    <!--page met title en tekst-->
-    <page>
-        <element type="title" x="0" y="0">Wolf Hunts Near Yellowstone</element>
-
-        <element type="intro" x="0" y="100">
-            The bullet that killed one of Yellowstone National Park’s most popular wolves was felt halfway around the world by Gwen Deniel, of Brittany, France. She cried when she learned that the animal, which wore a research collar, was shot by a hunter in Wyoming’s Shoshone National Forest, a few miles outside the park boundary.
-        </element>
-
-        <element type="body" x="0" y="237">
-            This fall, the first wolf hunts in decades were authorized in Wyoming. Ranchers and hunters say the harvests are a way to protect their livelihoods. Wildlife advocates like Ms. Deniel are concerned that the hunts are having detrimental effects on both a thriving tourist industry and scientific studies that cost tens of thousands of dollars and provide data on wolf behavior and biology that is useful to all.
-            And, as with many wildlife issues, emotions come into play. “He was so beautiful, so loyal,” said Ms. Deniel, who has spent about $4,000 each of the last three summers traveling to northeast Yellowstone’s sweeping Lamar Valley to admire No. 754, a highly visible wolf with tawny eyes and a grizzled, jet coat. Her attitude is widely shared, but also widely disparaged by those who live and work in what is now wolf country.
-        </element>
-        <element type="body" x="300" y="100">
-            “I think it’s necessary that we be able to hunt any wolf whether it’s collared or not,” said Keith Kubista, president of Montana Sportsmen for Fish and Wildlife, a group that is as fervently in favor of hunting wolves as Ms. Deniel is against it.
-            David Hallac, chief of the Yellowstone Center for Resources, quantified the loss as “not just the cost of the collar, but the cost of getting the collar on the animal,” which includes biologists’ time, plus a helicopter and crew. Two of the dead wolves’ collars had GPS technology; they cost $4,000 each.
-            Those two collars, plus three others, were returned. Two collars, including the one worn by wolf 754, have not yet been returned, officials said. Ray Mora, 71, of Dunedin, Fla., who has donated more than $10,000 in the last few years to help wolf biologists purchase research collars, calls the killings “like going back to square one.”
-            Biologists say that in Yellowstone, where wolves were extirpated in the early 1900s and then reintroduced in 1995, there are 88 left, part of an overall Northern Rockies wolf population estimated earlier this year at 1,774, including 748 in Idaho, 653 in Montana, 328 in Wyoming, plus a few in Washington and Oregon.
-            Wolf harvests were litigated for years until Congress, under pressure from hunters and ranchers who felt that environmental lobbyists disregarded data saying that wolf populations were sufficiently robust, removed the animal from the Endangered Species List in 2011. Montana and Idaho manage wolf quotas by region, but in most of Wyoming wolves are classified as predators that can be shot on sight. Several environmental groups are suing to change that law.
-            “Some of the things that we’re seeing is maybe an outlet of some frustration from some folks who feel like wolf management should’ve started sooner,” said Ryan Benson, founder of Big Game Forever, a Utah-based organization that lobbied for wolves to be removed from the Endangered Species list.
-            Four of the collared wolves were shot in Montana, two in Idaho and one in Wyoming. Some conservationists are still worried that wolf numbers in the Northern Rockies remain too small to provide enough genetic exchange to ensure the species’ long-term survival.
-            While there is widespread support for exterminating any wolf that kills a domestic animal, which Jim Macgagna, the executive vice president of theWyoming Stockgrowers Association said can cost a rancher anywhere from $800 to $1,500, hunters and other wildlife advocates have clashed over shooting wolves to raise populations of big game like moose, bighorn sheep and, especially, elk.
-            Environmental groups like the Greater Yellowstone Coalition are calling on states to more tightly regulate a buffer zone around the park to reduce the number of study wolves that are killed.
-        </element>
-        <element type="body" x="600" y="100">
-            “Those collared wolves provide vital information, particularly with regard to elk,” said Chris Colligan, a wildlife advocate for the coalition. The collars, he said, provide key data helping explain why certain elk herds have been depleted by wolves while others have not — an issue of great concern to both hunters and biologists.
-            Adding to the tumult is the fact that several of the dead wolves came from Yellowstone’s most popular packs, including one that roams the Lamar Valley, a frequent destination for tour guides and wildlife photographers.
-            Nathan Varley, co-owner of Yellowstone Wolf Tracker tours in Gardiner, Mont., has taken scores of hopeful wolf-watchers to see the Lamar Canyon pack, and says that the majority of his company’s $500,000 gross income comes from tourists like these.
-            “I estimate that a half-million people saw 754,” he said. “It was one of the million dollar wolves that was taken out of the population.”
-            While Yellowstone park officials can’t say exactly how many visitors saw wolf 754, most of the animal’s life played out in front of binoculars and telescopic lenses inside a park visited by more than 3 million people annually. Doug McLaughlin, 65, a lodge manager in Silver Gate, Mont., watched 754 mature from a clumsy yearling into a regal sentinel with a sonorous howl who scoured the valley floor to rescue lost pups.
-            Mr. McLaughlin received a call from a friend in Wyoming’s Sunlight Basin early one mid-November morning saying that 754’s tracking collar was emitting a mortality signal.
-            “There were a lot of tears,” he said.
-        </element>
-
-        <element type="link" x="0" y="500" linkTo="4">Yellowstone</element>
-        <element type="link" x="300" y="500" linkTo="4">Winter</element>
-        <element type="link" x="600" y="500" linkTo="4">Blackadder</element>
-    </page>
-
-    <!--page met title en tekst en foto-->
+<!--page met title en tekst en foto 'Wolf'-->
     <page>
         <element type="title" x="0" y="0">Wolf Hunts Near Yellowstone</element>
         <element type="backgroundPhoto">wolf.jpg</element>
 
-        <element type="intro" x="0" y="100">
+        <element type="intro" x="0" y="80">
             The bullet that killed one of Yellowstone National Park’s most popular wolves was felt halfway around the world by Gwen Deniel, of Brittany, France. She cried when she learned that the animal, which wore a research collar, was shot by a hunter in Wyoming’s Shoshone National Forest, a few miles outside the park boundary.
         </element>
 
-        <element type="body" x="0" y="237">
-            This fall, the first wolf hunts in decades were authorized in Wyoming. Ranchers and hunters say the harvests are a way to protect their livelihoods. Wildlife advocates like Ms. Deniel are concerned that the hunts are having detrimental effects on both a thriving tourist industry and scientific studies that cost tens of thousands of dollars and provide data on wolf behavior and biology that is useful to all.
-            And, as with many wildlife issues, emotions come into play. “He was so beautiful, so loyal,” said Ms. Deniel, who has spent about $4,000 each of the last three summers traveling to northeast Yellowstone’s sweeping Lamar Valley to admire No. 754, a highly visible wolf with tawny eyes and a grizzled, jet coat. Her attitude is widely shared, but also widely disparaged by those who live and work in what is now wolf country.
-        </element>
-        <element type="body" x="300" y="100">
-            “I think it’s necessary that we be able to hunt any wolf whether it’s collared or not,” said Keith Kubista, president of Montana Sportsmen for Fish and Wildlife, a group that is as fervently in favor of hunting wolves as Ms. Deniel is against it.
-            David Hallac, chief of the Yellowstone Center for Resources, quantified the loss as “not just the cost of the collar, but the cost of getting the collar on the animal,” which includes biologists’ time, plus a helicopter and crew. Two of the dead wolves’ collars had GPS technology; they cost $4,000 each.
-            Those two collars, plus three others, were returned. Two collars, including the one worn by wolf 754, have not yet been returned, officials said. Ray Mora, 71, of Dunedin, Fla., who has donated more than $10,000 in the last few years to help wolf biologists purchase research collars, calls the killings “like going back to square one.”
-            Biologists say that in Yellowstone, where wolves were extirpated in the early 1900s and then reintroduced in 1995, there are 88 left, part of an overall Northern Rockies wolf population estimated earlier this year at 1,774, including 748 in Idaho, 653 in Montana, 328 in Wyoming, plus a few in Washington and Oregon.
-            Wolf harvests were litigated for years until Congress, under pressure from hunters and ranchers who felt that environmental lobbyists disregarded data saying that wolf populations were sufficiently robust, removed the animal from the Endangered Species List in 2011. Montana and Idaho manage wolf quotas by region, but in most of Wyoming wolves are classified as predators that can be shot on sight. Several environmental groups are suing to change that law.
-            “Some of the things that we’re seeing is maybe an outlet of some frustration from some folks who feel like wolf management should’ve started sooner,” said Ryan Benson, founder of Big Game Forever, a Utah-based organization that lobbied for wolves to be removed from the Endangered Species list.
-            Four of the collared wolves were shot in Montana, two in Idaho and one in Wyoming. Some conservationists are still worried that wolf numbers in the Northern Rockies remain too small to provide enough genetic exchange to ensure the species’ long-term survival.
-            While there is widespread support for exterminating any wolf that kills a domestic animal, which Jim Macgagna, the executive vice president of theWyoming Stockgrowers Association said can cost a rancher anywhere from $800 to $1,500, hunters and other wildlife advocates have clashed over shooting wolves to raise populations of big game like moose, bighorn sheep and, especially, elk.
-            Environmental groups like the Greater Yellowstone Coalition are calling on states to more tightly regulate a buffer zone around the park to reduce the number of study wolves that are killed.
-        </element>
-        <element type="body" x="600" y="100">
-            “Those collared wolves provide vital information, particularly with regard to elk,” said Chris Colligan, a wildlife advocate for the coalition. The collars, he said, provide key data helping explain why certain elk herds have been depleted by wolves while others have not — an issue of great concern to both hunters and biologists.
-            Adding to the tumult is the fact that several of the dead wolves came from Yellowstone’s most popular packs, including one that roams the Lamar Valley, a frequent destination for tour guides and wildlife photographers.
-            Nathan Varley, co-owner of Yellowstone Wolf Tracker tours in Gardiner, Mont., has taken scores of hopeful wolf-watchers to see the Lamar Canyon pack, and says that the majority of his company’s $500,000 gross income comes from tourists like these.
-            “I estimate that a half-million people saw 754,” he said. “It was one of the million dollar wolves that was taken out of the population.”
-            While Yellowstone park officials can’t say exactly how many visitors saw wolf 754, most of the animal’s life played out in front of binoculars and telescopic lenses inside a park visited by more than 3 million people annually. Doug McLaughlin, 65, a lodge manager in Silver Gate, Mont., watched 754 mature from a clumsy yearling into a regal sentinel with a sonorous howl who scoured the valley floor to rescue lost pups.
-            Mr. McLaughlin received a call from a friend in Wyoming’s Sunlight Basin early one mid-November morning saying that 754’s tracking collar was emitting a mortality signal.
-            “There were a lot of tears,” he said.
-        </element>
-
-        <element type="link" x="0" y="500" linkTo="4">Yellowstone</element>
-        <element type="link" x="300" y="500" linkTo="4">Winter</element>
-        <element type="link" x="600" y="500" linkTo="4">Blackadder</element>
-    </page>
-
-
-
-<!--page met foto-->
-    <page>
-        <!--<element type="title">I have a cunning plan!</element>-->
-        <element type="backgroundPhoto">blackadder.jpg</element>
-
-
-    </page>
-
-
-<!--page met title-->
-    <page>
-        <element type="title">I have a cunning plan!</element>
-    </page>
-
-
-<!--page met title en tekst-->
-    <page>
-        <element type="title" x="0" y="0">Wolf Hunts Near Yellowstone</element>
-
-        <element type="intro" x="0" y="100">
-            The bullet that killed one of Yellowstone National Park’s most popular wolves was felt halfway around the world by Gwen Deniel, of Brittany, France. She cried when she learned that the animal, which wore a research collar, was shot by a hunter in Wyoming’s Shoshone National Forest, a few miles outside the park boundary.
-        </element>
-
-        <element type="body" x="0" y="237">
+        <element type="body" x="0" y="217">
             This fall, the first wolf hunts in decades were authorized in Wyoming. Ranchers and hunters say the harvests are a way to protect their livelihoods. Wildlife advocates like Ms. Deniel are concerned that the hunts are having detrimental effects on both a thriving tourist industry and scientific studies that cost tens of thousands of dollars and provide data on wolf behavior and biology that is useful to all.
 And, as with many wildlife issues, emotions come into play. “He was so beautiful, so loyal,” said Ms. Deniel, who has spent about $4,000 each of the last three summers traveling to northeast Yellowstone’s sweeping Lamar Valley to admire No. 754, a highly visible wolf with tawny eyes and a grizzled, jet coat. Her attitude is widely shared, but also widely disparaged by those who live and work in what is now wolf country.
         </element>
-        <element type="body" x="300" y="100">
+        <element type="body" x="300" y="80">
 “I think it’s necessary that we be able to hunt any wolf whether it’s collared or not,” said Keith Kubista, president of Montana Sportsmen for Fish and Wildlife, a group that is as fervently in favor of hunting wolves as Ms. Deniel is against it.
 David Hallac, chief of the Yellowstone Center for Resources, quantified the loss as “not just the cost of the collar, but the cost of getting the collar on the animal,” which includes biologists’ time, plus a helicopter and crew. Two of the dead wolves’ collars had GPS technology; they cost $4,000 each.
 Those two collars, plus three others, were returned. Two collars, including the one worn by wolf 754, have not yet been returned, officials said. Ray Mora, 71, of Dunedin, Fla., who has donated more than $10,000 in the last few years to help wolf biologists purchase research collars, calls the killings “like going back to square one.”
@@ -123,7 +99,7 @@ Four of the collared wolves were shot in Montana, two in Idaho and one in Wyomin
 While there is widespread support for exterminating any wolf that kills a domestic animal, which Jim Macgagna, the executive vice president of theWyoming Stockgrowers Association said can cost a rancher anywhere from $800 to $1,500, hunters and other wildlife advocates have clashed over shooting wolves to raise populations of big game like moose, bighorn sheep and, especially, elk.
 Environmental groups like the Greater Yellowstone Coalition are calling on states to more tightly regulate a buffer zone around the park to reduce the number of study wolves that are killed.
         </element>
-        <element type="body" x="600" y="100">
+        <element type="body" x="600" y="80">
 “Those collared wolves provide vital information, particularly with regard to elk,” said Chris Colligan, a wildlife advocate for the coalition. The collars, he said, provide key data helping explain why certain elk herds have been depleted by wolves while others have not — an issue of great concern to both hunters and biologists.
 Adding to the tumult is the fact that several of the dead wolves came from Yellowstone’s most popular packs, including one that roams the Lamar Valley, a frequent destination for tour guides and wildlife photographers.
 Nathan Varley, co-owner of Yellowstone Wolf Tracker tours in Gardiner, Mont., has taken scores of hopeful wolf-watchers to see the Lamar Canyon pack, and says that the majority of his company’s $500,000 gross income comes from tourists like these.
@@ -138,50 +114,22 @@ Mr. McLaughlin received a call from a friend in Wyoming’s Sunlight Basin early
         <element type="link" x="600" y="500" linkTo="4">Blackadder</element>
     </page>
 
-<!--page met title en tekst en foto-->
+<!--page met foto en titel 'Winter'-->
     <page>
-        <element type="title" x="0" y="0">Wolf Hunts Near Yellowstone</element>
-        <element type="backgroundPhoto">wolf.jpg</element>
+        <element type="title">The Worst Winter in the World</element>
+        <element type="backgroundPhoto">winter.jpg</element>
+    </page>
 
-        <element type="intro" x="0" y="100">
-            The bullet that killed one of Yellowstone National Park’s most popular wolves was felt halfway around the world by Gwen Deniel, of Brittany, France. She cried when she learned that the animal, which wore a research collar, was shot by a hunter in Wyoming’s Shoshone National Forest, a few miles outside the park boundary.
-        </element>
-
-        <element type="body" x="0" y="237">
-            This fall, the first wolf hunts in decades were authorized in Wyoming. Ranchers and hunters say the harvests are a way to protect their livelihoods. Wildlife advocates like Ms. Deniel are concerned that the hunts are having detrimental effects on both a thriving tourist industry and scientific studies that cost tens of thousands of dollars and provide data on wolf behavior and biology that is useful to all.
-And, as with many wildlife issues, emotions come into play. “He was so beautiful, so loyal,” said Ms. Deniel, who has spent about $4,000 each of the last three summers traveling to northeast Yellowstone’s sweeping Lamar Valley to admire No. 754, a highly visible wolf with tawny eyes and a grizzled, jet coat. Her attitude is widely shared, but also widely disparaged by those who live and work in what is now wolf country.
-        </element>
-        <element type="body" x="300" y="100">
-“I think it’s necessary that we be able to hunt any wolf whether it’s collared or not,” said Keith Kubista, president of Montana Sportsmen for Fish and Wildlife, a group that is as fervently in favor of hunting wolves as Ms. Deniel is against it.
-David Hallac, chief of the Yellowstone Center for Resources, quantified the loss as “not just the cost of the collar, but the cost of getting the collar on the animal,” which includes biologists’ time, plus a helicopter and crew. Two of the dead wolves’ collars had GPS technology; they cost $4,000 each.
-Those two collars, plus three others, were returned. Two collars, including the one worn by wolf 754, have not yet been returned, officials said. Ray Mora, 71, of Dunedin, Fla., who has donated more than $10,000 in the last few years to help wolf biologists purchase research collars, calls the killings “like going back to square one.”
-Biologists say that in Yellowstone, where wolves were extirpated in the early 1900s and then reintroduced in 1995, there are 88 left, part of an overall Northern Rockies wolf population estimated earlier this year at 1,774, including 748 in Idaho, 653 in Montana, 328 in Wyoming, plus a few in Washington and Oregon.
-Wolf harvests were litigated for years until Congress, under pressure from hunters and ranchers who felt that environmental lobbyists disregarded data saying that wolf populations were sufficiently robust, removed the animal from the Endangered Species List in 2011. Montana and Idaho manage wolf quotas by region, but in most of Wyoming wolves are classified as predators that can be shot on sight. Several environmental groups are suing to change that law.
-“Some of the things that we’re seeing is maybe an outlet of some frustration from some folks who feel like wolf management should’ve started sooner,” said Ryan Benson, founder of Big Game Forever, a Utah-based organization that lobbied for wolves to be removed from the Endangered Species list.
-Four of the collared wolves were shot in Montana, two in Idaho and one in Wyoming. Some conservationists are still worried that wolf numbers in the Northern Rockies remain too small to provide enough genetic exchange to ensure the species’ long-term survival.
-While there is widespread support for exterminating any wolf that kills a domestic animal, which Jim Macgagna, the executive vice president of theWyoming Stockgrowers Association said can cost a rancher anywhere from $800 to $1,500, hunters and other wildlife advocates have clashed over shooting wolves to raise populations of big game like moose, bighorn sheep and, especially, elk.
-Environmental groups like the Greater Yellowstone Coalition are calling on states to more tightly regulate a buffer zone around the park to reduce the number of study wolves that are killed.
-        </element>
-        <element type="body" x="600" y="100">
-“Those collared wolves provide vital information, particularly with regard to elk,” said Chris Colligan, a wildlife advocate for the coalition. The collars, he said, provide key data helping explain why certain elk herds have been depleted by wolves while others have not — an issue of great concern to both hunters and biologists.
-Adding to the tumult is the fact that several of the dead wolves came from Yellowstone’s most popular packs, including one that roams the Lamar Valley, a frequent destination for tour guides and wildlife photographers.
-Nathan Varley, co-owner of Yellowstone Wolf Tracker tours in Gardiner, Mont., has taken scores of hopeful wolf-watchers to see the Lamar Canyon pack, and says that the majority of his company’s $500,000 gross income comes from tourists like these.
-“I estimate that a half-million people saw 754,” he said. “It was one of the million dollar wolves that was taken out of the population.”
-While Yellowstone park officials can’t say exactly how many visitors saw wolf 754, most of the animal’s life played out in front of binoculars and telescopic lenses inside a park visited by more than 3 million people annually. Doug McLaughlin, 65, a lodge manager in Silver Gate, Mont., watched 754 mature from a clumsy yearling into a regal sentinel with a sonorous howl who scoured the valley floor to rescue lost pups.
-Mr. McLaughlin received a call from a friend in Wyoming’s Sunlight Basin early one mid-November morning saying that 754’s tracking collar was emitting a mortality signal.
-“There were a lot of tears,” he said.
-        </element>
-
-        <element type="link" x="0" y="500" linkTo="4">Yellowstone</element>
-        <element type="link" x="300" y="500" linkTo="4">Winter</element>
-        <element type="link" x="600" y="500" linkTo="4">Blackadder</element>
+    <!--page met foto 'antarctica'-->
+    <page>
+        <element type="backgroundPhoto">antarctica.jpg</element>
     </page>
 
 
-<!--page met subtitle-->
+    <!--page met subtitle 'Winter'-->
     <page>
-        <element type="subtitle" y="0">The Worst Winter in the World</element>
-        <!--<element type="backgroundPhoto">winter.jpg</element>-->
+        <element type="subtitle" x='0' y="0">The Worst Winter in the World</element>
+        <element type="backgroundPhoto">winter.jpg</element>
 
         <element type="intro" x="0" y='60'>
             Alexander Kumar, a physician and researcher at Concordia Station, wrote from Antarctica, where he conducted scientific experiments for the European Space Agency’s human spaceflight program. This is his last post.
@@ -190,7 +138,7 @@ Mr. McLaughlin received a call from a friend in Wyoming’s Sunlight Basin early
             A few last tricks are played on you as you try to leave Antarctica. Almost as a last jest to remind you that nature is in control, the continent threw up several delays to our planned departure. For a while, it was a groundhog day of sorts with flights being planned and then canceled because of bad weather.
             Finally we were on the runway for take-off. I caught a glimpse of Concordia Station, perched on its grand white plateau, before it disappeared from sight. Then it was three and a half hours of slow descent to sea level to an Italian coastal station.
             After some time, a fellow crew member, peering out of the window of the 1940s DC-3 Basler, excitedly exclaimed, “There’s something.” And there was — a mountain, something we had not seen while living on the blank canvas high up at our isolated base.
-            Soon more mountains, valleys and bare rock face followed. Then we saw what appeared as a mirage — a strip of glistening, sparkling sea in
+            Soon more mountains, valleys and bare rock face followed. Then we saw what appeared as a mirage — a strip of glistening, sparkling sea
         </element>
         <element type="body" x='300' y='60'>
             One more day’s delay, and we were finally boarding our flight to New Zealand. This time there were just five passengers on a South African Hercules C-130 aircraft.
@@ -215,414 +163,7 @@ Mr. McLaughlin received a call from a friend in Wyoming’s Sunlight Basin early
             I soon arrived in Hong Kong. At the Hong Kong Royal Geographical Society, I joined others in making presentations about our experiences.
         </element>
 
-        <element type="link" position="3" linkTo="2">winter</element>
-    </page>
-
-
-
-    <page>
-        <element type="title">I have a cunning plan!</element>
-        <!--<element type="backgroundPhoto"></element>-->
-
-        <!--<element type="intro">
-
-        </element>
-
-        <element type="body">
-
-        </element>
-
-        <element type="link" position="3" linkTo="2"></element>-->
-    </page>
-
-    <page>
-        <!--<element type="title">I have a cunning plan!</element>-->
-        <element type="backgroundPhoto">blackadder.jpg</element>
-
-        <!--<element type="intro">
-
-        </element>
-
-        <element type="body">
-
-        </element>
-
-        <element type="link" position="3" linkTo="2"></element>-->
-    </page>
-
-    <page>
-        <!--<element type="title">Re-Entry After the ‘Worst Winter in the World’</element>-->
-        <!--<element type="backgroundPhoto">winter.jpg</element>-->
-
-        <element type="intro">
-            Alexander Kumar, a physician and researcher at Concordia Station, wrote from Antarctica, where he conducted scientific experiments for the European Space Agency’s human spaceflight program. This is his last post.
-        </element>
-        <element type="body">
-            A few last tricks are played on you as you try to leave Antarctica. Almost as a last jest to remind you that nature is in control, the continent threw up several delays to our planned departure. For a while, it was a groundhog day of sorts with flights being planned and then canceled because of bad weather.
-            Finally we were on the runway for take-off. I caught a glimpse of Concordia Station, perched on its grand white plateau, before it disappeared from sight. Then it was three and a half hours of slow descent to sea level to an Italian coastal station.
-            After some time, a fellow crew member, peering out of the window of the 1940s DC-3 Basler, excitedly exclaimed, “There’s something.” And there was — a mountain, something we had not seen while living on the blank canvas high up at our isolated base.
-            Soon more mountains, valleys and bare rock face followed. Then we saw what appeared as a mirage — a strip of glistening, sparkling sea in the distance as we landed on the blue ice runway.
-            As I left the plane, I took a long, deep breath. Then, finding my movement unrestricted, I took a little jog. There was oxygen again, served on a salty sea breeze.
-
-            I picked up some earth and let it run through my fingers. A coastal wind felt strange as it caught my long winter beard. We headed in for dinner and later to our beds, but our altered day-night cycles drew a colleague and me out at 3:30 a.m., our reward a wonderful sunrise.
-            One more day’s delay, and we were finally boarding our flight to New Zealand. This time there were just five passengers on a South African Hercules C-130 aircraft.
-            The wheels kissed Antarctica a gentle goodbye as we lifted off in style, on board one of the greatest flying machines ever created.
-            We flew over Antarctica for nearly an hour of our eight-hour long flight back to civilization. As we swung a hard right, I watched as the ice disappeared from sight. The sun had set, and eventually all was dark until a few lights appeared below — signs of civilization. There were shouts of joy, cheers and hugs as we landed. My mobile phone buzzed, you have a message, then another and then many more.
-            At the hotel, I stood at the door until I remembered I needed a key. I hadn’t used a key all year — after all, what was the point of locking your front door when we hadn’t expected any visitors while living buried deep in Antarctica, our nearest neighbors astronauts orbiting in space?
-            My partner had flown out to meet me and helped me re-adapt — crossing busy roads, ordering food and more. One week off-continent, and things still take me by surprise.
-
-            I stood in a supermarket with aisles stacked as high as my previous home on the ice. People buzzed around, busily fishing for supplies, as I gazed shell-shocked and unable to move.
-            Jack, a local hairdresser, chopped away my Antarctic beard and hair, which had been a science experiment to see how long they could grow over a year. The process of “de-bearding” was a traumatic experience in itself, but I soon began to recognize my former self in the mirror. Every so often I caught myself reaching and gesturing for my absent beard, like a phantom limb.
-            I sat in a mall sipping a skinny latte coffee, awkwardly selected from a menu as long as my arm. For a year I had only been able to order “a coffee.” There was choice again, alongside trees, people, cars, noise and smells. Initially I was overwhelmed, and my perception and perspective flooded — this was sensory overload. It was as if I were a child again, learning things for the first time, except with prior memories. I felt free.
-            To escape from the city, we hired a convertible and drove into rural New Zealand. Surrounded by every green I could ever imagine, and after an hour of sunshine with the wind through my hair, it rained heavier than I could remember, soaking me through to the bone. It felt wonderful.
-            Driving through the magnificent New Zealand countryside, I felt as if I were in one of my Antarctic mid-winter dreams. Burdened by luxurious excess in all my senses, I shuddered at the prospect of waking up, living again in black and white in the height of winter.
-            I realized this dramatic change when returning from long periods of isolation is just as interesting as the isolation itself, involving a period of rehabilitation to “normal living.” For some the landing can be rough and off-target.
-            In remote environments, people undergo a well-studied change and can develop “winter-over syndrome,” which can involve depression, irritability, anger, insomnia, inability to concentrate and avoidance tactics — not to mention the ‘1,000-yard (Antarctic) stare.” I saw it and felt it; no one in our crew was spared.
-            However, comparatively little has been done to study the minds and processes of those undergoing re-adaptation when returning to civilization after such periods, though it often manifests itself with similar symptoms. I have termed this process of (mal)adaptation “re-entry syndrome.”
-            Those experiencing it have an overbearing feeling of disconnection, uncoupling and detachment from civilization and “normal life.” They can also suffer avoidance and social withdrawal, seeking solitude and seclusion, alongside troubled sleep and dreams, similar to Post Traumatic Stress Disorder. It is almost as if we had been stripped to our raw forms by the Antarctic winter, left protected only by our ingrained behaviors.
-            I have heard many stories of “Polies” (South Pole winter-over members) disappearing into Asia for months or choosing to live behind closed hotel room doors before again answering the call of the Great White Wild for another winter. In fact, I will be back on the continent after a month at home, but only for the tourist’s summer season — a mild experience compared with wintering.
-            Meanwhile, my memories return, and I am reassured that all has not been lost. It is as if my own internal hard-drive is being successfully recovered and rebooted.
-            I soon arrived in Hong Kong. At the Hong Kong Royal Geographical Society, I joined others in making presentations about our experiences.
-        </element>
-        <!--<element type="link" position="3" linkTo="2">winter</element>-->
-    </page>
-
-    <page>
-        <element type="title">Wolf Hunts Near Yellowstone</element>
-        <element type="backgroundPhoto">wolf.jpg</element>
-
-        <element type="intro">The bullet that killed one of Yellowstone National Park’s most popular wolves was felt halfway around the world by Gwen Deniel, of Brittany, France. She cried when she learned that the animal, which wore a research collar, was shot by a hunter in Wyoming’s Shoshone National Forest, a few miles outside the park boundary.
-            The deaths of celebrity wolves like the one designated No. 754 and others collared for research purposes are the latest flash point in a nearly two-decade standoff.
-            It pits biologists and animal lovers like Ms. Deniel, who spends her vacation days and dollars visiting Yellowstone to see the reintroduced wolf packs of the Northern Rockies, against local ranchers and hunters who see the predators as natural enemies that menace and kill either their livestock or the trophy game they hunt.
-            Even as some people try to bridge the difference, each new round of wolf hunts revives the old tensions.
-        </element>
-
-        <element type="body">This fall, the first wolf hunts in decades were authorized in Wyoming. Ranchers and hunters say the harvests are a way to protect their livelihoods. Wildlife advocates like Ms. Deniel are concerned that the hunts are having detrimental effects on both a thriving tourist industry and scientific studies that cost tens of thousands of dollars and provide data on wolf behavior and biology that is useful to all.
-            And, as with many wildlife issues, emotions come into play. “He was so beautiful, so loyal,” said Ms. Deniel, who has spent about $4,000 each of the last three summers traveling to northeast Yellowstone’s sweeping Lamar Valley to admire No. 754, a highly visible wolf with tawny eyes and a grizzled, jet coat. Her attitude is widely shared, but also widely disparaged by those who live and work in what is now wolf country.
-            But for Yellowstone scientists, the loss of the collared wolves isn’t so much a political or an emotional issue, as an issue of the viability of wildlife science.
-            They are particularly frustrated at the elimination of five wolves outfitted with tracking collars that had spent the majority of their time inside the park border, as well as two others that roamed had through the park though spent much of their time outside.
-            “Does it hurt our research? Yes, very much so,” said Douglas W. Smith, senior wildlife biologist for Yellowstone. “It’s a huge blow logistically and scientifically.”
-            Dr. Smith recently hired three new researchers to study one pack that could be tracked by a collared wolf. Then that wolf was shot.
-            “I probably wouldn’t have done the hiring if I had known that wolf wasn’t going to be there,” he said.
-            While killing collared wolves is legal, Ron Aasheim, a spokesman for Montana Fish, Wildlife and Parks, said that if a hunter can see that an animal has a collar, and if there is an option to take another, “we would encourage them to shoot the non-collared animal.”
-            John Hurley, a representative for Wyoming Game &amp; Fish, said that with regard to hunters killing collared wolves, “we would prefer they didn’t, because that’s how we keep track of them.”
-            Of the nine or 10 wolves killed by hunters this year that spent some or most of their time inside Yellowstone Park, seven wore collars, compared with fewer than three in 10 wolves that wear collars in the general park population, biologists say. Also, of 11 wolves in the newly formed Junction Butte pack, only the collared wolf was shot.
-            While collared wolves roam throughout the Rockies, Kim Beam, a member of the Montana-based wildlife advocacy group Wolves of the Rockies, says that around Yellowstone she is “frightened that collared wolves are being targeted.”
-            Inga Cabral, co-owner of Russell Pond Outfitters, which leads wolf hunts in the Idaho Panhandle northwest of Yellowstone, said thus far her organization has opted not to shoot any collared animals, but added, “I wouldn’t fault anyone for doing what’s legal.”
-            Other hunters call for culling wolves at any opportunity.
-            “I think it’s necessary that we be able to hunt any wolf whether it’s collared or not,” said Keith Kubista, president of Montana Sportsmen for Fish and Wildlife, a group that is as fervently in favor of hunting wolves as Ms. Deniel is against it.
-            David Hallac, chief of the Yellowstone Center for Resources, quantified the loss as “not just the cost of the collar, but the cost of getting the collar on the animal,” which includes biologists’ time, plus a helicopter and crew. Two of the dead wolves’ collars had GPS technology; they cost $4,000 each.
-            Those two collars, plus three others, were returned. Two collars, including the one worn by wolf 754, have not yet been returned, officials said. Ray Mora, 71, of Dunedin, Fla., who has donated more than $10,000 in the last few years to help wolf biologists purchase research collars, calls the killings “like going back to square one.”
-            Biologists say that in Yellowstone, where wolves were extirpated in the early 1900s and then reintroduced in 1995, there are 88 left, part of an overall Northern Rockies wolf population estimated earlier this year at 1,774, including 748 in Idaho, 653 in Montana, 328 in Wyoming, plus a few in Washington and Oregon.
-            Wolf harvests were litigated for years until Congress, under pressure from hunters and ranchers who felt that environmental lobbyists disregarded data saying that wolf populations were sufficiently robust, removed the animal from the Endangered Species List in 2011. Montana and Idaho manage wolf quotas by region, but in most of Wyoming wolves are classified as predators that can be shot on sight. Several environmental groups are suing to change that law.
-            “Some of the things that we’re seeing is maybe an outlet of some frustration from some folks who feel like wolf management should’ve started sooner,” said Ryan Benson, founder of Big Game Forever, a Utah-based organization that lobbied for wolves to be removed from the Endangered Species list.
-            Four of the collared wolves were shot in Montana, two in Idaho and one in Wyoming. Some conservationists are still worried that wolf numbers in the Northern Rockies remain too small to provide enough genetic exchange to ensure the species’ long-term survival.
-            While there is widespread support for exterminating any wolf that kills a domestic animal, which Jim Macgagna, the executive vice president of theWyoming Stockgrowers Association said can cost a rancher anywhere from $800 to $1,500, hunters and other wildlife advocates have clashed over shooting wolves to raise populations of big game like moose, bighorn sheep and, especially, elk.
-            Environmental groups like the Greater Yellowstone Coalition are calling on states to more tightly regulate a buffer zone around the park to reduce the number of study wolves that are killed.
-            “Those collared wolves provide vital information, particularly with regard to elk,” said Chris Colligan, a wildlife advocate for the coalition. The collars, he said, provide key data helping explain why certain elk herds have been depleted by wolves while others have not — an issue of great concern to both hunters and biologists.
-            Adding to the tumult is the fact that several of the dead wolves came from Yellowstone’s most popular packs, including one that roams the Lamar Valley, a frequent destination for tour guides and wildlife photographers.
-            Nathan Varley, co-owner of Yellowstone Wolf Tracker tours in Gardiner, Mont., has taken scores of hopeful wolf-watchers to see the Lamar Canyon pack, and says that the majority of his company’s $500,000 gross income comes from tourists like these.
-            “I estimate that a half-million people saw 754,” he said. “It was one of the million dollar wolves that was taken out of the population.”
-            While Yellowstone park officials can’t say exactly how many visitors saw wolf 754, most of the animal’s life played out in front of binoculars and telescopic lenses inside a park visited by more than 3 million people annually. Doug McLaughlin, 65, a lodge manager in Silver Gate, Mont., watched 754 mature from a clumsy yearling into a regal sentinel with a sonorous howl who scoured the valley floor to rescue lost pups.
-            Mr. McLaughlin received a call from a friend in Wyoming’s Sunlight Basin early one mid-November morning saying that 754’s tracking collar was emitting a mortality signal.
-            “There were a lot of tears,” he said.
-        </element>
-
-        <element type="link" position="1" linkTo="4">Yellowstone</element>
-    </page>
-
-    <page>
-        <element type="title">The Worst Winter in the World</element>
-        <!--<element type="backgroundPhoto">winter.jpg</element>-->
-
-        <element type="intro">
-            Alexander Kumar, a physician and researcher at Concordia Station, wrote from Antarctica, where he conducted scientific experiments for the European Space Agency’s human spaceflight program. This is his last post.
-        </element>
-        <element type="body">
-            A few last tricks are played on you as you try to leave Antarctica. Almost as a last jest to remind you that nature is in control, the continent threw up several delays to our planned departure. For a while, it was a groundhog day of sorts with flights being planned and then canceled because of bad weather.
-            Finally we were on the runway for take-off. I caught a glimpse of Concordia Station, perched on its grand white plateau, before it disappeared from sight. Then it was three and a half hours of slow descent to sea level to an Italian coastal station.
-            After some time, a fellow crew member, peering out of the window of the 1940s DC-3 Basler, excitedly exclaimed, “There’s something.” And there was — a mountain, something we had not seen while living on the blank canvas high up at our isolated base.
-            Soon more mountains, valleys and bare rock face followed. Then we saw what appeared as a mirage — a strip of glistening, sparkling sea in the distance as we landed on the blue ice runway.
-            As I left the plane, I took a long, deep breath. Then, finding my movement unrestricted, I took a little jog. There was oxygen again, served on a salty sea breeze.
-
-            I picked up some earth and let it run through my fingers. A coastal wind felt strange as it caught my long winter beard. We headed in for dinner and later to our beds, but our altered day-night cycles drew a colleague and me out at 3:30 a.m., our reward a wonderful sunrise.
-            One more day’s delay, and we were finally boarding our flight to New Zealand. This time there were just five passengers on a South African Hercules C-130 aircraft.
-            The wheels kissed Antarctica a gentle goodbye as we lifted off in style, on board one of the greatest flying machines ever created.
-            We flew over Antarctica for nearly an hour of our eight-hour long flight back to civilization. As we swung a hard right, I watched as the ice disappeared from sight. The sun had set, and eventually all was dark until a few lights appeared below — signs of civilization. There were shouts of joy, cheers and hugs as we landed. My mobile phone buzzed, you have a message, then another and then many more.
-            At the hotel, I stood at the door until I remembered I needed a key. I hadn’t used a key all year — after all, what was the point of locking your front door when we hadn’t expected any visitors while living buried deep in Antarctica, our nearest neighbors astronauts orbiting in space?
-            My partner had flown out to meet me and helped me re-adapt — crossing busy roads, ordering food and more. One week off-continent, and things still take me by surprise.
-
-            I stood in a supermarket with aisles stacked as high as my previous home on the ice. People buzzed around, busily fishing for supplies, as I gazed shell-shocked and unable to move.
-            Jack, a local hairdresser, chopped away my Antarctic beard and hair, which had been a science experiment to see how long they could grow over a year. The process of “de-bearding” was a traumatic experience in itself, but I soon began to recognize my former self in the mirror. Every so often I caught myself reaching and gesturing for my absent beard, like a phantom limb.
-            I sat in a mall sipping a skinny latte coffee, awkwardly selected from a menu as long as my arm. For a year I had only been able to order “a coffee.” There was choice again, alongside trees, people, cars, noise and smells. Initially I was overwhelmed, and my perception and perspective flooded — this was sensory overload. It was as if I were a child again, learning things for the first time, except with prior memories. I felt free.
-            To escape from the city, we hired a convertible and drove into rural New Zealand. Surrounded by every green I could ever imagine, and after an hour of sunshine with the wind through my hair, it rained heavier than I could remember, soaking me through to the bone. It felt wonderful.
-            Driving through the magnificent New Zealand countryside, I felt as if I were in one of my Antarctic mid-winter dreams. Burdened by luxurious excess in all my senses, I shuddered at the prospect of waking up, living again in black and white in the height of winter.
-            I realized this dramatic change when returning from long periods of isolation is just as interesting as the isolation itself, involving a period of rehabilitation to “normal living.” For some the landing can be rough and off-target.
-            In remote environments, people undergo a well-studied change and can develop “winter-over syndrome,” which can involve depression, irritability, anger, insomnia, inability to concentrate and avoidance tactics — not to mention the ‘1,000-yard (Antarctic) stare.” I saw it and felt it; no one in our crew was spared.
-            However, comparatively little has been done to study the minds and processes of those undergoing re-adaptation when returning to civilization after such periods, though it often manifests itself with similar symptoms. I have termed this process of (mal)adaptation “re-entry syndrome.”
-            Those experiencing it have an overbearing feeling of disconnection, uncoupling and detachment from civilization and “normal life.” They can also suffer avoidance and social withdrawal, seeking solitude and seclusion, alongside troubled sleep and dreams, similar to Post Traumatic Stress Disorder. It is almost as if we had been stripped to our raw forms by the Antarctic winter, left protected only by our ingrained behaviors.
-            I have heard many stories of “Polies” (South Pole winter-over members) disappearing into Asia for months or choosing to live behind closed hotel room doors before again answering the call of the Great White Wild for another winter. In fact, I will be back on the continent after a month at home, but only for the tourist’s summer season — a mild experience compared with wintering.
-            Meanwhile, my memories return, and I am reassured that all has not been lost. It is as if my own internal hard-drive is being successfully recovered and rebooted.
-            I soon arrived in Hong Kong. At the Hong Kong Royal Geographical Society, I joined others in making presentations about our experiences. Hong Kong was wonderfully tiring; I was inundated there by questions from curious young minds. I had plunged into the deep end after a year of treading water, and the contrasts were vivid: Above me, skyscrapers towered precariously on misty hills; downwards, I was reminded that I still faced the challenge of re-learning to tie my shoelaces.
-            The rain fell hard and fast, and I dug my hands into my jacket and walked off into a sea of people. It was a long way from the Great White Silence.
-            In years to come, those of us who had endured the past winter will recall it, in the quieter moments back in our normal lives, as one of the world’s greatest, most challenging and peculiar journeys. I have called it “The Worst Winter in the World.” Make no mistake: on Planet Concordia, you can leave feeling as if you had fought in a war — against Antarctica, for survival. But in time, only the best parts will be remembered.
-            Back in Britain, as I close my laptop and this blog, my thoughts drift back across the Antarctic Plateau. I close my eyes, remembering feeling as tiny as an ant, hypoxic, in minus-80 degrees Celsius in the perpetual darkness under the Milky Way, as Aurora danced above me the tango of the universe.
-            It was Bob Dylan who helped me, the lone station doctor, through the difficult winter. In particular, the lyrics of “Mr. Tambourine Man” had rung true:
-            “Yes, to dance beneath the diamond sky with one hand waving free,
-            Silhouetted by the sea, circled by the circus sands,
-            With all memory and fate driven deep beneath the waves,
-            Let me forget about today until tomorrow.”
-            I think of Louis Armstrong. Sure it may not be a perfect world, but “what a wonderful world,” indeed.
-            Thank you for listening and sharing my journey.
-        </element>
-
-        <element type="link" position="3" linkTo="2">winter</element>
-    </page>
-
-    <page>
-        <element type="title">I have a cunning plan!</element>
-        <!--<element type="backgroundPhoto"></element>-->
-
-        <!--<element type="intro">
-
-        </element>
-
-        <element type="body">
-
-        </element>
-
-        <element type="link" position="3" linkTo="2"></element>-->
-    </page>
-
-    <page>
-        <!--<element type="title">I have a cunning plan!</element>-->
-        <element type="backgroundPhoto">blackadder.jpg</element>
-
-        <!--<element type="intro">
-
-        </element>
-
-        <element type="body">
-
-        </element>
-
-        <element type="link" position="3" linkTo="2"></element>-->
-    </page>
-
-    <page>
-        <!--<element type="title">Re-Entry After the ‘Worst Winter in the World’</element>-->
-        <!--<element type="backgroundPhoto">winter.jpg</element>-->
-
-        <element type="intro">
-            Alexander Kumar, a physician and researcher at Concordia Station, wrote from Antarctica, where he conducted scientific experiments for the European Space Agency’s human spaceflight program. This is his last post.
-        </element>
-        <element type="body">
-            A few last tricks are played on you as you try to leave Antarctica. Almost as a last jest to remind you that nature is in control, the continent threw up several delays to our planned departure. For a while, it was a groundhog day of sorts with flights being planned and then canceled because of bad weather.
-            Finally we were on the runway for take-off. I caught a glimpse of Concordia Station, perched on its grand white plateau, before it disappeared from sight. Then it was three and a half hours of slow descent to sea level to an Italian coastal station.
-            After some time, a fellow crew member, peering out of the window of the 1940s DC-3 Basler, excitedly exclaimed, “There’s something.” And there was — a mountain, something we had not seen while living on the blank canvas high up at our isolated base.
-            Soon more mountains, valleys and bare rock face followed. Then we saw what appeared as a mirage — a strip of glistening, sparkling sea in the distance as we landed on the blue ice runway.
-            As I left the plane, I took a long, deep breath. Then, finding my movement unrestricted, I took a little jog. There was oxygen again, served on a salty sea breeze.
-
-            I picked up some earth and let it run through my fingers. A coastal wind felt strange as it caught my long winter beard. We headed in for dinner and later to our beds, but our altered day-night cycles drew a colleague and me out at 3:30 a.m., our reward a wonderful sunrise.
-            One more day’s delay, and we were finally boarding our flight to New Zealand. This time there were just five passengers on a South African Hercules C-130 aircraft.
-            The wheels kissed Antarctica a gentle goodbye as we lifted off in style, on board one of the greatest flying machines ever created.
-            We flew over Antarctica for nearly an hour of our eight-hour long flight back to civilization. As we swung a hard right, I watched as the ice disappeared from sight. The sun had set, and eventually all was dark until a few lights appeared below — signs of civilization. There were shouts of joy, cheers and hugs as we landed. My mobile phone buzzed, you have a message, then another and then many more.
-            At the hotel, I stood at the door until I remembered I needed a key. I hadn’t used a key all year — after all, what was the point of locking your front door when we hadn’t expected any visitors while living buried deep in Antarctica, our nearest neighbors astronauts orbiting in space?
-            My partner had flown out to meet me and helped me re-adapt — crossing busy roads, ordering food and more. One week off-continent, and things still take me by surprise.
-
-            I stood in a supermarket with aisles stacked as high as my previous home on the ice. People buzzed around, busily fishing for supplies, as I gazed shell-shocked and unable to move.
-            Jack, a local hairdresser, chopped away my Antarctic beard and hair, which had been a science experiment to see how long they could grow over a year. The process of “de-bearding” was a traumatic experience in itself, but I soon began to recognize my former self in the mirror. Every so often I caught myself reaching and gesturing for my absent beard, like a phantom limb.
-            I sat in a mall sipping a skinny latte coffee, awkwardly selected from a menu as long as my arm. For a year I had only been able to order “a coffee.” There was choice again, alongside trees, people, cars, noise and smells. Initially I was overwhelmed, and my perception and perspective flooded — this was sensory overload. It was as if I were a child again, learning things for the first time, except with prior memories. I felt free.
-            To escape from the city, we hired a convertible and drove into rural New Zealand. Surrounded by every green I could ever imagine, and after an hour of sunshine with the wind through my hair, it rained heavier than I could remember, soaking me through to the bone. It felt wonderful.
-            Driving through the magnificent New Zealand countryside, I felt as if I were in one of my Antarctic mid-winter dreams. Burdened by luxurious excess in all my senses, I shuddered at the prospect of waking up, living again in black and white in the height of winter.
-            I realized this dramatic change when returning from long periods of isolation is just as interesting as the isolation itself, involving a period of rehabilitation to “normal living.” For some the landing can be rough and off-target.
-            In remote environments, people undergo a well-studied change and can develop “winter-over syndrome,” which can involve depression, irritability, anger, insomnia, inability to concentrate and avoidance tactics — not to mention the ‘1,000-yard (Antarctic) stare.” I saw it and felt it; no one in our crew was spared.
-            However, comparatively little has been done to study the minds and processes of those undergoing re-adaptation when returning to civilization after such periods, though it often manifests itself with similar symptoms. I have termed this process of (mal)adaptation “re-entry syndrome.”
-            Those experiencing it have an overbearing feeling of disconnection, uncoupling and detachment from civilization and “normal life.” They can also suffer avoidance and social withdrawal, seeking solitude and seclusion, alongside troubled sleep and dreams, similar to Post Traumatic Stress Disorder. It is almost as if we had been stripped to our raw forms by the Antarctic winter, left protected only by our ingrained behaviors.
-            I have heard many stories of “Polies” (South Pole winter-over members) disappearing into Asia for months or choosing to live behind closed hotel room doors before again answering the call of the Great White Wild for another winter. In fact, I will be back on the continent after a month at home, but only for the tourist’s summer season — a mild experience compared with wintering.
-            Meanwhile, my memories return, and I am reassured that all has not been lost. It is as if my own internal hard-drive is being successfully recovered and rebooted.
-            I soon arrived in Hong Kong. At the Hong Kong Royal Geographical Society, I joined others in making presentations about our experiences. Hong Kong was wonderfully tiring; I was inundated there by questions from curious young minds. I had plunged into the deep end after a year of treading water, and the contrasts were vivid: Above me, skyscrapers towered precariously on misty hills; downwards, I was reminded that I still faced the challenge of re-learning to tie my shoelaces.
-            The rain fell hard and fast, and I dug my hands into my jacket and walked off into a sea of people. It was a long way from the Great White Silence.
-            In years to come, those of us who had endured the past winter will recall it, in the quieter moments back in our normal lives, as one of the world’s greatest, most challenging and peculiar journeys. I have called it “The Worst Winter in the World.” Make no mistake: on Planet Concordia, you can leave feeling as if you had fought in a war — against Antarctica, for survival. But in time, only the best parts will be remembered.
-            Back in Britain, as I close my laptop and this blog, my thoughts drift back across the Antarctic Plateau. I close my eyes, remembering feeling as tiny as an ant, hypoxic, in minus-80 degrees Celsius in the perpetual darkness under the Milky Way, as Aurora danced above me the tango of the universe.
-            It was Bob Dylan who helped me, the lone station doctor, through the difficult winter. In particular, the lyrics of “Mr. Tambourine Man” had rung true:
-            “Yes, to dance beneath the diamond sky with one hand waving free,
-            Silhouetted by the sea, circled by the circus sands,
-            With all memory and fate driven deep beneath the waves,
-            Let me forget about today until tomorrow.”
-            I think of Louis Armstrong. Sure it may not be a perfect world, but “what a wonderful world,” indeed.
-            Thank you for listening and sharing my journey.
-        </element>
-        <!--<element type="link" position="3" linkTo="2">winter</element>-->
-    </page>
-
-    <page>
-        <element type="title">Wolf Hunts Near Yellowstone</element>
-        <element type="backgroundPhoto">wolf.jpg</element>
-
-        <element type="intro">The bullet that killed one of Yellowstone National Park’s most popular wolves was felt halfway around the world by Gwen Deniel, of Brittany, France. She cried when she learned that the animal, which wore a research collar, was shot by a hunter in Wyoming’s Shoshone National Forest, a few miles outside the park boundary.
-            The deaths of celebrity wolves like the one designated No. 754 and others collared for research purposes are the latest flash point in a nearly two-decade standoff.
-            It pits biologists and animal lovers like Ms. Deniel, who spends her vacation days and dollars visiting Yellowstone to see the reintroduced wolf packs of the Northern Rockies, against local ranchers and hunters who see the predators as natural enemies that menace and kill either their livestock or the trophy game they hunt.
-            Even as some people try to bridge the difference, each new round of wolf hunts revives the old tensions.
-        </element>
-
-        <element type="body">This fall, the first wolf hunts in decades were authorized in Wyoming. Ranchers and hunters say the harvests are a way to protect their livelihoods. Wildlife advocates like Ms. Deniel are concerned that the hunts are having detrimental effects on both a thriving tourist industry and scientific studies that cost tens of thousands of dollars and provide data on wolf behavior and biology that is useful to all.
-            And, as with many wildlife issues, emotions come into play. “He was so beautiful, so loyal,” said Ms. Deniel, who has spent about $4,000 each of the last three summers traveling to northeast Yellowstone’s sweeping Lamar Valley to admire No. 754, a highly visible wolf with tawny eyes and a grizzled, jet coat. Her attitude is widely shared, but also widely disparaged by those who live and work in what is now wolf country.
-            But for Yellowstone scientists, the loss of the collared wolves isn’t so much a political or an emotional issue, as an issue of the viability of wildlife science.
-            They are particularly frustrated at the elimination of five wolves outfitted with tracking collars that had spent the majority of their time inside the park border, as well as two others that roamed had through the park though spent much of their time outside.
-            “Does it hurt our research? Yes, very much so,” said Douglas W. Smith, senior wildlife biologist for Yellowstone. “It’s a huge blow logistically and scientifically.”
-            Dr. Smith recently hired three new researchers to study one pack that could be tracked by a collared wolf. Then that wolf was shot.
-            “I probably wouldn’t have done the hiring if I had known that wolf wasn’t going to be there,” he said.
-            While killing collared wolves is legal, Ron Aasheim, a spokesman for Montana Fish, Wildlife and Parks, said that if a hunter can see that an animal has a collar, and if there is an option to take another, “we would encourage them to shoot the non-collared animal.”
-            John Hurley, a representative for Wyoming Game &amp; Fish, said that with regard to hunters killing collared wolves, “we would prefer they didn’t, because that’s how we keep track of them.”
-            Of the nine or 10 wolves killed by hunters this year that spent some or most of their time inside Yellowstone Park, seven wore collars, compared with fewer than three in 10 wolves that wear collars in the general park population, biologists say. Also, of 11 wolves in the newly formed Junction Butte pack, only the collared wolf was shot.
-            While collared wolves roam throughout the Rockies, Kim Beam, a member of the Montana-based wildlife advocacy group Wolves of the Rockies, says that around Yellowstone she is “frightened that collared wolves are being targeted.”
-            Inga Cabral, co-owner of Russell Pond Outfitters, which leads wolf hunts in the Idaho Panhandle northwest of Yellowstone, said thus far her organization has opted not to shoot any collared animals, but added, “I wouldn’t fault anyone for doing what’s legal.”
-            Other hunters call for culling wolves at any opportunity.
-            “I think it’s necessary that we be able to hunt any wolf whether it’s collared or not,” said Keith Kubista, president of Montana Sportsmen for Fish and Wildlife, a group that is as fervently in favor of hunting wolves as Ms. Deniel is against it.
-            David Hallac, chief of the Yellowstone Center for Resources, quantified the loss as “not just the cost of the collar, but the cost of getting the collar on the animal,” which includes biologists’ time, plus a helicopter and crew. Two of the dead wolves’ collars had GPS technology; they cost $4,000 each.
-            Those two collars, plus three others, were returned. Two collars, including the one worn by wolf 754, have not yet been returned, officials said. Ray Mora, 71, of Dunedin, Fla., who has donated more than $10,000 in the last few years to help wolf biologists purchase research collars, calls the killings “like going back to square one.”
-            Biologists say that in Yellowstone, where wolves were extirpated in the early 1900s and then reintroduced in 1995, there are 88 left, part of an overall Northern Rockies wolf population estimated earlier this year at 1,774, including 748 in Idaho, 653 in Montana, 328 in Wyoming, plus a few in Washington and Oregon.
-            Wolf harvests were litigated for years until Congress, under pressure from hunters and ranchers who felt that environmental lobbyists disregarded data saying that wolf populations were sufficiently robust, removed the animal from the Endangered Species List in 2011. Montana and Idaho manage wolf quotas by region, but in most of Wyoming wolves are classified as predators that can be shot on sight. Several environmental groups are suing to change that law.
-            “Some of the things that we’re seeing is maybe an outlet of some frustration from some folks who feel like wolf management should’ve started sooner,” said Ryan Benson, founder of Big Game Forever, a Utah-based organization that lobbied for wolves to be removed from the Endangered Species list.
-            Four of the collared wolves were shot in Montana, two in Idaho and one in Wyoming. Some conservationists are still worried that wolf numbers in the Northern Rockies remain too small to provide enough genetic exchange to ensure the species’ long-term survival.
-            While there is widespread support for exterminating any wolf that kills a domestic animal, which Jim Macgagna, the executive vice president of theWyoming Stockgrowers Association said can cost a rancher anywhere from $800 to $1,500, hunters and other wildlife advocates have clashed over shooting wolves to raise populations of big game like moose, bighorn sheep and, especially, elk.
-            Environmental groups like the Greater Yellowstone Coalition are calling on states to more tightly regulate a buffer zone around the park to reduce the number of study wolves that are killed.
-            “Those collared wolves provide vital information, particularly with regard to elk,” said Chris Colligan, a wildlife advocate for the coalition. The collars, he said, provide key data helping explain why certain elk herds have been depleted by wolves while others have not — an issue of great concern to both hunters and biologists.
-            Adding to the tumult is the fact that several of the dead wolves came from Yellowstone’s most popular packs, including one that roams the Lamar Valley, a frequent destination for tour guides and wildlife photographers.
-            Nathan Varley, co-owner of Yellowstone Wolf Tracker tours in Gardiner, Mont., has taken scores of hopeful wolf-watchers to see the Lamar Canyon pack, and says that the majority of his company’s $500,000 gross income comes from tourists like these.
-            “I estimate that a half-million people saw 754,” he said. “It was one of the million dollar wolves that was taken out of the population.”
-            While Yellowstone park officials can’t say exactly how many visitors saw wolf 754, most of the animal’s life played out in front of binoculars and telescopic lenses inside a park visited by more than 3 million people annually. Doug McLaughlin, 65, a lodge manager in Silver Gate, Mont., watched 754 mature from a clumsy yearling into a regal sentinel with a sonorous howl who scoured the valley floor to rescue lost pups.
-            Mr. McLaughlin received a call from a friend in Wyoming’s Sunlight Basin early one mid-November morning saying that 754’s tracking collar was emitting a mortality signal.
-            “There were a lot of tears,” he said.
-        </element>
-
-        <element type="link" position="1" linkTo="4">Yellowstone</element>
-    </page>
-
-    <page>
-        <element type="title">The Worst Winter in the World</element>
-        <!--<element type="backgroundPhoto">winter.jpg</element>-->
-
-        <element type="intro">
-            Alexander Kumar, a physician and researcher at Concordia Station, wrote from Antarctica, where he conducted scientific experiments for the European Space Agency’s human spaceflight program. This is his last post.
-        </element>
-        <element type="body">
-            A few last tricks are played on you as you try to leave Antarctica. Almost as a last jest to remind you that nature is in control, the continent threw up several delays to our planned departure. For a while, it was a groundhog day of sorts with flights being planned and then canceled because of bad weather.
-            Finally we were on the runway for take-off. I caught a glimpse of Concordia Station, perched on its grand white plateau, before it disappeared from sight. Then it was three and a half hours of slow descent to sea level to an Italian coastal station.
-            After some time, a fellow crew member, peering out of the window of the 1940s DC-3 Basler, excitedly exclaimed, “There’s something.” And there was — a mountain, something we had not seen while living on the blank canvas high up at our isolated base.
-            Soon more mountains, valleys and bare rock face followed. Then we saw what appeared as a mirage — a strip of glistening, sparkling sea in the distance as we landed on the blue ice runway.
-            As I left the plane, I took a long, deep breath. Then, finding my movement unrestricted, I took a little jog. There was oxygen again, served on a salty sea breeze.
-
-            I picked up some earth and let it run through my fingers. A coastal wind felt strange as it caught my long winter beard. We headed in for dinner and later to our beds, but our altered day-night cycles drew a colleague and me out at 3:30 a.m., our reward a wonderful sunrise.
-            One more day’s delay, and we were finally boarding our flight to New Zealand. This time there were just five passengers on a South African Hercules C-130 aircraft.
-            The wheels kissed Antarctica a gentle goodbye as we lifted off in style, on board one of the greatest flying machines ever created.
-            We flew over Antarctica for nearly an hour of our eight-hour long flight back to civilization. As we swung a hard right, I watched as the ice disappeared from sight. The sun had set, and eventually all was dark until a few lights appeared below — signs of civilization. There were shouts of joy, cheers and hugs as we landed. My mobile phone buzzed, you have a message, then another and then many more.
-            At the hotel, I stood at the door until I remembered I needed a key. I hadn’t used a key all year — after all, what was the point of locking your front door when we hadn’t expected any visitors while living buried deep in Antarctica, our nearest neighbors astronauts orbiting in space?
-            My partner had flown out to meet me and helped me re-adapt — crossing busy roads, ordering food and more. One week off-continent, and things still take me by surprise.
-
-            I stood in a supermarket with aisles stacked as high as my previous home on the ice. People buzzed around, busily fishing for supplies, as I gazed shell-shocked and unable to move.
-            Jack, a local hairdresser, chopped away my Antarctic beard and hair, which had been a science experiment to see how long they could grow over a year. The process of “de-bearding” was a traumatic experience in itself, but I soon began to recognize my former self in the mirror. Every so often I caught myself reaching and gesturing for my absent beard, like a phantom limb.
-            I sat in a mall sipping a skinny latte coffee, awkwardly selected from a menu as long as my arm. For a year I had only been able to order “a coffee.” There was choice again, alongside trees, people, cars, noise and smells. Initially I was overwhelmed, and my perception and perspective flooded — this was sensory overload. It was as if I were a child again, learning things for the first time, except with prior memories. I felt free.
-            To escape from the city, we hired a convertible and drove into rural New Zealand. Surrounded by every green I could ever imagine, and after an hour of sunshine with the wind through my hair, it rained heavier than I could remember, soaking me through to the bone. It felt wonderful.
-            Driving through the magnificent New Zealand countryside, I felt as if I were in one of my Antarctic mid-winter dreams. Burdened by luxurious excess in all my senses, I shuddered at the prospect of waking up, living again in black and white in the height of winter.
-            I realized this dramatic change when returning from long periods of isolation is just as interesting as the isolation itself, involving a period of rehabilitation to “normal living.” For some the landing can be rough and off-target.
-            In remote environments, people undergo a well-studied change and can develop “winter-over syndrome,” which can involve depression, irritability, anger, insomnia, inability to concentrate and avoidance tactics — not to mention the ‘1,000-yard (Antarctic) stare.” I saw it and felt it; no one in our crew was spared.
-            However, comparatively little has been done to study the minds and processes of those undergoing re-adaptation when returning to civilization after such periods, though it often manifests itself with similar symptoms. I have termed this process of (mal)adaptation “re-entry syndrome.”
-            Those experiencing it have an overbearing feeling of disconnection, uncoupling and detachment from civilization and “normal life.” They can also suffer avoidance and social withdrawal, seeking solitude and seclusion, alongside troubled sleep and dreams, similar to Post Traumatic Stress Disorder. It is almost as if we had been stripped to our raw forms by the Antarctic winter, left protected only by our ingrained behaviors.
-            I have heard many stories of “Polies” (South Pole winter-over members) disappearing into Asia for months or choosing to live behind closed hotel room doors before again answering the call of the Great White Wild for another winter. In fact, I will be back on the continent after a month at home, but only for the tourist’s summer season — a mild experience compared with wintering.
-            Meanwhile, my memories return, and I am reassured that all has not been lost. It is as if my own internal hard-drive is being successfully recovered and rebooted.
-            I soon arrived in Hong Kong. At the Hong Kong Royal Geographical Society, I joined others in making presentations about our experiences. Hong Kong was wonderfully tiring; I was inundated there by questions from curious young minds. I had plunged into the deep end after a year of treading water, and the contrasts were vivid: Above me, skyscrapers towered precariously on misty hills; downwards, I was reminded that I still faced the challenge of re-learning to tie my shoelaces.
-            The rain fell hard and fast, and I dug my hands into my jacket and walked off into a sea of people. It was a long way from the Great White Silence.
-            In years to come, those of us who had endured the past winter will recall it, in the quieter moments back in our normal lives, as one of the world’s greatest, most challenging and peculiar journeys. I have called it “The Worst Winter in the World.” Make no mistake: on Planet Concordia, you can leave feeling as if you had fought in a war — against Antarctica, for survival. But in time, only the best parts will be remembered.
-            Back in Britain, as I close my laptop and this blog, my thoughts drift back across the Antarctic Plateau. I close my eyes, remembering feeling as tiny as an ant, hypoxic, in minus-80 degrees Celsius in the perpetual darkness under the Milky Way, as Aurora danced above me the tango of the universe.
-            It was Bob Dylan who helped me, the lone station doctor, through the difficult winter. In particular, the lyrics of “Mr. Tambourine Man” had rung true:
-            “Yes, to dance beneath the diamond sky with one hand waving free,
-            Silhouetted by the sea, circled by the circus sands,
-            With all memory and fate driven deep beneath the waves,
-            Let me forget about today until tomorrow.”
-            I think of Louis Armstrong. Sure it may not be a perfect world, but “what a wonderful world,” indeed.
-            Thank you for listening and sharing my journey.
-        </element>
-
-        <element type="link" position="3" linkTo="2">winter</element>
-    </page>
-
-    <page>
-        <element type="title">I have a cunning plan!</element>
-        <!--<element type="backgroundPhoto"></element>-->
-
-        <!--<element type="intro">
-
-        </element>
-
-        <element type="body">
-
-        </element>
-
-        <element type="link" position="3" linkTo="2"></element>-->
-    </page>
-
-    <page>
-        <!--<element type="title">I have a cunning plan!</element>-->
-        <element type="backgroundPhoto">blackadder.jpg</element>
-
-        <!--<element type="intro">
-
-        </element>
-
-        <element type="body">
-
-        </element>
-
-        <element type="link" position="3" linkTo="2"></element>-->
-    </page>
-
-    <page>
-        <!--<element type="title">Re-Entry After the ‘Worst Winter in the World’</element>-->
-        <!--<element type="backgroundPhoto">winter.jpg</element>-->
-
-        <element type="intro">
-            Alexander Kumar, a physician and researcher at Concordia Station, wrote from Antarctica, where he conducted scientific experiments for the European Space Agency’s human spaceflight program. This is his last post.
-        </element>
-        <element type="body">
-            A few last tricks are played on you as you try to leave Antarctica. Almost as a last jest to remind you that nature is in control, the continent threw up several delays to our planned departure. For a while, it was a groundhog day of sorts with flights being planned and then canceled because of bad weather.
-            Finally we were on the runway for take-off. I caught a glimpse of Concordia Station, perched on its grand white plateau, before it disappeared from sight. Then it was three and a half hours of slow descent to sea level to an Italian coastal station.
-            After some time, a fellow crew member, peering out of the window of the 1940s DC-3 Basler, excitedly exclaimed, “There’s something.” And there was — a mountain, something we had not seen while living on the blank canvas high up at our isolated base.
-            Soon more mountains, valleys and bare rock face followed. Then we saw what appeared as a mirage — a strip of glistening, sparkling sea in the distance as we landed on the blue ice runway.
-            As I left the plane, I took a long, deep breath. Then, finding my movement unrestricted, I took a little jog. There was oxygen again, served on a salty sea breeze.
-
-            I picked up some earth and let it run through my fingers. A coastal wind felt strange as it caught my long winter beard. We headed in for dinner and later to our beds, but our altered day-night cycles drew a colleague and me out at 3:30 a.m., our reward a wonderful sunrise.
-            One more day’s delay, and we were finally boarding our flight to New Zealand. This time there were just five passengers on a South African Hercules C-130 aircraft.
-            The wheels kissed Antarctica a gentle goodbye as we lifted off in style, on board one of the greatest flying machines ever created.
-            We flew over Antarctica for nearly an hour of our eight-hour long flight back to civilization. As we swung a hard right, I watched as the ice disappeared from sight. The sun had set, and eventually all was dark until a few lights appeared below — signs of civilization. There were shouts of joy, cheers and hugs as we landed. My mobile phone buzzed, you have a message, then another and then many more.
-            At the hotel, I stood at the door until I remembered I needed a key. I hadn’t used a key all year — after all, what was the point of locking your front door when we hadn’t expected any visitors while living buried deep in Antarctica, our nearest neighbors astronauts orbiting in space?
-            My partner had flown out to meet me and helped me re-adapt — crossing busy roads, ordering food and more. One week off-continent, and things still take me by surprise.
-
-            I stood in a supermarket with aisles stacked as high as my previous home on the ice. People buzzed around, busily fishing for supplies, as I gazed shell-shocked and unable to move.
-            Jack, a local hairdresser, chopped away my Antarctic beard and hair, which had been a science experiment to see how long they could grow over a year. The process of “de-bearding” was a traumatic experience in itself, but I soon began to recognize my former self in the mirror. Every so often I caught myself reaching and gesturing for my absent beard, like a phantom limb.
-            I sat in a mall sipping a skinny latte coffee, awkwardly selected from a menu as long as my arm. For a year I had only been able to order “a coffee.” There was choice again, alongside trees, people, cars, noise and smells. Initially I was overwhelmed, and my perception and perspective flooded — this was sensory overload. It was as if I were a child again, learning things for the first time, except with prior memories. I felt free.
-            To escape from the city, we hired a convertible and drove into rural New Zealand. Surrounded by every green I could ever imagine, and after an hour of sunshine with the wind through my hair, it rained heavier than I could remember, soaking me through to the bone. It felt wonderful.
-            Driving through the magnificent New Zealand countryside, I felt as if I were in one of my Antarctic mid-winter dreams. Burdened by luxurious excess in all my senses, I shuddered at the prospect of waking up, living again in black and white in the height of winter.
-            I realized this dramatic change when returning from long periods of isolation is just as interesting as the isolation itself, involving a period of rehabilitation to “normal living.” For some the landing can be rough and off-target.
-            In remote environments, people undergo a well-studied change and can develop “winter-over syndrome,” which can involve depression, irritability, anger, insomnia, inability to concentrate and avoidance tactics — not to mention the ‘1,000-yard (Antarctic) stare.” I saw it and felt it; no one in our crew was spared.
-            However, comparatively little has been done to study the minds and processes of those undergoing re-adaptation when returning to civilization after such periods, though it often manifests itself with similar symptoms. I have termed this process of (mal)adaptation “re-entry syndrome.”
-            Those experiencing it have an overbearing feeling of disconnection, uncoupling and detachment from civilization and “normal life.” They can also suffer avoidance and social withdrawal, seeking solitude and seclusion, alongside troubled sleep and dreams, similar to Post Traumatic Stress Disorder. It is almost as if we had been stripped to our raw forms by the Antarctic winter, left protected only by our ingrained behaviors.
-            I have heard many stories of “Polies” (South Pole winter-over members) disappearing into Asia for months or choosing to live behind closed hotel room doors before again answering the call of the Great White Wild for another winter. In fact, I will be back on the continent after a month at home, but only for the tourist’s summer season — a mild experience compared with wintering.
-            Meanwhile, my memories return, and I am reassured that all has not been lost. It is as if my own internal hard-drive is being successfully recovered and rebooted.
-            I soon arrived in Hong Kong. At the Hong Kong Royal Geographical Society, I joined others in making presentations about our experiences. Hong Kong was wonderfully tiring; I was inundated there by questions from curious young minds. I had plunged into the deep end after a year of treading water, and the contrasts were vivid: Above me, skyscrapers towered precariously on misty hills; downwards, I was reminded that I still faced the challenge of re-learning to tie my shoelaces.
-            The rain fell hard and fast, and I dug my hands into my jacket and walked off into a sea of people. It was a long way from the Great White Silence.
-            In years to come, those of us who had endured the past winter will recall it, in the quieter moments back in our normal lives, as one of the world’s greatest, most challenging and peculiar journeys. I have called it “The Worst Winter in the World.” Make no mistake: on Planet Concordia, you can leave feeling as if you had fought in a war — against Antarctica, for survival. But in time, only the best parts will be remembered.
-            Back in Britain, as I close my laptop and this blog, my thoughts drift back across the Antarctic Plateau. I close my eyes, remembering feeling as tiny as an ant, hypoxic, in minus-80 degrees Celsius in the perpetual darkness under the Milky Way, as Aurora danced above me the tango of the universe.
-            It was Bob Dylan who helped me, the lone station doctor, through the difficult winter. In particular, the lyrics of “Mr. Tambourine Man” had rung true:
-            “Yes, to dance beneath the diamond sky with one hand waving free,
-            Silhouetted by the sea, circled by the circus sands,
-            With all memory and fate driven deep beneath the waves,
-            Let me forget about today until tomorrow.”
-            I think of Louis Armstrong. Sure it may not be a perfect world, but “what a wonderful world,” indeed.
-            Thank you for listening and sharing my journey.
-        </element>
-        <!--<element type="link" position="3" linkTo="2">winter</element>-->
+        <element type="link" x="0" y="460" linkTo="4">winter</element>
     </page>
 
 </magazine>

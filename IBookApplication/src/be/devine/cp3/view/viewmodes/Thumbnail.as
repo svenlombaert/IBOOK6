@@ -10,7 +10,7 @@ import be.devine.cp3.view.*;
 import be.devine.cp3.model.AppModel;
 import be.devine.cp3.view.*;
 
-import be.devine.cp3.style.Style;
+import be.devine.cp3.config.Config;
 
 import flash.events.Event;
 import flash.filters.DisplacementMapFilter;
@@ -30,6 +30,7 @@ import starling.events.TouchPhase;
 import starling.text.TextField;
 import starling.textures.RenderTexture;
 
+//TODO: inladen vanuit map.
 public class Thumbnail extends Sprite{
     public static const MAXWIDTH:uint = 220;
     public static const MAXHEIGHT:uint = 140;
@@ -54,7 +55,7 @@ public class Thumbnail extends Sprite{
         }
 
         //flatten page
-        var q:Quad = new Quad(220, 140, Style.THUMBNAILBACKGROUNDCOLOR);
+        var q:Quad = new Quad(220, 140, Config.THUMBNAILBACKGROUNDCOLOR);
         var texture:RenderTexture = new RenderTexture(q.width, q.height);
         texture.draw(q);
         texture.draw(page);
@@ -102,7 +103,7 @@ public class Thumbnail extends Sprite{
 
     private function createHoverOverlay():void{
         hoverOverlay = new Sprite();
-        var text:TextField = new TextField(MAXWIDTH, MAXHEIGHT, "p" + this.pageNumber, Style.FONTBOLD, 42, Style.HOVERTHUMBNAILCOLOR);
+        var text:TextField = new TextField(MAXWIDTH, MAXHEIGHT, "p" + this.pageNumber, Config.FONTBOLD, 42, Config.HOVERTHUMBNAILCOLOR);
         hoverOverlay.addChild(text);
         hoverOverlay.visible = false;
         addChild(hoverOverlay);

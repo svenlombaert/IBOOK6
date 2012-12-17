@@ -6,6 +6,7 @@
  * To change this template use File | Settings | File Templates.
  */
 package be.devine.cp3.view.elements {
+import be.devine.cp3.config.Config;
 import be.devine.cp3.model.AppModel;
 import be.devine.cp3.queue.ImageLoaderTask;
 import be.devine.cp3.queue.Queue;
@@ -28,7 +29,7 @@ public class BackgroundPhotoElement extends Element{
         appModel = AppModel.getInstance();
 
         _requestQueue = new Queue();
-        _requestQueue.add(new ImageLoaderTask('assets/images/' + backgroundPhotoElementVO.path));
+        _requestQueue.add(new ImageLoaderTask(Config.IMAGEPATH_PREFIX + backgroundPhotoElementVO.path));
         _requestQueue.addEventListener(flash.events.Event.COMPLETE, photoLoaded);
         _requestQueue.start();
     }

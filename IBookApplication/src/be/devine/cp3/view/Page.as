@@ -24,11 +24,6 @@ import be.devine.cp3.vo.PageVO;
 import be.devine.cp3.vo.SubTitleElementVO;
 import be.devine.cp3.vo.TitleElementVO;
 
-import flash.events.Event;
-
-import flash.filters.BlurFilter;
-
-import starling.core.Starling;
 import starling.display.Quad;
 import starling.display.Sprite;
 import starling.events.Event;
@@ -55,6 +50,10 @@ public class Page extends Sprite{
         //paginanummer halen uit de pageVO, dit paginanummer is nodig voor de klik functie in de thumbnail die gebruikt maakt van een 'Page' object
         this.pagenumber = pageVO.pageNumber;
 
+        loadPage();
+    }
+
+    private function loadPage():void{
         _background = new Quad(910, 600);
         _background.x = (appModel.appwidth * 0.5) - (_background.width *.5);
         _background.y = (appModel.appheight * 0.5) - (_background.height *.5);
@@ -73,7 +72,7 @@ public class Page extends Sprite{
 
                 if(element is BackgroundPhotoElement){
                     _hasBackground = true;
-                    element.addEventListener(starling.events.Event.COMPLETE, backgroundLoadedHandler);
+                    element.addEventListener(Event.COMPLETE, backgroundLoadedHandler);
                     addChildAt(element, 0);
                 }
 
@@ -81,7 +80,7 @@ public class Page extends Sprite{
                     _hasTitle = true;
                     element.x = (elementVO as TitleElementVO).xPos;
                     element.y = (elementVO as TitleElementVO).yPos;
-                   // element.filter =
+                    // element.filter =
                     _elementContainer.addChild(element);
                 }
 
@@ -114,25 +113,31 @@ public class Page extends Sprite{
                     _elementContainer.addChild(element);
 
                 }
-                //TODO: background mag niet in de elementContainer geadd worden.
 
             }
         }
+
+
         if(_hasText && _hasBackground){
             //TODO: quad opacity aanpassen
             _background.alpha = 0.7;
         }
 
-
         pageNumberElement = new PageNumberElement(pagenumber);
         pageNumberElement.x = (_background.width>>1)-(pageNumberElement.width>>1) - marginLeft;
         pageNumberElement.y = _background.height - pageNumberElement.height - 30 - marginTop;
         _elementContainer.addChild(pageNumberElement);
+
     }
 
-    private function backgroundLoadedHandler(event:starling.events.Event):void {
-        trace('BG LOADED');
-        dispatchEvent(new starling.events.Event(starling.events.Event.COMPLETE));
+    private function backgroundLoadedHandler(event:Event):void {
+        trace('PAGE LOADED WITH BG');
+        //page loaded
+        dispatchEvent(new Event(Event.COMPLETE, true));
+    }
+
+    public function get hasBackground():Boolean {
+        return _hasBackground;
     }
 }
 }

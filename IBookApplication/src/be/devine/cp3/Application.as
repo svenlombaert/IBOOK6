@@ -8,22 +8,34 @@
 package be.devine.cp3 {
 
 
+import be.devine.cp3.config.Config;
 import be.devine.cp3.model.AppModel;
 import be.devine.cp3.service.PageService;
+import be.devine.cp3.utils.memory.ClearMemory;
+import be.devine.cp3.view.Page;
 import be.devine.cp3.view.PageContainer;
 import be.devine.cp3.view.ViewModeController;
 import be.devine.cp3.view.controls.PrevNextSlideButton;
+import be.devine.cp3.view.viewmodes.Thumbnail;
+import be.devine.cp3.vo.PageVO;
+
+import com.adobe.images.JPGEncoder;
 
 import flash.display.Bitmap;
+import flash.display.BitmapData;
 import flash.display.Loader;
 import flash.events.Event;
+import flash.filesystem.File;
+import flash.filesystem.FileMode;
+import flash.filesystem.FileStream;
 import flash.geom.Point;
 import flash.net.URLRequest;
-import flash.text.Font;
-import flash.text.TextDisplayMode;
 import flash.ui.Keyboard;
+import flash.utils.ByteArray;
 
+import starling.core.RenderSupport;
 import starling.core.Starling;
+import starling.display.DisplayObjectContainer;
 import starling.display.Image;
 import starling.display.Sprite;
 import starling.events.Event;
@@ -46,6 +58,8 @@ public class Application extends Sprite {
     private var originalBgHeight:int;
 
     private var pageService:PageService;
+
+    private var thumbnailToLoad:uint;
 
     [Embed(source="/assets/images_design/spritesheet.xml", mimeType="application/octet-stream")]
     public static const ButtonXML:Class;
@@ -71,15 +85,18 @@ public class Application extends Sprite {
         pageService.load();
         pageService.addEventListener(flash.events.Event.COMPLETE, pageServiceCompleteHandler);
 
-        var texture:Texture = Texture.fromBitmap(new ButtonTexture());
-        var xml:XML = XML(new ButtonXML());
-        textureAtlas = new TextureAtlas(texture, xml);
-        bgLoader = new Loader();
-        bgLoader.load(new URLRequest("assets/images_design/bg_pattern.png"));
-        bgLoader.contentLoaderInfo.addEventListener(flash.events.Event.COMPLETE, backgroundTextureLoadedHandler);
+        if(Config.GENERATE_THUMBNAILS == false){
 
-        Starling.current.stage.addEventListener(KeyboardEvent.KEY_DOWN, keyboardDownEventHandler);
-        this.addEventListener("BACKGROUNDINITIALIZING_COMPLETE", backgroundInitializingComplete);
+            var texture:Texture = Texture.fromBitmap(new ButtonTexture());
+            var xml:XML = XML(new ButtonXML());
+            textureAtlas = new TextureAtlas(texture, xml);
+            bgLoader = new Loader();
+            bgLoader.load(new URLRequest("assets/images_design/bg_pattern.png"));
+            bgLoader.contentLoaderInfo.addEventListener(flash.events.Event.COMPLETE, backgroundTextureLoadedHandler);
+
+            Starling.current.stage.addEventListener(KeyboardEvent.KEY_DOWN, keyboardDownEventHandler);
+            this.addEventListener("BACKGROUNDINITIALIZING_COMPLETE", backgroundInitializingComplete);
+        }
     }
 
     //----METHODS
@@ -148,6 +165,64 @@ public class Application extends Sprite {
     private function pageServiceCompleteHandler(event:flash.events.Event):void {
         this.appModel.pages = pageService.pages;
         this.appModel.selectedPageIndex = 0;
+
+
+        if(Config.GENERATE_THUMBNAILS){
+            thumbnailToLoad = 0;
+            generateThumbnails();
+        }
+    }
+
+    private function generateThumbnails(){
+        var directory:File = File.desktopDirectory.resolvePath("thumbnails");
+        directory.createDirectory();
+
+
+        if(thumbnailToLoad < appModel.pages.length){
+
+            trace('LOAD THUMBNAIL ', thumbnailToLoad);
+            var page:Page = new Page(appModel.pages[thumbnailToLoad]);
+            addChild(page);
+            if(page.hasBackground){
+                page.addEventListener(starling.events.Event.COMPLETE, pageLoadedHandler);
+            }else{
+                takeScreenshot();
+            }
+
+        }else{
+            trace('-----THUMBNAILS FINISHED------');
+        }
+
+    }
+
+    private function takeScreenshot():void{
+        var support:RenderSupport = new RenderSupport();
+        RenderSupport.clear(stage.color, 1.0);
+        support.setOrthographicProjection(appModel.appwidth*(appModel.appwidth/Thumbnail.MAXWIDTH), appModel.appheight*(appModel.appheight/Thumbnail.MAXHEIGHT));
+        stage.render(support, 1.0);
+        support.finishQuadBatch();
+
+        var result:BitmapData = new BitmapData(Thumbnail.MAXWIDTH, Thumbnail.MAXHEIGHT, true);
+        Starling.context.drawToBitmapData(result);
+
+        var jpgEncoder:JPGEncoder = new JPGEncoder(100);
+        var byteArray:ByteArray = jpgEncoder.encode(result);
+
+        var file:File = File.desktopDirectory.resolvePath("thumbnails/" + "thumbnail" + thumbnailToLoad + ".jpg");
+
+        var wr:File = new File( file.nativePath);
+        var stream:FileStream = new FileStream();
+        stream.open( wr , FileMode.WRITE);
+        stream.writeBytes (byteArray);
+        stream.close();
+
+        ClearMemory.clear(this);
+        thumbnailToLoad += 1;
+        generateThumbnails();
+    }
+
+    private function pageLoadedHandler(event:starling.events.Event):void {
+        takeScreenshot();
     }
 }
 }

@@ -7,7 +7,7 @@
  */
 package be.devine.cp3.view.elements {
 import be.devine.cp3.model.AppModel;
-import be.devine.cp3.style.Style;
+import be.devine.cp3.config.Config;
 import be.devine.cp3.vo.TitleElementVO;
 
 import starling.text.TextField;
@@ -23,7 +23,7 @@ public class TitleElement extends Element{
 
         //DROPSHADOW
         //TODO: bestaat er een betere manier om dropshadow te creëren?
-        var d:TextField = new TextField(900, 63, titleElementVO.title, Style.FONTBOLD , 46, 0xedefef, true);
+        var d:TextField = new TextField(900, 63, titleElementVO.title, Config.FONTBOLD , 46, 0xedefef, true);
         d.vAlign = "top";
         d.hAlign = HAlign.LEFT;
         d.x = -2;
@@ -31,7 +31,7 @@ public class TitleElement extends Element{
         addChild(d);
 
         //TITEL IN KLEUR
-        var t:TextField = new TextField(900, 63, titleElementVO.title, Style.FONTBOLD , 46, appModel.selectedColorIndex, true);
+        var t:TextField = new TextField(900, 63, titleElementVO.title, Config.FONTBOLD , 46, appModel.selectedColorIndex, true);
         t.vAlign = "top";
         t.hAlign = HAlign.LEFT;
         //t.border = true;

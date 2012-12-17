@@ -6,6 +6,7 @@
  * To change this template use File | Settings | File Templates.
  */
 package be.devine.cp3.service {
+import be.devine.cp3.config.Config;
 import be.devine.cp3.factory.vo.PageVOFactory;
 import be.devine.cp3.vo.PageVO;
 
@@ -25,7 +26,7 @@ public class PageService extends EventDispatcher {
     public function load():void{
         _urlLoader = new URLLoader();
         _urlLoader.addEventListener(Event.COMPLETE, xmlLoadedHandler);
-        _urlLoader.load(new URLRequest("assets/xml/books.xml"));
+        _urlLoader.load(new URLRequest(Config.XMLPATH));
     }
 
     private function xmlLoadedHandler(event:Event):void {

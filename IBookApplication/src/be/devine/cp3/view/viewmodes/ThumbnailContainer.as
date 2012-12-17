@@ -8,7 +8,7 @@
 package be.devine.cp3.view.viewmodes {
 import be.devine.cp3.view.*;
 import be.devine.cp3.model.AppModel;
-import be.devine.cp3.style.Style;
+import be.devine.cp3.config.Config;
 import be.devine.cp3.view.Page;
 import be.devine.cp3.view.viewmodes.Thumbnail;
 import be.devine.cp3.view.viewmodes.TimelineThumbnails;
@@ -37,7 +37,7 @@ public class ThumbnailContainer extends Sprite {
         appModel = AppModel.getInstance();
         this.appModel.addEventListener(AppModel.APPSIZE_CHANGED, resizeHandler);
 
-        background = new Quad(AppModel.instance.appwidth, AppModel.instance.appheight, Style.TIMELINECOLOR);
+        background = new Quad(AppModel.instance.appwidth, AppModel.instance.appheight, Config.TIMELINECOLOR);
         background.alpha = 0.90;
         addChild(background);
 

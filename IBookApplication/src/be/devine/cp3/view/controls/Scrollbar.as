@@ -1,6 +1,6 @@
 package be.devine.cp3.view.controls {
 import be.devine.cp3.model.AppModel;
-import be.devine.cp3.style.Style;
+import be.devine.cp3.config.Config;
 import be.devine.cp3.utils.mask.PixelMaskDisplayObject;
 import be.devine.cp3.view.ViewModeController;
 
@@ -51,8 +51,8 @@ public class Scrollbar extends Sprite{
         thumbWidth = tw;
         startDragLocation = new Point();
 
-        track = new Quad(trackWidth, trackHeight,Style.TRACKCOLOR);
-        thumb = new Quad(thumbWidth, trackHeight,Style.THUMBCOLOR);
+        track = new Quad(trackWidth, trackHeight,Config.TRACKCOLOR);
+        thumb = new Quad(thumbWidth, trackHeight,Config.THUMBCOLOR);
 
         maskedTrack = new PixelMaskDisplayObject();
         maskedTrack.addChild(track);

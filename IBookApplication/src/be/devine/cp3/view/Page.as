@@ -70,8 +70,7 @@ public class Page extends Sprite{
 
                 if(element is BackgroundPhotoElement){
                     _hasBackground = true;
-                    element.x = -100;
-                    element.y = -100;
+                    addChildAt(element, 0);
                 }
 
                 if (element is TitleElement) {
@@ -79,52 +78,52 @@ public class Page extends Sprite{
                     element.x = (elementVO as TitleElementVO).xPos;
                     element.y = (elementVO as TitleElementVO).yPos;
                    // element.filter =
+                    _elementContainer.addChild(element);
                 }
 
                 if (element is SubTitleElement) {
                     element.x = (_background.width>>1)-(element.width>>1) - marginLeft;
                     element.y = (elementVO as SubTitleElementVO).yPos;
+                    _elementContainer.addChild(element);
+
                 }
 
                 if (element is IntroTextElement){
                     _hasText = true;
                     element.x = (elementVO as IntroTextElementVO).xPos;
                     element.y = (elementVO as IntroTextElementVO).yPos;
+                    _elementContainer.addChild(element);
+
                 }
 
                 if (element is BodyTextElement) {
                     element.x = (elementVO as BodyTextElementVO).xPos;
                     element.y = (elementVO as BodyTextElementVO).yPos;
+                    _elementContainer.addChild(element);
+
                 }
-
-
 
                 if (element is LinkElement) {
                     element.x = (elementVO as LinkElementVO).xPos;
                     element.y = (elementVO as LinkElementVO).yPos;
                     element.useHandCursor = true;
-                }
-
-
-                /*if (element is BackgroundPhotoElement) {
-                    addChildAt(element,0);
-                }else if (!element is BackgroundPhotoElement) {*/
                     _elementContainer.addChild(element);
 
+                }
+                //TODO: background mag niet in de elementContainer geadd worden.
 
-                //}
             }
         }
         if(_hasText && _hasBackground){
+            //TODO: quad opacity aanpassen
             _background.alpha = 0.7;
         }
 
-        //if (!element is BackgroundPhotoElement && element is BodyTextElement) {
-            pageNumberElement = new PageNumberElement(pagenumber);
-            pageNumberElement.x = (_background.width>>1)-(pageNumberElement.width>>1) - marginLeft;
-            pageNumberElement.y = _background.height - pageNumberElement.height - 30 - marginTop;
-            _elementContainer.addChild(pageNumberElement);
-        //}
+
+        pageNumberElement = new PageNumberElement(pagenumber);
+        pageNumberElement.x = (_background.width>>1)-(pageNumberElement.width>>1) - marginLeft;
+        pageNumberElement.y = _background.height - pageNumberElement.height - 30 - marginTop;
+        _elementContainer.addChild(pageNumberElement);
     }
 }
 }

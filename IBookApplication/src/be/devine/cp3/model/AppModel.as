@@ -25,13 +25,16 @@ public class AppModel extends EventDispatcher {
     public static const THUMBSCROLLBARPOSITION_CHANGED:String = "thumbScrollbarPositionChanged";
     public static const APPSIZE_CHANGED:String = "appsizeChanged";
 
-    private var _selectedPageIndex:int;
+    private var _selectedPageIndex:uint = 0;
     private var _selectedColorIndex:uint;
     private var _pages:Vector.<PageVO>;
     private var _timelineView:Boolean;
     private var _viewModesOpened:Boolean = false;
     private var _thumbScrollbarPosition:Number;
     private var _maxItemsToView:int;
+
+    private var _hasNextPage:Boolean;
+    private var _hasPreviousPage:Boolean;
 
     private var _appwidth:int;
     private var _appheight:int;
@@ -57,13 +60,15 @@ public class AppModel extends EventDispatcher {
     //TODO: xml laden in een service
 
     public function gotoNextPage():void{
-        trace('[APPMODEL] gotonextpage');
-        selectedPageIndex++;
+        if(hasNextPage){
+            selectedPageIndex++;
+        }
     }
 
     public function gotoPreviousPage():void{
-        trace('[APPMODEL] gotopreviouspage');
-        selectedPageIndex--;
+        if(hasPreviousPage){
+            selectedPageIndex--;
+        }
     }
 
     public function openViewModes():void{
@@ -94,23 +99,17 @@ public class AppModel extends EventDispatcher {
         trace('[APPMODEL] PAGES CHANGED');
     }
 
-    public function get selectedPageIndex():int {
+    public function get selectedPageIndex():uint {
         return _selectedPageIndex;
     }
 
-    public function set selectedPageIndex(value:int):void {
-        if(value != _selectedPageIndex){
-            if(value == pages.length){
-                _selectedPageIndex = pages.length-1;
-            }else if(value == -1){
-                _selectedPageIndex = 0;
-            }else{
-                _selectedPageIndex = value;
-                dispatchEvent(new Event(SELECTEDPAGEINDEX_CHANGED));
-            }
-            trace("[APPMODEL] selectedPageIndex: ", selectedPageIndex);
+    public function set selectedPageIndex(value:uint):void {
+        if(value != _selectedPageIndex || _selectedPageIndex == 0){
+            _selectedPageIndex = value;
+            _hasNextPage = (_selectedPageIndex < pages.length-1);
+            _hasPreviousPage = (_selectedPageIndex > 0);
+            dispatchEvent(new Event(SELECTEDPAGEINDEX_CHANGED));
         }
-
     }
 
     public function get selectedColorIndex():uint {
@@ -186,6 +185,14 @@ public class AppModel extends EventDispatcher {
             _appwidth = value;
             dispatchEvent(new Event(APPSIZE_CHANGED));
         }
+    }
+
+    public function get hasNextPage():Boolean {
+        return _hasNextPage;
+    }
+
+    public function get hasPreviousPage():Boolean {
+        return _hasPreviousPage;
     }
 }
 }

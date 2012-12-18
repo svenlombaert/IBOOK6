@@ -6,22 +6,17 @@
  * To change this template use File | Settings | File Templates.
  */
 package be.devine.cp3.view.viewmodes {
-import be.devine.cp3.view.*;
-import be.devine.cp3.model.AppModel;
 import be.devine.cp3.config.Config;
+import be.devine.cp3.model.AppModel;
 import be.devine.cp3.view.Page;
-import be.devine.cp3.view.viewmodes.Thumbnail;
-import be.devine.cp3.view.viewmodes.TimelineThumbnails;
 import be.devine.cp3.vo.PageVO;
 
 import flash.events.Event;
 
 import starling.display.Image;
-
 import starling.display.Quad;
 import starling.display.Sprite;
 import starling.text.TextField;
-import starling.textures.Texture;
 import starling.textures.TextureAtlas;
 import starling.utils.HAlign;
 

@@ -131,8 +131,6 @@ public class Page extends Sprite{
     }
 
     private function backgroundLoadedHandler(event:Event):void {
-        trace('PAGE LOADED WITH BG');
-        //page loaded
         dispatchEvent(new Event(Event.COMPLETE, true));
     }
 

@@ -6,21 +6,15 @@
  * To change this template use File | Settings | File Templates.
  */
 package be.devine.cp3.view.viewmodes {
-import be.devine.cp3.view.*;
+import be.devine.cp3.config.Config;
 import be.devine.cp3.model.AppModel;
 import be.devine.cp3.view.*;
 
-import be.devine.cp3.config.Config;
-
 import flash.events.Event;
-import flash.filters.DisplacementMapFilter;
 import flash.geom.Point;
-import flash.text.TextDisplayMode;
 
 import starling.core.Starling;
-
 import starling.display.DisplayObject;
-
 import starling.display.Image;
 import starling.display.Quad;
 import starling.display.Sprite;

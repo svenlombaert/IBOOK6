@@ -133,13 +133,24 @@ public class Application extends Sprite {
         addChild(pageContainer);
 
         previousControl= new PrevNextSlideButton(textureAtlas, "previous");
+        previousControl.addEventListener(PrevNextSlideButton.PREVNEXT_CLICKED, previousCLickedHandler);
         nextControl= new PrevNextSlideButton(textureAtlas, "next");
+        nextControl.addEventListener(PrevNextSlideButton.PREVNEXT_CLICKED, nextClickedHandler);
+
         viewModeController = new ViewModeController(textureAtlas);
 
         addChild(previousControl);
         addChild(nextControl);
         addChild(viewModeController);
         display();
+    }
+
+    private function nextClickedHandler(event:starling.events.Event):void {
+        appModel.gotoNextPage();
+    }
+
+    private function previousCLickedHandler(event:starling.events.Event):void {
+        appModel.gotoPreviousPage();
     }
 
     private function resizeHandler(event:flash.events.Event):void {

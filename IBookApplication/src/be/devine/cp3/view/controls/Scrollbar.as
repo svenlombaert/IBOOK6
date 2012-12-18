@@ -1,19 +1,10 @@
 package be.devine.cp3.view.controls {
-import be.devine.cp3.model.AppModel;
 import be.devine.cp3.config.Config;
 import be.devine.cp3.utils.mask.PixelMaskDisplayObject;
-import be.devine.cp3.view.ViewModeController;
 
 import flash.display.BitmapData;
-
 import flash.display.Shape;
-
 import flash.geom.Point;
-
-import starling.animation.Transitions;
-
-import starling.animation.Tween;
-import starling.core.Starling;
 
 import starling.display.DisplayObject;
 import starling.display.Image;
@@ -24,7 +15,6 @@ import starling.events.Touch;
 import starling.events.TouchEvent;
 import starling.events.TouchPhase;
 import starling.textures.Texture;
-
 
 public class Scrollbar extends Sprite{
 

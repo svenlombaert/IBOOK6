@@ -1,5 +1,6 @@
 package be.devine.cp3.view.elements {
 import be.devine.cp3.config.Config;
+
 import starling.display.Sprite;
 import starling.text.TextField;
 import starling.utils.HAlign;

@@ -32,6 +32,7 @@ public class Main extends Sprite {
         AppModel.getInstance();
         AppModel.instance.appwidth = stage.stageWidth;
         AppModel.instance.appheight = stage.stageHeight;
+        trace(stage.stageWidth, stage.stageHeight);
         starling.start();
         display();
     }

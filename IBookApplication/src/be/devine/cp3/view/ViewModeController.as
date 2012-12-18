@@ -8,9 +8,9 @@
 package be.devine.cp3.view {
 import be.devine.cp3.model.AppModel;
 import be.devine.cp3.view.controls.Scrollbar;
-import be.devine.cp3.view.viewmodes.ThumbnailContainer;
 import be.devine.cp3.view.controls.ViewModeChangerButton;
 import be.devine.cp3.view.controls.ViewModeOpenButton;
+import be.devine.cp3.view.viewmodes.ThumbnailContainer;
 
 import flash.events.Event;
 
@@ -65,7 +65,6 @@ public class ViewModeController extends Sprite {
         addChild(scrollbar);
         this.appModel.addEventListener(AppModel.VIEWMODES_OPENED, viewModesOpenedHandler);
         this.appModel.addEventListener(AppModel.VIEWMODES_CHANGED, viewModesChangedHandler);
-        this.appModel.addEventListener(AppModel.SELECTEDPAGEINDEX_CHANGED, pageIndexChangedHandler);
     }
     //TODO: openControl en changeviewmodecontrol in 1 container steken
     //TODO: pijltjes toevoegen

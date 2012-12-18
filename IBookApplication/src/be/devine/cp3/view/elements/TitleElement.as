@@ -6,13 +6,12 @@
  * To change this template use File | Settings | File Templates.
  */
 package be.devine.cp3.view.elements {
-import be.devine.cp3.model.AppModel;
 import be.devine.cp3.config.Config;
+import be.devine.cp3.model.AppModel;
 import be.devine.cp3.vo.TitleElementVO;
 
 import starling.text.TextField;
 import starling.utils.HAlign;
-
 
 public class TitleElement extends Element{
     private var appModel:AppModel;

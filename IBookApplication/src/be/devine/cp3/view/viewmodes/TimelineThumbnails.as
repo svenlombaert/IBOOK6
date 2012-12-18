@@ -6,25 +6,16 @@
  * To change this template use File | Settings | File Templates.
  */
 package be.devine.cp3.view.viewmodes {
-import be.devine.cp3.view.*;
 import be.devine.cp3.model.AppModel;
-import be.devine.cp3.config.Config;
 import be.devine.cp3.utils.mask.PixelMaskDisplayObject;
-import be.devine.cp3.view.Page;
-import be.devine.cp3.vo.PageVO;
 
 import flash.events.Event;
 
 import starling.animation.Transitions;
-
 import starling.animation.Tween;
 import starling.core.Starling;
-import starling.display.DisplayObject;
-
 import starling.display.Quad;
 import starling.display.Sprite;
-import starling.events.TouchEvent;
-import starling.events.TouchPhase;
 
 public class TimelineThumbnails extends Sprite{
     private var appModel:AppModel;

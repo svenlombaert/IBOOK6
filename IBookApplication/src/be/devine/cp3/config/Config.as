@@ -25,7 +25,7 @@ public class Config {
     public static const IMAGEPATH_PREFIX:String = "assets/images/";
 
     /*----THUMBNAILS----*/
-    public static const GENERATE_THUMBNAILS:Boolean = false;
+    public static const GENERATE_THUMBNAILS:Boolean = true;
 
 
 

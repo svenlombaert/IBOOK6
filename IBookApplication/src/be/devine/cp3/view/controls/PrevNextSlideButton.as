@@ -18,6 +18,7 @@ import starling.core.Starling;
 import starling.display.Button;
 import starling.display.DisplayObject;
 import starling.display.Image;
+import starling.events.Event;
 import starling.events.Touch;
 import starling.events.TouchEvent;
 import starling.events.TouchPhase;
@@ -33,6 +34,8 @@ public class PrevNextSlideButton extends Button{
     private var hoverDisabled:Boolean = false;
     private var tween:Tween;
     private var textureAtlas:TextureAtlas;
+
+    public static const PREVNEXT_CLICKED:String = "prevNewtClicked";
 
     //----CONSTRUCTOR
     public function PrevNextSlideButton(textureAtlas:TextureAtlas, type:String) {
@@ -52,14 +55,7 @@ public class PrevNextSlideButton extends Button{
         var touchObject:DisplayObject = event.currentTarget as DisplayObject;
         if(event.getTouch(touchObject, TouchPhase.BEGAN)) {
             this.enabled = true;
-            switch(type){
-                case "previous":
-                    appModel.gotoPreviousPage();
-                    break;
-                case 'next':
-                    appModel.gotoNextPage();
-                    break;
-            }
+            dispatchEvent(new Event(PREVNEXT_CLICKED));
         }
         //alpha = 1 wanneer je de muisknop loslaat
         if(event.getTouch(touchObject, TouchPhase.ENDED)) {

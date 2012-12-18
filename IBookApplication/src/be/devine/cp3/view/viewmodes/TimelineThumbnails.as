@@ -14,8 +14,10 @@ import flash.events.Event;
 import starling.animation.Transitions;
 import starling.animation.Tween;
 import starling.core.Starling;
+import starling.display.DisplayObject;
 import starling.display.Quad;
 import starling.display.Sprite;
+import starling.events.Event;
 
 public class TimelineThumbnails extends Sprite{
     private var appModel:AppModel;
@@ -32,17 +34,19 @@ public class TimelineThumbnails extends Sprite{
         this.appModel.addEventListener(AppModel.PAGES_CHANGED, pagesChangedHandler);
         this.appModel.addEventListener(AppModel.THUMBSCROLLBARPOSITION_CHANGED, scrollHandler);
         this.appModel.addEventListener(AppModel.APPSIZE_CHANGED, resizeHandler);
+        this.appModel.addEventListener(AppModel.SELECTEDPAGEINDEX_CHANGED, pageIndexChangedHandler);
         initalizeThumbnails();
     }
 
     private function initalizeThumbnails():void {
-        //thumbnails aanmaken adhv pagina's.
         thumbnailsHolder = new Sprite();
         var xPos:uint = 0;
+
         for(var i:int = 0; i<arrThumbnails.length; i++){
             arrThumbnails[i].x = xPos;
+            arrThumbnails[i].addEventListener(Thumbnail.THUMBNAIL_CLICKED, thumbnailClickedHandler);
             thumbnailsHolder.addChild(arrThumbnails[i]);
-            xPos += arrThumbnails[i].width + 25;
+            xPos += Thumbnail.MAXWIDTH + 25;
         }
 
         maskObject = new Quad(appModel.appwidth-60, 258, 0x000000);
@@ -52,23 +56,58 @@ public class TimelineThumbnails extends Sprite{
 
         maskedThumbnails.mask = maskObject;
         addChild(maskedThumbnails);
+        display(appModel.selectedPageIndex);
     }
 
-    private function pagesChangedHandler(event:Event):void {
+    private function pagesChangedHandler(event:flash.events.Event):void {
         initalizeThumbnails();
     }
 
-    private function scrollHandler(event:Event):void {
-        if(thumbnailsHolder != null){
-            var tween:Tween = new Tween(thumbnailsHolder, 0.3, Transitions.EASE_OUT);
-            tween.animate("x",  -(appModel.thumbScrollbarPosition * (thumbnailsHolder.width - maskObject.width)));
-            Starling.juggler.add(tween);
-        }
+    private function scrollHandler(event:flash.events.Event):void {
+        //resetPositions();
+            if(thumbnailsHolder != null){
+                var tween:Tween = new Tween(thumbnailsHolder, 0.3, Transitions.EASE_OUT);
+                tween.animate("x",  -(appModel.thumbScrollbarPosition * (thumbnailsHolder.width - maskObject.width)));
+                Starling.juggler.add(tween);
+            }
     }
 
-    private function resizeHandler(event:Event):void {
+    private function resizeHandler(event:flash.events.Event):void {
         maskObject = new Quad(appModel.appwidth-60, 258, 0x000000);
         maskedThumbnails.mask = maskObject;
+    }
+
+    private function thumbnailClickedHandler(event:starling.events.Event):void {
+        var clickedThumb = event.target as Thumbnail;
+        appModel.selectedPageIndex = arrThumbnails.indexOf(clickedThumb);
+    }
+
+    private function pageIndexChangedHandler(event:flash.events.Event):void {
+        display(appModel.selectedPageIndex);
+
+//        for(var i:int = 0; i<arrThumbnails.length; i++){
+//            var image:DisplayObject = arrThumbnails[i];
+//            var xPos:Number = 0;
+//
+//            xPos = ((i - appModel.selectedPageIndex) * (Thumbnail.MAXWIDTH + 25)) + (maskObject.width/2 - Thumbnail.MAXWIDTH/2);
+//
+//            if(i == appModel.selectedPageIndex){
+//                trace(xPos);
+//            }
+//            image.x = xPos;
+//        }
+
+        appModel.thumbScrollbarPosition = appModel.selectedPageIndex / (appModel.pages.length-1);
+    }
+
+    private function display(indexToSetActive:int):void {
+        for (var i:int = 0; i<arrThumbnails.length; i++){
+            if(i != indexToSetActive){
+                arrThumbnails[i].active=false;
+            }else{
+                arrThumbnails[i].active = true;
+            }
+        }
     }
 }
 }

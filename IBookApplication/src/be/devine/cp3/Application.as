@@ -177,7 +177,6 @@ public class Application extends Sprite {
         this.appModel.pages = pageService.pages;
         this.appModel.selectedPageIndex = 0;
 
-
         if(Config.GENERATE_THUMBNAILS){
             thumbnailToLoad = 0;
             generateThumbnails();

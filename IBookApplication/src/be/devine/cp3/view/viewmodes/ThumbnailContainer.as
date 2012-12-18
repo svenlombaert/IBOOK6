@@ -8,10 +8,9 @@
 package be.devine.cp3.view.viewmodes {
 import be.devine.cp3.config.Config;
 import be.devine.cp3.model.AppModel;
-import be.devine.cp3.view.Page;
-import be.devine.cp3.vo.PageVO;
 
 import flash.events.Event;
+import flash.filesystem.File;
 
 import starling.display.Image;
 import starling.display.Quad;
@@ -23,10 +22,11 @@ import starling.utils.HAlign;
 public class ThumbnailContainer extends Sprite {
     private var background:Quad;
     private var appModel:AppModel;
-    private var arrThumbnails:Vector.<Thumbnail>;
     private var toolTip:Image;
     private var prevNextText:TextField;
     private var openText:TextField;
+    private var _timelineView:Boolean;
+    private var _arrThumbnails:Vector.<Thumbnail>;
 
     public function ThumbnailContainer(textureAtlas:TextureAtlas) {
         appModel = AppModel.getInstance();
@@ -53,24 +53,57 @@ public class ThumbnailContainer extends Sprite {
         addChild(prevNextText);
         addChild(openText);
 
-        initializeThumbnails();
+        getUrls();
     }
 
-    private function initializeThumbnails():void{
-        arrThumbnails = new Vector.<Thumbnail>();
-        for each(var pageVO:PageVO in appModel.pages){
-            var thumbnail:Thumbnail = new Thumbnail(new Page(pageVO));
-            arrThumbnails.push(thumbnail);
+    private function getUrls():void{
+        var phDirectory:File = File.desktopDirectory.resolvePath("thumbnails");
+        phDirectory.createDirectory();
+
+        var files:Array = phDirectory.getDirectoryListing();
+        var urls:Vector.<String> = new Vector.<String>();
+
+        for each(var f:File in files){
+            // controle dat het zeker fotos zijn
+            if(!f.isDirectory){
+                var filesplit:Array = f.name.split(".");
+                switch(filesplit[filesplit.length - 1]){
+                    case 'jpg':
+                    case 'jpeg':
+                    case 'gif':
+                    case 'png':
+                        urls.push(f.url);
+                        break;
+                }
+            }
+
+        }
+        appModel.thumbnailUrls = urls;
+        generateThumbs();
+
+    }
+
+    private function generateThumbs():void {
+        _arrThumbnails = new Vector.<Thumbnail>();
+        var i:int = 0;
+        for each(var url:String in appModel.thumbnailUrls){
+            trace('url: ', url);
+            var thumb:Thumbnail = new Thumbnail(url, i);
+            _arrThumbnails.push(thumb);
+            i++
         }
         showThumbnails();
     }
 
-    private function showThumbnails():void{
+    private function showThumbnails():void {
         if(appModel.timelineView){
-            var timelineThumbnails:TimelineThumbnails = new TimelineThumbnails(arrThumbnails);
+            trace('Show timelineview');
+            var timelineThumbnails:TimelineThumbnails = new TimelineThumbnails(_arrThumbnails);
             timelineThumbnails.x = 30;
-            timelineThumbnails.y = 258/2 - timelineThumbnails.height/2 + 20;
+            timelineThumbnails.y = 258 - Thumbnail.MAXHEIGHT - 20;
             addChild(timelineThumbnails);
+        }else{
+            trace('show gridview');
         }
     }
 
@@ -82,6 +115,15 @@ public class ThumbnailContainer extends Sprite {
 
     private function resizeHandler(event:Event):void {
         display();
+    }
+
+    public function get timelineView():Boolean {
+        return _timelineView;
+    }
+
+    public function set timelineView(value:Boolean):void {
+        _timelineView = value;
+        showThumbnails();
     }
 }
 }

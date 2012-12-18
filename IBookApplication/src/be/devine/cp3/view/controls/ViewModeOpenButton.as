@@ -15,6 +15,7 @@ import starling.animation.Tween;
 import starling.display.Button;
 import starling.display.DisplayObject;
 import starling.display.Image;
+import starling.events.Event;
 import starling.events.TouchEvent;
 import starling.events.TouchPhase;
 import starling.textures.RenderTexture;
@@ -28,6 +29,7 @@ public class ViewModeOpenButton extends Button{
     private var textureAtlas:TextureAtlas;
 
     private var _updateListeners:Boolean = false;
+    public static const VIEWMODE_OPENED:String = "viewmodesOpened";
 
     public function ViewModeOpenButton(textureAtlas:TextureAtlas) {
         appModel = AppModel.getInstance();
@@ -37,11 +39,10 @@ public class ViewModeOpenButton extends Button{
         this.addEventListener(TouchEvent.TOUCH, touchHandler);
     }
 
-    //TODO: Sven: Bug oplossen bij snel klikken
     private function touchHandler(event:TouchEvent):void {
         var touchObject:DisplayObject = event.currentTarget as DisplayObject;
         if(event.getTouch(touchObject, TouchPhase.BEGAN)){
-            appModel.openViewModes();
+            dispatchEvent(new Event(VIEWMODE_OPENED));
         }
     }
 

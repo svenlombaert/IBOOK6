@@ -39,19 +39,24 @@ public class ViewModeController extends Sprite {
         thumbnailContainer = new ThumbnailContainer(textureAtlas);
         changeViewModeControl = new ViewModeChangerButton(textureAtlas);
         timeLineButtonsContainer = new Sprite();
+
         this.appModel.addEventListener(AppModel.APPSIZE_CHANGED, resizeHandler);
+        openControl.addEventListener(ViewModeOpenButton.VIEWMODE_OPENED, openControlClicked);
+        changeViewModeControl.addEventListener(ViewModeChangerButton.VIEWMODE_CHANGED, changeViewModeControlClicked);
 
         if(appModel.timelineView){
             _maxItemsToView = appModel.maxItemsToView = 4;
             if(_maxItemsToView < appModel.pages.length){
                 //TODO: luisteren naar klik event op de pagina's.
                 scrollbar = new Scrollbar(appModel.appwidth - 60, 10, ((appModel.appwidth-60)/appModel.pages.length) * _maxItemsToView);
-                scrollbar.addEventListener(Scrollbar.THUMBPOSITION_CHANGED, thumbPositionChanged);
+                scrollbar.addEventListener(Scrollbar.THUMBPOSITION_CHANGED, scrollbarDragHandler);
             }
         }else{
             _maxItemsToView = appModel.maxItemsToView = 16;
             if(_maxItemsToView < appModel.pages.length){
                 //Scrollbar aanmaken
+                scrollbar = new Scrollbar(appModel.appwidth - 60, 10, ((appModel.appwidth-60)/appModel.pages.length) * _maxItemsToView);
+                scrollbar.addEventListener(Scrollbar.THUMBPOSITION_CHANGED, scrollbarDragHandler);
             }
         }
         changeViewModeControl.y = openControl.height;
@@ -62,17 +67,19 @@ public class ViewModeController extends Sprite {
 
         addChild(thumbnailContainer);
         addChild(timeLineButtonsContainer);
-        addChild(scrollbar);
+        if(scrollbar != null){
+            addChild(scrollbar);
+        }
         this.appModel.addEventListener(AppModel.VIEWMODES_OPENED, viewModesOpenedHandler);
         this.appModel.addEventListener(AppModel.VIEWMODES_CHANGED, viewModesChangedHandler);
+        this.appModel.addEventListener(AppModel.THUMBSCROLLBARPOSITION_CHANGED, scrollbarPosChanged);
     }
-    //TODO: openControl en changeviewmodecontrol in 1 container steken
-    //TODO: pijltjes toevoegen
     private function viewModesOpenedHandler(event:flash.events.Event):void {
         Starling.juggler.removeTweens(this);
         Starling.juggler.removeTweens(openControl);
         Starling.juggler.removeTweens(thumbnailContainer);
         openControl.updateListeners = true;
+
         if(appModel.timelineView){
             if(appModel.viewModesOpened){
                 //TIMELINEVIEW OPENEN
@@ -161,7 +168,9 @@ public class ViewModeController extends Sprite {
         Starling.juggler.removeTweens(this);
         Starling.juggler.removeTweens(openControl);
         Starling.juggler.removeTweens(thumbnailContainer);
+        changeViewModeControl.viewModeTimeline = appModel.timelineView;
         //de viewmodes staan altijd open
+        //changeViewModeControl.viewModeTimeline = appModel.timelineView;
         if(appModel.timelineView){
             //naar timelineview gaan
             tween = new Tween(thumbnailContainer, 0.5, Transitions.EASE_IN_OUT);
@@ -195,27 +204,41 @@ public class ViewModeController extends Sprite {
                 timeLineButtonsContainer.y = 10 + timeLineButtonsContainer.height/2;
                 thumbnailContainer.y = 0;
             }
-            scrollbar.y = appModel.appheight - scrollbar.height;
+
         }else{
             thumbnailContainer.y = appModel.appheight;
             timeLineButtonsContainer.y = appModel.appheight;
-            scrollbar.y = appModel.appheight;
         }
 
-        scrollbar.x = appModel.appwidth/2 - scrollbar.width/2;
+        if(scrollbar != null){
+            if(appModel.viewModesOpened){
+                scrollbar.y = appModel.appheight - scrollbar.height;
+            }else{
+                scrollbar.y = appModel.appheight;
+            }
+            scrollbar.x = appModel.appwidth/2 - scrollbar.width/2;
+        }
 
         timeLineButtonsContainer.pivotX = timeLineButtonsContainer.width/2;
         timeLineButtonsContainer.pivotY = timeLineButtonsContainer.height/2;
         timeLineButtonsContainer.x = appModel.appwidth/2;
     }
 
-    private function thumbPositionChanged(event:starling.events.Event):void {
+    private function scrollbarDragHandler(event:starling.events.Event):void {
         trace('[VIEWMODECONTROL] thumbpos changed');
         appModel.thumbScrollbarPosition = scrollbar.thumbPosition;
     }
 
-    private function pageIndexChangedHandler(event:flash.events.Event):void {
-        appModel.thumbScrollbarPosition = scrollbar.thumbPosition = appModel.selectedPageIndex/appModel.pages.length;
+    private function openControlClicked(event:starling.events.Event):void {
+        appModel.openViewModes();
+    }
+
+    private function changeViewModeControlClicked(event:starling.events.Event):void {
+        appModel.changeViewModes();
+    }
+
+    private function scrollbarPosChanged(event:flash.events.Event):void {
+        scrollbar.thumbPosition = appModel.thumbScrollbarPosition;
     }
 }
 }

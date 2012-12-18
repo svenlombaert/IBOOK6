@@ -8,56 +8,51 @@
 package be.devine.cp3.view.viewmodes {
 import be.devine.cp3.config.Config;
 import be.devine.cp3.model.AppModel;
-import be.devine.cp3.view.*;
 
+import flash.display.Bitmap;
+import flash.display.BitmapData;
+
+import flash.display.Loader;
 import flash.events.Event;
 import flash.geom.Point;
+import flash.net.URLRequest;
 
 import starling.core.Starling;
 import starling.display.DisplayObject;
 import starling.display.Image;
-import starling.display.Quad;
 import starling.display.Sprite;
+import starling.events.Event;
 import starling.events.Touch;
 import starling.events.TouchEvent;
 import starling.events.TouchPhase;
 import starling.text.TextField;
-import starling.textures.RenderTexture;
+import starling.textures.Texture;
 
 //TODO: inladen vanuit map.
-public class Thumbnail extends Sprite{
+public class Thumbnail extends Sprite {
     public static const MAXWIDTH:uint = 220;
     public static const MAXHEIGHT:uint = 140;
 
     private var pageNumber:int;
-    private var appModel:AppModel;
     private var hoverOverlay:Sprite;
     private var thumb:Image;
+    private var loader:Loader;
+    private var _active:Boolean = false;
+
+    public static const THUMBNAIL_CLICKED:String = "thumbnailClicked";
 
     //TODO: hover met paginanummer
-    public function Thumbnail(page:Page) {
-        this.pageNumber = page.pagenumber;
-        this.appModel = AppModel.getInstance();
-        this.appModel.addEventListener(AppModel.SELECTEDPAGEINDEX_CHANGED, pageIndexChangedHandler);
-        //resize page
-        page.width = MAXWIDTH;
-        page.scaleY = page.scaleX;
-
-        if(page.height > MAXHEIGHT){
-           page.height = MAXHEIGHT;
-           page.scaleX = page.scaleY;
-        }
+    public function Thumbnail(url:String, pageNumber:int) {
+        trace('maak thumb');
+        this.pageNumber = pageNumber+1;
 
         //flatten page
-        var q:Quad = new Quad(220, 140, Config.THUMBNAILBACKGROUNDCOLOR);
-        var texture:RenderTexture = new RenderTexture(q.width, q.height);
-        texture.draw(q);
-        texture.draw(page);
+        loader = new Loader();
+        loader.load(new URLRequest(url));
+        loader.contentLoaderInfo.addEventListener(flash.events.Event.COMPLETE, imageLoadedHandler);
 
-        thumb= new Image(texture);
-        thumb.alpha = 0.3;
-        addChild(thumb);
-        createHoverOverlay();
+        thumb = Image.fromBitmap(new Bitmap(new BitmapData(MAXWIDTH, MAXHEIGHT)));
+        hoverOverlay = new Sprite();
 
         this.useHandCursor = true;
         this.addEventListener(TouchEvent.TOUCH, touchHandler);
@@ -66,37 +61,29 @@ public class Thumbnail extends Sprite{
     private function touchHandler(event:TouchEvent):void {
         var touchObject:DisplayObject = event.currentTarget as DisplayObject;
 
-        var touch:Touch = event.getTouch(touchObject);
-
         if (event.getTouch(touchObject, TouchPhase.BEGAN)) {
-            appModel.selectedPageIndex = this.pageNumber - 1;
-            hoverOverlay.visible = true;
-            this.removeEventListener(TouchEvent.TOUCH, touchHandler);
+            dispatchEvent(new starling.events.Event(THUMBNAIL_CLICKED));
         }
 
-        if (event.getTouch(touchObject, TouchPhase.HOVER)){
-                hoverOverlay.visible = true;
-        }else{
+        if (event.getTouch(touchObject, TouchPhase.HOVER)) {
+            hoverOverlay.visible = true;
+        } else {
             var touch:Touch = event.getTouch(touchObject);
             var location:Point = new Point();
-            if(touch != null){
-                location  = touch.getLocation(touchObject);
+            if (touch != null) {
+                location = touch.getLocation(touchObject);
             } else {
                 var globalPoint:Point = new Point(Starling.current.nativeStage.mouseX, Starling.current.nativeStage.mouseY);
                 globalToLocal(globalPoint, location);
             }
 
-            if(this.hitTest(location) == null) {
+            if (this.hitTest(location) == null) {
                 hoverOverlay.visible = false;
             }
-
         }
-
-
     }
 
-    private function createHoverOverlay():void{
-        hoverOverlay = new Sprite();
+    private function createHoverOverlay():void {
         var text:TextField = new TextField(MAXWIDTH, MAXHEIGHT, "p" + this.pageNumber, Config.FONTBOLD, 42, Config.HOVERTHUMBNAILCOLOR);
         hoverOverlay.addChild(text);
         hoverOverlay.visible = false;
@@ -104,20 +91,33 @@ public class Thumbnail extends Sprite{
         display();
     }
 
-    private function pageIndexChangedHandler(event:Event):void {
-        display();
-    }
-
-    private function display():void{
-        if((this.pageNumber-1) == appModel.selectedPageIndex){
+    private function display():void {
+        if (active) {
             thumb.alpha = 1;
             hoverOverlay.visible = true;
             this.removeEventListener(TouchEvent.TOUCH, touchHandler);
-        }else{
+        } else {
             thumb.alpha = 0.3;
             hoverOverlay.visible = false;
             this.addEventListener(TouchEvent.TOUCH, touchHandler);
         }
+    }
+
+    private function imageLoadedHandler(event:flash.events.Event):void {
+        var texture:Texture = Texture.fromBitmap(loader.content as Bitmap);
+        thumb = new Image(texture);
+        thumb.alpha = 0.3;
+        addChild(thumb);
+        createHoverOverlay();
+    }
+
+    public function get active():Boolean {
+        return _active;
+    }
+
+    public function set active(value:Boolean):void {
+        _active = value;
+        display();
     }
 }
 }

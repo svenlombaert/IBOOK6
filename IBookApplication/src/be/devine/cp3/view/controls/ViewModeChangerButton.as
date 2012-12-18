@@ -15,6 +15,7 @@ import flash.events.Event;
 import starling.display.Button;
 import starling.display.DisplayObject;
 import starling.display.Image;
+import starling.events.Event;
 import starling.events.TouchEvent;
 import starling.events.TouchPhase;
 import starling.textures.RenderTexture;
@@ -25,6 +26,9 @@ import starling.utils.deg2rad;
 public class ViewModeChangerButton extends Button {
     private var appModel:AppModel;
     private var textureAtlas:TextureAtlas;
+    private var _viewModeTimeline:Boolean;
+
+    public static const VIEWMODE_CHANGED:String = "viewModeChanged";
 
     //TODO: control die van timeline naar thumbnail mode switcht
     public function ViewModeChangerButton(textureAtlas:TextureAtlas) {
@@ -33,21 +37,21 @@ public class ViewModeChangerButton extends Button {
         this.textureAtlas = textureAtlas;
         this.scaleWhenDown = 1;
         this.addEventListener(TouchEvent.TOUCH, touchHandler);
-        this.appModel.addEventListener(AppModel.VIEWMODES_CHANGED, viewmodeChangedHandler);
     }
 
     private function touchHandler(event:TouchEvent):void {
         var touchObject:DisplayObject = event.currentTarget as DisplayObject;
         if(event.getTouch(touchObject, TouchPhase.BEGAN)){
-            appModel.changeViewModes();
+            dispatchEvent(new starling.events.Event(VIEWMODE_CHANGED));
         }
     }
 
-    private function viewmodeChangedHandler(event:Event):void {
-        trace("TIMELINEVIEW: ", appModel.timelineView);
-        if(appModel.timelineView){
+    private function changeTexture():void {
+        if(_viewModeTimeline){
+            trace("set grid");
             this.upState = renderTexture(textureAtlas, appModel.selectedColorIndex);
         }else{
+            trace("set timeline");
             this.upState = renderTexture(textureAtlas, appModel.selectedColorIndex);
         }
     }
@@ -79,9 +83,7 @@ public class ViewModeChangerButton extends Button {
         bmpData.draw(circleShape);
 
         var imgCircle:Image = new Image(Texture.fromBitmapData(bmpData));
-        //imgCircle.pivotX = circleShape.width;
-        //imgCircle.pivotY = circleShape.width;
-        //imgCircle.rotation = deg2rad(180);
+
         imgCircle.pivotX = 0;
         imgCircle.pivotY = imgCircle.height;
         imgCircle.scaleY = -1;
@@ -91,6 +93,16 @@ public class ViewModeChangerButton extends Button {
         renderTexture.draw(imgIcon);
 
         return renderTexture;
+    }
+
+    public function get viewModeTimeline():Boolean {
+        return _viewModeTimeline;
+    }
+
+    public function set viewModeTimeline(value:Boolean):void {
+        trace("VMCHB: ", _viewModeTimeline);
+        _viewModeTimeline = value;
+        changeTexture();
     }
 }
 }

@@ -6,8 +6,6 @@
  * To change this template use File | Settings | File Templates.
  */
 package be.devine.cp3.config {
-import flash.net.URLRequest;
-
 public class Config {
     public static const TIMELINECOLOR:uint = 0x353535;
     public static const THUMBNAILBACKGROUNDCOLOR:uint = 0xffffff;

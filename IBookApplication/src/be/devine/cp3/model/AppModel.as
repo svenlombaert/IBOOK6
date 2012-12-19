@@ -6,13 +6,10 @@
  * To change this template use File | Settings | File Templates.
  */
 package be.devine.cp3.model {
-import be.devine.cp3.factory.vo.PageVOFactory;
 import be.devine.cp3.vo.PageVO;
 
 import flash.events.Event;
 import flash.events.EventDispatcher;
-import flash.net.URLLoader;
-import flash.net.URLRequest;
 
 public class AppModel extends EventDispatcher {
     public static var instance:AppModel;

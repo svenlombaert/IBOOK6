@@ -17,9 +17,7 @@ import be.devine.cp3.view.PageContainer;
 import be.devine.cp3.view.ViewModeController;
 import be.devine.cp3.view.controls.PrevNextSlideButton;
 import be.devine.cp3.view.viewmodes.Thumbnail;
-import be.devine.cp3.vo.PageVO;
 
-import com.adobe.images.JPGEncoder;
 import com.adobe.images.PNGEncoder;
 
 import flash.display.Bitmap;
@@ -189,7 +187,6 @@ public class Application extends Sprite {
         var directory:File = File.desktopDirectory.resolvePath("thumbnails");
         directory.createDirectory();
 
-        trace(this.numChildren);
         if(thumbPage != null){
 
             ClearMemory.clear(thumbPage as DisplayObjectContainer);
@@ -198,8 +195,6 @@ public class Application extends Sprite {
 
 
         if(thumbnailToLoad < appModel.pages.length){
-
-            trace('LOAD THUMBNAIL ', thumbnailToLoad);
             thumbPage = new Page(appModel.pages[thumbnailToLoad]);
             addChild(thumbPage);
             if(thumbPage.hasBackground){
@@ -234,6 +229,7 @@ public class Application extends Sprite {
         stream.writeBytes (byteArray);
         stream.close();
 
+        trace('');
 
         thumbnailToLoad += 1;
         generateThumbnails();

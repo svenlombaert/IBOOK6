@@ -9,7 +9,6 @@ package be.devine.cp3.utils.memory {
 import starling.display.DisplayObject;
 import starling.display.DisplayObjectContainer;
 import starling.display.Image;
-import starling.textures.Texture;
 
 public class ClearMemory {
     public function ClearMemory() {

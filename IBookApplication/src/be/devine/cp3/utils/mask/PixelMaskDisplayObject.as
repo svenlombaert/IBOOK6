@@ -1,6 +1,7 @@
 package be.devine.cp3.utils.mask
 {
 import flash.display3D.Context3DBlendFactor;
+
 import starling.core.RenderSupport;
 import starling.display.BlendMode;
 import starling.display.DisplayObject;

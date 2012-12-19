@@ -7,15 +7,11 @@
  */
 package be.devine.cp3.view.viewmodes {
 import be.devine.cp3.config.Config;
-import be.devine.cp3.model.AppModel;
 
 import flash.display.Bitmap;
 import flash.display.BitmapData;
-
-import flash.display.Loader;
 import flash.events.Event;
 import flash.geom.Point;
-import flash.geom.Rectangle;
 import flash.net.URLLoader;
 import flash.net.URLLoaderDataFormat;
 import flash.net.URLRequest;
@@ -29,7 +25,6 @@ import starling.events.Touch;
 import starling.events.TouchEvent;
 import starling.events.TouchPhase;
 import starling.text.TextField;
-import starling.textures.Texture;
 import starling.textures.Texture;
 
 //TODO: inladen vanuit map.

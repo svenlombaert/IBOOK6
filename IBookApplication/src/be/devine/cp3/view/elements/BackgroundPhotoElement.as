@@ -7,13 +7,9 @@
  */
 package be.devine.cp3.view.elements {
 import be.devine.cp3.config.Config;
-import be.devine.cp3.config.Config;
 import be.devine.cp3.model.AppModel;
-import be.devine.cp3.queue.ImageLoaderTask;
-import be.devine.cp3.queue.Queue;
 import be.devine.cp3.vo.BackgroundPhotoElementVO;
 
-import flash.display.Bitmap;
 import flash.display.BitmapData;
 import flash.events.Event;
 import flash.geom.Point;
@@ -22,7 +18,6 @@ import flash.net.URLLoaderDataFormat;
 import flash.net.URLRequest;
 
 import starling.display.Image;
-import starling.display.Sprite;
 import starling.events.Event;
 import starling.textures.Texture;
 
@@ -65,7 +60,7 @@ public class BackgroundPhotoElement extends Element{
         setSize()
     }
 
-    private function setSize(){
+    private function setSize():void {
         image.x = appModel.appwidth/2 - image.width/2;
         image.y = appModel.appheight/2 - image.height/2;
     }

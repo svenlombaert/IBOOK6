@@ -11,14 +11,8 @@ import be.devine.cp3.model.AppModel;
 import be.devine.cp3.utils.memory.ClearMemory;
 
 import flash.events.Event;
-import flash.filesystem.File;
-
-import flashx.textLayout.formats.ClearFloats;
-
-import starling.display.DisplayObject;
 
 import starling.display.DisplayObjectContainer;
-
 import starling.display.Image;
 import starling.display.Quad;
 import starling.display.Sprite;

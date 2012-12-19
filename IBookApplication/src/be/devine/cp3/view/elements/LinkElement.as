@@ -10,14 +10,10 @@ import be.devine.cp3.config.Config;
 import be.devine.cp3.model.AppModel;
 import be.devine.cp3.vo.LinkElementVO;
 
-import flash.events.Event;
-
 import starling.display.DisplayObject;
-
 import starling.events.Event;
 import starling.events.TouchEvent;
 import starling.events.TouchPhase;
-
 import starling.text.TextField;
 import starling.utils.HAlign;
 import starling.utils.VAlign;
@@ -47,7 +43,7 @@ public class LinkElement extends Element {
     private function touchHandler(event:TouchEvent):void {
 
         if(event.getTouch(event.target as DisplayObject, TouchPhase.BEGAN)) {
-            dispatchEvent(new starling.events.Event(LINK_CLICKED));
+            dispatchEvent(new Event(LINK_CLICKED));
         }
     }
 

@@ -10,7 +10,6 @@ import be.devine.cp3.model.AppModel;
 
 import flash.display.BitmapData;
 import flash.display.Shape;
-import flash.events.Event;
 
 import starling.display.Button;
 import starling.display.DisplayObject;
@@ -42,7 +41,7 @@ public class ViewModeChangerButton extends Button {
     private function touchHandler(event:TouchEvent):void {
         var touchObject:DisplayObject = event.currentTarget as DisplayObject;
         if(event.getTouch(touchObject, TouchPhase.BEGAN)){
-            dispatchEvent(new starling.events.Event(VIEWMODE_CHANGED));
+            dispatchEvent(new Event(VIEWMODE_CHANGED));
         }
     }
 

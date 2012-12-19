@@ -57,6 +57,7 @@ public class ThumbnailContainer extends Sprite {
     }
 
     private function getUrls():void{
+        //TODO:inladen uit assets
         var phDirectory:File = File.desktopDirectory.resolvePath("thumbnails");
         phDirectory.createDirectory();
 

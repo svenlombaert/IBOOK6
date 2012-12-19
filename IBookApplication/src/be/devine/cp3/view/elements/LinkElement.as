@@ -10,6 +10,14 @@ import be.devine.cp3.config.Config;
 import be.devine.cp3.model.AppModel;
 import be.devine.cp3.vo.LinkElementVO;
 
+import flash.events.Event;
+
+import starling.display.DisplayObject;
+
+import starling.events.Event;
+import starling.events.TouchEvent;
+import starling.events.TouchPhase;
+
 import starling.text.TextField;
 import starling.utils.HAlign;
 import starling.utils.VAlign;
@@ -17,6 +25,8 @@ import starling.utils.VAlign;
 public class LinkElement extends Element {
 
     private var appModel:AppModel;
+    public static const LINK_CLICKED:String = "linkElement";
+    private var _linkTo:uint;
 
     public function LinkElement(linkElementVO:LinkElementVO) {
         super (linkElementVO);
@@ -27,7 +37,22 @@ public class LinkElement extends Element {
         t.hAlign = HAlign.LEFT;
         t.underline = true;
         //t.border = true;
+        _linkTo = linkElementVO.linkTo;
         addChild(t);
+
+
+        addEventListener(TouchEvent.TOUCH, touchHandler);
+    }
+
+    private function touchHandler(event:TouchEvent):void {
+
+        if(event.getTouch(event.target as DisplayObject, TouchPhase.BEGAN)) {
+            dispatchEvent(new starling.events.Event(LINK_CLICKED));
+        }
+    }
+
+    public function get linkTo():uint {
+        return _linkTo;
     }
 }
 }

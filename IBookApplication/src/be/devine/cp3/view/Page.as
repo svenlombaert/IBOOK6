@@ -24,6 +24,8 @@ import be.devine.cp3.vo.PageVO;
 import be.devine.cp3.vo.SubTitleElementVO;
 import be.devine.cp3.vo.TitleElementVO;
 
+import flash.events.Event;
+
 import starling.display.Quad;
 import starling.display.Sprite;
 import starling.events.Event;
@@ -46,6 +48,7 @@ public class Page extends Sprite{
 
     public function Page(pageVO:PageVO) {
         this.appModel = AppModel.getInstance();
+        this.appModel.addEventListener(AppModel.APPSIZE_CHANGED, resizeHandler);
         this.pageVO = pageVO;
         //paginanummer halen uit de pageVO, dit paginanummer is nodig voor de klik functie in de thumbnail die gebruikt maakt van een 'Page' object
         this.pagenumber = pageVO.pageNumber;
@@ -72,7 +75,7 @@ public class Page extends Sprite{
 
                 if(element is BackgroundPhotoElement){
                     _hasBackground = true;
-                    element.addEventListener(Event.COMPLETE, backgroundLoadedHandler);
+                    element.addEventListener(starling.events.Event.COMPLETE, backgroundLoadedHandler);
                     addChildAt(element, 0);
                 }
 
@@ -110,6 +113,7 @@ public class Page extends Sprite{
                     element.x = (elementVO as LinkElementVO).xPos;
                     element.y = (elementVO as LinkElementVO).yPos;
                     element.useHandCursor = true;
+                    element.addEventListener(LinkElement.LINK_CLICKED, linkClickedHandler);
                     _elementContainer.addChild(element);
 
                 }
@@ -130,12 +134,33 @@ public class Page extends Sprite{
 
     }
 
-    private function backgroundLoadedHandler(event:Event):void {
-        dispatchEvent(new Event(Event.COMPLETE, true));
+    private function backgroundLoadedHandler(event:starling.events.Event):void {
+        dispatchEvent(new starling.events.Event(starling.events.Event.COMPLETE, true));
     }
 
     public function get hasBackground():Boolean {
         return _hasBackground;
+    }
+
+    private function resizeHandler(event:flash.events.Event):void {
+         pageNumberElement.x = (_background.width>>1)-(pageNumberElement.width>>1) - marginLeft;
+         pageNumberElement.y = _background.height - pageNumberElement.height - 30 - marginTop;
+
+         if(_background != null){
+             _background.x = (appModel.appwidth * 0.5) - (_background.width *.5);
+             _background.y = (appModel.appheight * 0.5) - (_background.height *.5);
+         }
+
+        if(_elementContainer != null){
+            _elementContainer.x = _background.x + marginLeft;
+            _elementContainer.y = _background.y + marginTop;
+        }
+
+    }
+
+    private function linkClickedHandler(event:starling.events.Event):void {
+        var linkelement:LinkElement = event.target as LinkElement;
+        appModel.selectedPageIndex = linkelement.linkTo;
     }
 }
 }

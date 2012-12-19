@@ -45,7 +45,7 @@ public class Thumbnail extends Sprite {
     public function Thumbnail(url:String, pageNumber:int) {
         trace('maak thumb');
         this.pageNumber = pageNumber+1;
-
+        trace(url);
         //flatten page
         loader = new Loader();
         loader.load(new URLRequest(url));

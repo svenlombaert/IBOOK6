@@ -32,7 +32,6 @@ public class AppModel extends EventDispatcher {
     private var _viewModesOpened:Boolean = false;
     private var _thumbScrollbarPosition:Number;
     private var _maxItemsToView:int;
-    private var _thumbnailUrls:Vector.<String>;
 
     private var _hasNextPage:Boolean;
     private var _hasPreviousPage:Boolean;
@@ -195,15 +194,6 @@ public class AppModel extends EventDispatcher {
     public function get hasPreviousPage():Boolean {
         return _hasPreviousPage;
     }
-
-    public function get thumbnailUrls():Vector.<String> {
-        return _thumbnailUrls;
-    }
-
-    public function set thumbnailUrls(value:Vector.<String>):void {
-        _thumbnailUrls = value;
-    }
-
 }
 }
 internal class Enforcer{}

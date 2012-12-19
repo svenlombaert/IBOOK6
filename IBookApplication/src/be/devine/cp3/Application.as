@@ -215,7 +215,7 @@ public class Application extends Sprite {
         var result:BitmapData = new BitmapData(Thumbnail.MAXWIDTH, Thumbnail.MAXHEIGHT, true);
         Starling.context.drawToBitmapData(result);
 
-        var jpgEncoder:JPGEncoder = new JPGEncoder(100);
+        var jpgEncoder:JPGEncoder = new JPGEncoder(60);
         var byteArray:ByteArray = jpgEncoder.encode(result);
 
         var file:File = File.desktopDirectory.resolvePath("thumbnails/" + "thumbnail" + thumbnailToLoad + ".jpg");

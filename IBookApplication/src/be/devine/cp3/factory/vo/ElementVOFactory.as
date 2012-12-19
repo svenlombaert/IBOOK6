@@ -33,6 +33,7 @@ public class ElementVOFactory {
         elementVO.text = elementXML;
         elementVO.xPos = elementXML.@x;
         elementVO.yPos = elementXML.@y;
+        elementVO.linkTo = uint(elementXML.@linkTo) - 1;
         return elementVO;
     }
 

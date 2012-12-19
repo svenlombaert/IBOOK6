@@ -53,45 +53,16 @@ public class ThumbnailContainer extends Sprite {
         addChild(prevNextText);
         addChild(openText);
 
-        getUrls();
-    }
-
-    private function getUrls():void{
-        //TODO:inladen uit assets
-        var phDirectory:File = File.desktopDirectory.resolvePath("thumbnails");
-        phDirectory.createDirectory();
-
-        var files:Array = phDirectory.getDirectoryListing();
-        var urls:Vector.<String> = new Vector.<String>();
-
-        for each(var f:File in files){
-            // controle dat het zeker fotos zijn
-            if(!f.isDirectory){
-                var filesplit:Array = f.name.split(".");
-                switch(filesplit[filesplit.length - 1]){
-                    case 'jpg':
-                    case 'jpeg':
-                    case 'gif':
-                    case 'png':
-                        urls.push(f.url);
-                        break;
-                }
-            }
-
-        }
-        appModel.thumbnailUrls = urls;
         generateThumbs();
-
     }
 
     private function generateThumbs():void {
+        trace('ik genereer thumbs');
         _arrThumbnails = new Vector.<Thumbnail>();
-        var i:int = 0;
-        for each(var url:String in appModel.thumbnailUrls){
-            trace('url: ', url);
-            var thumb:Thumbnail = new Thumbnail(url, i);
+        for (var i:int = 0; i<appModel.pages.length; i++ )
+        {
+            var thumb:Thumbnail = new Thumbnail("assets/images/thumbnails/thumbnail" + i + ".jpg", i);
             _arrThumbnails.push(thumb);
-            i++
         }
         showThumbnails();
     }

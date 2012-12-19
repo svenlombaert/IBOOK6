@@ -15,6 +15,7 @@ import flash.events.Event;
 import starling.animation.Transitions;
 import starling.animation.Tween;
 import starling.core.Starling;
+import starling.display.DisplayObjectContainer;
 import starling.display.Sprite;
 
 public class PageContainer extends Sprite{
@@ -24,7 +25,6 @@ public class PageContainer extends Sprite{
     private var loadedPages:Array;
     private var currentPageIndex:int;
     private var pageToDelete:Page;
-    private var isTweening:Boolean = false;
     //TODO: spammen op de linker en rechter knop
     public function PageContainer() {
 
@@ -53,7 +53,7 @@ public class PageContainer extends Sprite{
 
         var diff:int = currentPageIndex - appModel.selectedPageIndex;
 
-        if(isTweening == false){
+
             if((diff>= -1) && (diff<=1))
             {
                 if(appModel.selectedPageIndex > currentPageIndex){
@@ -65,7 +65,7 @@ public class PageContainer extends Sprite{
             }else{
                 buildPages();
             }
-        }
+
 
     }
 
@@ -80,6 +80,9 @@ public class PageContainer extends Sprite{
         }
 
         if(loadedPages.length > 3){
+            if(loadedPages[0] != null){
+                ClearMemory.clear(loadedPages[0] as DisplayObjectContainer);
+            }
             loadedPages.shift();
         }
 
@@ -90,7 +93,7 @@ public class PageContainer extends Sprite{
         var tween2:Tween = new Tween(pageToDelete, 0.4, Transitions.EASE_OUT);
         tween2.animate("x", -appModel.appwidth);
         tween2.onComplete = removeItems;
-        isTweening = true;
+        tween2.onCompleteArgs = new Array(pageToDelete);
         Starling.juggler.add(tween1);
         Starling.juggler.add(tween2);
     }
@@ -108,9 +111,11 @@ public class PageContainer extends Sprite{
         }
 
         if(loadedPages.length > 3){
+            if(loadedPages[3] != null){
+                ClearMemory.clear(loadedPages[3] as DisplayObjectContainer);
+            }
             loadedPages.pop();
         }
-
 
         loadedPages[1].x = -appModel.appwidth;
         addChild(loadedPages[1]);
@@ -119,7 +124,7 @@ public class PageContainer extends Sprite{
         var tween2:Tween = new Tween(pageToDelete, 0.4, Transitions.EASE_OUT);
         tween2.animate("x", appModel.appwidth);
         tween2.onComplete = removeItems;
-        isTweening = true;
+        tween2.onCompleteArgs = new Array(pageToDelete);
         Starling.juggler.add(tween1);
         Starling.juggler.add(tween2);
     }
@@ -128,19 +133,29 @@ public class PageContainer extends Sprite{
         pageToDelete = loadedPages[1];
         currentPageIndex = appModel.selectedPageIndex;
         if(appModel.hasNextPage){
+            if(loadedPages[2] != null){
+                ClearMemory.clear(loadedPages[2] as DisplayObjectContainer);
+            }
             loadedPages[2] = new Page(appModel.pages[currentPageIndex+1]);
         }
         if(appModel.hasPreviousPage){
+            if(loadedPages[0] != null){
+                ClearMemory.clear(loadedPages[0] as DisplayObjectContainer);
+            }
             loadedPages[0] = new Page(appModel.pages[currentPageIndex-1]);
         }
         loadedPages[1] = new Page(appModel.pages[currentPageIndex]);
+        loadedPages[1].alpha = 0;
         addChild(loadedPages[1]);
-        removeChild(pageToDelete);
+        var tween:Tween = new Tween(loadedPages[1], 0.4, Transitions.EASE_IN);
+        tween.animate("alpha", 1);
+        tween.onComplete = removeItems;
+        tween.onCompleteArgs = new Array(pageToDelete);
+        Starling.juggler.add(tween);
     }
 
-    private function removeItems():void {
+    private function removeItems(pageToDelete:Page):void {
         removeChild(pageToDelete);
-        isTweening = false;
     }
 
 }

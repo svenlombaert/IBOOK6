@@ -34,25 +34,20 @@ public class Page extends Sprite{
 
     private var pageVO:PageVO;
     private var _hasText:Boolean = false;
-    private var _hasIntro:Boolean = false;
     private var _hasBackground:Boolean = false;
-    private var _hasTitle:Boolean = false;
     private var appModel:AppModel;
     private var _background:Quad;
     private var _elementContainer:Sprite;
     private var pageNumberElement:PageNumberElement;
     private var marginLeft: int = 20;
     private var marginTop: int = 20;
-
     public var pagenumber:int;
 
     public function Page(pageVO:PageVO) {
         this.appModel = AppModel.getInstance();
         this.appModel.addEventListener(AppModel.APPSIZE_CHANGED, resizeHandler);
         this.pageVO = pageVO;
-        //paginanummer halen uit de pageVO, dit paginanummer is nodig voor de klik functie in de thumbnail die gebruikt maakt van een 'Page' object
         this.pagenumber = pageVO.pageNumber;
-
         loadPage();
     }
 
@@ -80,7 +75,6 @@ public class Page extends Sprite{
                 }
 
                 if (element is TitleElement) {
-                    _hasTitle = true;
                     element.x = (elementVO as TitleElementVO).xPos;
                     element.y = (elementVO as TitleElementVO).yPos;
                     // element.filter =
@@ -117,7 +111,6 @@ public class Page extends Sprite{
                     _elementContainer.addChild(element);
 
                 }
-
             }
         }
 
@@ -162,5 +155,6 @@ public class Page extends Sprite{
         var linkelement:LinkElement = event.target as LinkElement;
         appModel.selectedPageIndex = linkelement.linkTo;
     }
+
 }
 }

@@ -105,9 +105,7 @@ public class Scrollbar extends Sprite{
     }
 
     public function set thumbPosition(value:Number):void {
-        trace('[scrollbar] thumbpos changed', value);
         if(_thumbPosition != value){
-            trace('dispatch event');
             _thumbPosition = value;
             maskedThumb.x = _thumbPosition * (maskedTrack.width - maskedThumb.width);
             dispatchEvent(new Event(THUMBPOSITION_CHANGED));

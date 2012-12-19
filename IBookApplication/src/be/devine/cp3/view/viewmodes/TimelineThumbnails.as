@@ -36,6 +36,7 @@ public class TimelineThumbnails extends Sprite{
         this.appModel.addEventListener(AppModel.APPSIZE_CHANGED, resizeHandler);
         this.appModel.addEventListener(AppModel.SELECTEDPAGEINDEX_CHANGED, pageIndexChangedHandler);
         initalizeThumbnails();
+        scrollHandler(null);
     }
 
     private function initalizeThumbnails():void {
@@ -44,9 +45,11 @@ public class TimelineThumbnails extends Sprite{
 
         for(var i:int = 0; i<arrThumbnails.length; i++){
             arrThumbnails[i].x = xPos;
+            arrThumbnails[i].y = 0;
             arrThumbnails[i].addEventListener(Thumbnail.THUMBNAIL_CLICKED, thumbnailClickedHandler);
             thumbnailsHolder.addChild(arrThumbnails[i]);
             xPos += Thumbnail.MAXWIDTH + 25;
+            trace(arrThumbnails[i].y);
         }
 
         maskObject = new Quad(appModel.appwidth-60, 258, 0x000000);
@@ -100,7 +103,8 @@ public class TimelineThumbnails extends Sprite{
         appModel.thumbScrollbarPosition = appModel.selectedPageIndex / (appModel.pages.length-1);
     }
 
-    private function display(indexToSetActive:int):void {
+    public function display(indexToSetActive:int):void {
+
         for (var i:int = 0; i<arrThumbnails.length; i++){
             if(i != indexToSetActive){
                 arrThumbnails[i].active=false;

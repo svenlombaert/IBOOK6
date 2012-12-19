@@ -49,10 +49,7 @@ public class PageContainer extends Sprite{
     }
 
     private function pageIndexChangedHandler(event:Event):void {
-        trace("aantal children: ",this.numChildren);
-
         var diff:int = currentPageIndex - appModel.selectedPageIndex;
-
 
             if((diff>= -1) && (diff<=1))
             {
@@ -72,6 +69,7 @@ public class PageContainer extends Sprite{
     private function gotoNextPage():void{
         pageToDelete = loadedPages[1];
         currentPageIndex = appModel.selectedPageIndex;
+
         if(appModel.hasNextPage){
             loadedPages.push(new Page(appModel.pages[currentPageIndex +1]));
 
@@ -80,10 +78,16 @@ public class PageContainer extends Sprite{
         }
 
         if(loadedPages.length > 3){
+            trace('array length: ', loadedPages.length);
             if(loadedPages[0] != null){
+                trace('dispose loadedPages[0]');
+                trace('----start clear memory----');
                 ClearMemory.clear(loadedPages[0] as DisplayObjectContainer);
+                trace('----end clear memory----');
+                loadedPages[0].dispose();
             }
             loadedPages.shift();
+            trace('array length: ', loadedPages.length);
         }
 
         loadedPages[1].x = appModel.appwidth;
@@ -103,7 +107,6 @@ public class PageContainer extends Sprite{
         pageToDelete = loadedPages[1];
 
         if(appModel.hasPreviousPage){
-            trace("currpageIndex: ", currentPageIndex);
             loadedPages.unshift(new Page(appModel.pages[appModel.selectedPageIndex-1]));
 
         }else{
@@ -111,10 +114,18 @@ public class PageContainer extends Sprite{
         }
 
         if(loadedPages.length > 3){
+            trace('array length: ', loadedPages.length);
+
             if(loadedPages[3] != null){
+                trace('dispose loadedPages[3]');
+                trace('----start clear memory----');
                 ClearMemory.clear(loadedPages[3] as DisplayObjectContainer);
+                trace('----end clear memory----');
+                loadedPages[3].dispose();
             }
             loadedPages.pop();
+            trace('array length: ', loadedPages.length);
+
         }
 
         loadedPages[1].x = -appModel.appwidth;
@@ -135,18 +146,26 @@ public class PageContainer extends Sprite{
         if(appModel.hasNextPage){
             if(loadedPages[2] != null){
                 ClearMemory.clear(loadedPages[2] as DisplayObjectContainer);
+                loadedPages[2].dispose();
             }
             loadedPages[2] = new Page(appModel.pages[currentPageIndex+1]);
         }
         if(appModel.hasPreviousPage){
             if(loadedPages[0] != null){
                 ClearMemory.clear(loadedPages[0] as DisplayObjectContainer);
+                loadedPages[0].dispose();
             }
             loadedPages[0] = new Page(appModel.pages[currentPageIndex-1]);
         }
+        if(loadedPages[1] != null){
+            ClearMemory.clear(loadedPages[1] as DisplayObjectContainer);
+            loadedPages[1].dispose();
+        }
+
         loadedPages[1] = new Page(appModel.pages[currentPageIndex]);
         loadedPages[1].alpha = 0;
         addChild(loadedPages[1]);
+
         var tween:Tween = new Tween(loadedPages[1], 0.4, Transitions.EASE_IN);
         tween.animate("alpha", 1);
         tween.onComplete = removeItems;
@@ -155,7 +174,9 @@ public class PageContainer extends Sprite{
     }
 
     private function removeItems(pageToDelete:Page):void {
-        removeChild(pageToDelete);
+        if(pageToDelete != null){
+            removeChild(pageToDelete);
+        }
     }
 
 }

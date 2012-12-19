@@ -17,6 +17,7 @@ import flash.display.BitmapData;
 import flash.events.Event;
 
 import starling.display.Image;
+import starling.display.Sprite;
 import starling.events.Event;
 import starling.textures.Texture;
 
@@ -28,11 +29,10 @@ public class BackgroundPhotoElement extends Element{
 
     public function BackgroundPhotoElement(backgroundPhotoElementVO:BackgroundPhotoElementVO) {
         super (backgroundPhotoElementVO);
-
         appModel = AppModel.getInstance();
         appModel.addEventListener(AppModel.APPSIZE_CHANGED, resizeHandler);
+        image = new Image(Texture.fromBitmapData(new BitmapData(1024, 768)));
 
-        image = new Image(Texture.fromBitmapData(new BitmapData(100, 100)));
         _requestQueue = new Queue();
         _requestQueue.add(new ImageLoaderTask(Config.IMAGEPATH_PREFIX + backgroundPhotoElementVO.path));
         _requestQueue.addEventListener(flash.events.Event.COMPLETE, photoLoaded);
@@ -43,12 +43,8 @@ public class BackgroundPhotoElement extends Element{
         var loadedImage:ImageLoaderTask = _requestQueue.completedTasks[0] as ImageLoaderTask;
         var bitmap:Bitmap = loadedImage.content as Bitmap;
         image = Image.fromBitmap(bitmap);
-//        if (appModel.appwidth) {
-//            image.width = appModel.appwidth;
-//        }
-//        if (appModel.appheight) {
-//            image.height = appModel.appheight;
-//        }
+        image.width = 1024;
+        image.height= 768;
 
         setSize();
         addChild(image);
@@ -61,17 +57,8 @@ public class BackgroundPhotoElement extends Element{
 
     private function setSize(){
         //TODO: proper scaling
-        if(appModel.appwidth > appModel.appheight){
-            image.width = appModel.appwidth;
-            // we willen de image niet uitrekken, maar de img proportioneel scalen
-            // width en scaleX ; height en scaleY zijn gelinkt aan elkaar
-            // scaleX en scaleY geven mee hoeveel de image geresized is dus:
-            // .width aanpassen --> scaleX zal worden aangepast en dus scaleY ook, waardoor de .height wordt aangepast
-            image.scaleY = image.scaleX;
-        }else if(appModel.appheight > image.height){
-            image.height = appModel.appheight;
-            image.scaleY = image.scaleX;
-        }
+        image.x = appModel.appwidth/2 - image.width/2;
+        image.y = appModel.appheight/2 - image.height/2;
     }
 
 }

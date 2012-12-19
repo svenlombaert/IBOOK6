@@ -225,7 +225,6 @@ public class ViewModeController extends Sprite {
     }
 
     private function scrollbarDragHandler(event:starling.events.Event):void {
-        trace('[VIEWMODECONTROL] thumbpos changed');
         appModel.thumbScrollbarPosition = scrollbar.thumbPosition;
     }
 

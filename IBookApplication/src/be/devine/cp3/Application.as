@@ -20,6 +20,7 @@ import be.devine.cp3.view.viewmodes.Thumbnail;
 import be.devine.cp3.vo.PageVO;
 
 import com.adobe.images.JPGEncoder;
+import com.adobe.images.PNGEncoder;
 
 import flash.display.Bitmap;
 import flash.display.BitmapData;
@@ -56,6 +57,7 @@ public class Application extends Sprite {
     private var backgroundImg:Image;
     private var originalBgWidth:int;
     private var originalBgHeight:int;
+    private var thumbPage:Page;
 
     private var pageService:PageService;
 
@@ -187,14 +189,21 @@ public class Application extends Sprite {
         var directory:File = File.desktopDirectory.resolvePath("thumbnails");
         directory.createDirectory();
 
+        trace(this.numChildren);
+        if(thumbPage != null){
+
+            ClearMemory.clear(thumbPage as DisplayObjectContainer);
+            this.dispose();
+        }
+
 
         if(thumbnailToLoad < appModel.pages.length){
 
             trace('LOAD THUMBNAIL ', thumbnailToLoad);
-            var page:Page = new Page(appModel.pages[thumbnailToLoad]);
-            addChild(page);
-            if(page.hasBackground){
-                page.addEventListener(starling.events.Event.COMPLETE, pageLoadedHandler);
+            thumbPage = new Page(appModel.pages[thumbnailToLoad]);
+            addChild(thumbPage);
+            if(thumbPage.hasBackground){
+                thumbPage.addEventListener(starling.events.Event.COMPLETE, pageLoadedHandler);
             }else{
                 takeScreenshot();
             }
@@ -215,10 +224,9 @@ public class Application extends Sprite {
         var result:BitmapData = new BitmapData(Thumbnail.MAXWIDTH, Thumbnail.MAXHEIGHT, true);
         Starling.context.drawToBitmapData(result);
 
-        var jpgEncoder:JPGEncoder = new JPGEncoder(60);
-        var byteArray:ByteArray = jpgEncoder.encode(result);
+        var byteArray:ByteArray = PNGEncoder.encode(result);
 
-        var file:File = File.desktopDirectory.resolvePath("thumbnails/" + "thumbnail" + thumbnailToLoad + ".jpg");
+        var file:File = File.desktopDirectory.resolvePath("thumbnails/" + "thumbnail" + thumbnailToLoad + ".png");
 
         var wr:File = new File( file.nativePath);
         var stream:FileStream = new FileStream();
@@ -226,7 +234,7 @@ public class Application extends Sprite {
         stream.writeBytes (byteArray);
         stream.close();
 
-        ClearMemory.clear(this);
+
         thumbnailToLoad += 1;
         generateThumbnails();
     }

@@ -221,7 +221,7 @@ public class Application extends Sprite {
         stage.render(support, 1.0);
         support.finishQuadBatch();
 
-        var result:BitmapData = new BitmapData(Thumbnail.MAXWIDTH, Thumbnail.MAXHEIGHT, true);
+        var result:BitmapData = new BitmapData(256, 256);
         Starling.context.drawToBitmapData(result);
 
         var byteArray:ByteArray = PNGEncoder.encode(result);

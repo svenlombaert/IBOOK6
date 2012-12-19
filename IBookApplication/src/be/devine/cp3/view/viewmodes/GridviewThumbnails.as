@@ -54,7 +54,6 @@ public class GridviewThumbnails extends Sprite{
 
             teller ++;
 
-
             if(teller % 4 == 0 && teller != 0){
                 yPos += Thumbnail.MAXHEIGHT + 20;
                 xPos = 0;
@@ -65,7 +64,6 @@ public class GridviewThumbnails extends Sprite{
                 //xPos += 4*(Thumbnail.MAXWIDTH + 25);
                 //yPos = 0;
             }
-
 
         }
 

@@ -77,7 +77,7 @@ public class ThumbnailContainer extends Sprite {
         _arrThumbnails = new Vector.<Thumbnail>();
         for (var i:int = 0; i<appModel.pages.length; i++ )
         {
-            var thumb:Thumbnail = new Thumbnail("assets/images/thumbnails/thumbnail" + i + ".png", i);
+            var thumb:Thumbnail = new Thumbnail("assets/images/thumbnails/thumbnail" + i + ".atf", i);
             _arrThumbnails.push(thumb);
         }
         generateDiffViews();

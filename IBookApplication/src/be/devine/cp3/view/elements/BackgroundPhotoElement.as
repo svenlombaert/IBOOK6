@@ -7,6 +7,7 @@
  */
 package be.devine.cp3.view.elements {
 import be.devine.cp3.config.Config;
+import be.devine.cp3.config.Config;
 import be.devine.cp3.model.AppModel;
 import be.devine.cp3.queue.ImageLoaderTask;
 import be.devine.cp3.queue.Queue;
@@ -15,6 +16,10 @@ import be.devine.cp3.vo.BackgroundPhotoElementVO;
 import flash.display.Bitmap;
 import flash.display.BitmapData;
 import flash.events.Event;
+import flash.geom.Point;
+import flash.net.URLLoader;
+import flash.net.URLLoaderDataFormat;
+import flash.net.URLRequest;
 
 import starling.display.Image;
 import starling.display.Sprite;
@@ -23,9 +28,9 @@ import starling.textures.Texture;
 
 public class BackgroundPhotoElement extends Element{
     //TODO: Thomas: backgroundphoto element opmaken, eventueel aan de hand van breedte en hoogte vanuit XML (die dus ook in de BackgroundPhotoVO zal zitten)
-    private var _requestQueue:Queue;
     private var appModel:AppModel;
     private var image:Image;
+    private var loader:URLLoader;
 
     public function BackgroundPhotoElement(backgroundPhotoElementVO:BackgroundPhotoElementVO) {
         super (backgroundPhotoElementVO);
@@ -33,18 +38,23 @@ public class BackgroundPhotoElement extends Element{
         appModel.addEventListener(AppModel.APPSIZE_CHANGED, resizeHandler);
         image = new Image(Texture.fromBitmapData(new BitmapData(1024, 768)));
 
-        _requestQueue = new Queue();
-        _requestQueue.add(new ImageLoaderTask(Config.IMAGEPATH_PREFIX + backgroundPhotoElementVO.path));
-        _requestQueue.addEventListener(flash.events.Event.COMPLETE, photoLoaded);
-        _requestQueue.start();
+        loader = new URLLoader();
+        loader.dataFormat = URLLoaderDataFormat.BINARY;
+        loader.addEventListener(flash.events.Event.COMPLETE, photoLoaded);
+        loader.load(new URLRequest(Config.IMAGEPATH_PREFIX + backgroundPhotoElementVO.path));
+
     }
 
     private function photoLoaded(event:flash.events.Event):void {
-        var loadedImage:ImageLoaderTask = _requestQueue.completedTasks[0] as ImageLoaderTask;
-        var bitmap:Bitmap = loadedImage.content as Bitmap;
-        image = Image.fromBitmap(bitmap);
-        image.width = 1024;
-        image.height= 768;
+        var texture:Texture = Texture.fromAtfData(loader.data);
+        image = new Image(texture);
+        var maxwidth:uint = 1024;
+        var maxheight:uint = 768;
+        image.setTexCoords(1, new Point(maxwidth/texture.width, 0));
+        image.setTexCoords(2, new Point(0, 768/texture.height));
+        image.setTexCoords(3, new Point(maxwidth/texture.width, maxheight/texture.height));
+        image.width = maxwidth;
+        image.height = maxheight;
 
         setSize();
         addChild(image);
@@ -56,7 +66,6 @@ public class BackgroundPhotoElement extends Element{
     }
 
     private function setSize(){
-        //TODO: proper scaling
         image.x = appModel.appwidth/2 - image.width/2;
         image.y = appModel.appheight/2 - image.height/2;
     }

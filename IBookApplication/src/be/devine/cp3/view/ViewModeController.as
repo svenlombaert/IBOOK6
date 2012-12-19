@@ -179,6 +179,8 @@ public class ViewModeController extends Sprite {
             tween = new Tween(timeLineButtonsContainer, 0.5, Transitions.EASE_IN_OUT);
             tween.animate("y", appModel.appheight - 258);
             Starling.juggler.add(tween);
+            tween.onComplete = checkListeners;
+
         }else{
             //naar gridview gaan
             trace(thumbnailContainer.y);
@@ -188,6 +190,8 @@ public class ViewModeController extends Sprite {
             tween = new Tween(timeLineButtonsContainer, 0.5, Transitions.EASE_IN_OUT);
             tween.animate("y", 10 + timeLineButtonsContainer.height/2);
             Starling.juggler.add(tween);
+            tween.onComplete = checkListeners;
+
         }
     }
 
